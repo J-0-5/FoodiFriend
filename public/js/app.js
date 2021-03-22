@@ -37448,25 +37448,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// $(document).ready(function () {
-//     $('.empresaEmpleado').on('change', function () {
-//         $('.centrosEmpleado').html('<option selected disabled value="">Centros</option>')
-//         $.get("centrosDeCosto", {
-//             idEmpresa: $(this).val()
-//         }, function (data) {
-//             if (data.res == 'ok') {
-//                 data.centros.map(c => {
-//                     $('.centrosEmpleado').append(`
-//                     <option value="${c.id}">${c.centro}</option>
-//                 `)
-//                 })
-//             }
-//         },
-//             "json"
-//         );
-//     })
-// });
-// alert(111);
 document.getElementById('department').onchange = function () {
   var department = document.getElementById("department").value;
   var url = new URL("http://127.0.0.1:8000/cities");
@@ -37482,11 +37463,7 @@ document.getElementById('department').onchange = function () {
   }).then(function (data) {
     console.log(data.cities);
     var select = document.getElementById('city');
-
-    for (var i = 0; i <= select.childElementCount + 1; i++) {
-      select.remove(1);
-    }
-
+    select.innerHTML = "<option selected disabled value=\"0\">Ciudad</option>";
     data.cities.map(function (c) {
       var option = document.createElement("option");
       option.text = c.name;
@@ -37516,8 +37493,8 @@ document.getElementById('department').onchange = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\foodieFriend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\foodieFriend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\FoodiFriend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\FoodiFriend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
