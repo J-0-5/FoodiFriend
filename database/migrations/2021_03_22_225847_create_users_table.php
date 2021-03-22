@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('numDoc');
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('city');
+            $table->string('address');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

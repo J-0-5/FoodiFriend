@@ -43,7 +43,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-1"></div>
-                            <select name="typeDoc" class="col-md-3 col-form-label custom-select" @error('numDoc') is-invalid @enderror required id="">
+                            <select name="typeDoc" class="col-md-3 col-form-label custom-select" @error('typeDoc') is-invalid @enderror required id="">
                                 <option selected disabled value="0">{{ __('Document type') }}</option>
                                 @foreach ($typeDoc as $typeDoc)
                                     <option value="{{$typeDoc->id}}">{{$typeDoc->value}}</option>
@@ -171,7 +171,7 @@
 
                                 <div class="col-md-6">
                                     <input id="nit" type="text" class="form-control @error('nit') is-invalid @enderror"
-                                        name="nit" value="{{ old('nit') }}" required autocomplete="nit" autofocus>
+                                        name="nit" value="{{ old('nit') }}" autocomplete="nit" autofocus>
 
                                     @error('nit')
                                     <span class="invalid-feedback" role="alert">
@@ -186,7 +186,7 @@
 
                                 <div class="col-md-6">
                                     <input id="commerceName" type="text" class="form-control @error('commerceName') is-invalid @enderror"
-                                        name="commerceName" value="{{ old('commerceName') }}" required autocomplete="commerceName" autofocus>
+                                        name="commerceName" value="{{ old('commerceName') }}" autocomplete="commerceName" autofocus>
 
                                     @error('commerceName')
                                     <span class="invalid-feedback" role="alert">
@@ -201,7 +201,7 @@
 
                                 <div class="col-md-6">
                                     <input id="typeCommerce" type="text" class="form-control @error('typeCommerce') is-invalid @enderror"
-                                        name="typeCommerce" value="{{ old('typeCommerce') }}" required autocomplete="typeCommerce" autofocus>
+                                        name="typeCommerce" value="{{ old('typeCommerce') }}" autocomplete="typeCommerce" autofocus>
 
                                     @error('typeCommerce')
                                     <span class="invalid-feedback" role="alert">
@@ -215,7 +215,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" required autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" autocomplete="description" autofocus>{{ old('description') }}</textarea>
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">

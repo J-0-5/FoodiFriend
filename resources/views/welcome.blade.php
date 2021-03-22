@@ -16,7 +16,7 @@
         html,
         body {
             background-image: url('{{asset('storage/backgroundImg/welcomeBg.jpg')}}');
-            background-position: center;
+            background-position: inherit;
             background-repeat: no-repeat;
             background-size: cover;
             background-color: #fff;
@@ -68,6 +68,10 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
+        .size{
+            font-size: 7rem !important;
+        }
     </style>
 </head>
 
@@ -76,22 +80,22 @@
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
-            <a href="{{ url('/home') }}">Home</a>
+            <a class="text-white font-weight-bold" href="{{ url('/home') }}">Home</a>
             @else
-            <a href="{{ route('login') }}">@lang('Login')</a>
+            <a class="text-white font-weight-bold" href="{{ route('login') }}">@lang('Login')</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}">@lang('Register')</a>
+            <a class="text-white font-weight-bold" href="{{ route('register') }}">@lang('Register')</a>
             @endif
             @endauth
         </div>
         @endif
 
         <div class="content">
-            <div class="title text-warning">
+            <div class="title font-weight-bold text-warning size">
                 FoodieFriend
             </div>
-            <h2 class="text-white">"Mil sabores en un solo lugar"</h2>
+            <h1 class="text-white font-weight-bold">"Mil sabores en un solo lugar"</h1>
             {{-- <div class="links">
                 <a href="https://laravel.com/docs">Docs</a>
                 <a href="https://laracasts.com">Laracasts</a>
