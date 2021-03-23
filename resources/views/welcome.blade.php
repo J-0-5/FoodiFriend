@@ -15,7 +15,7 @@
 
         html,
         body {
-            background-image: url('{{asset('storage/backgroundImg/welcomeBg.jpg')}}');
+            background-image: url('{{asset('img/backgroundImg/welcomeBg.jpg')}}');
             background-position: inherit;
             background-repeat: no-repeat;
             background-size: cover;
