@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastName');
-            $table->unsignedBigInteger('typeDoc');
-            $table->foreign('typeDoc')->references('id')->on('parameter_value');
+            $table->unsignedBigInteger('docType');
+            $table->foreign('docType')->references('id')->on('parameter_value');
             $table->string('numDoc');
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('city');

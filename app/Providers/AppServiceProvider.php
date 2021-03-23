@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $departmets = Helpers::dataCookie('departments');
-            $typeDoc = Helpers::dataCookie('typeDoc');
-            $view->with('departments', $departmets)->with('typeDoc', $typeDoc);
+            $docType = Helpers::dataCookie('docType');
+            $commerceType = Helpers::dataCookie('commerceType');
+            $view->with('departments', $departmets)->with('docType', $docType)->with('commerceType', $commerceType);
         });
     }
 }

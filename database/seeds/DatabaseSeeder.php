@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PlaceSeeder::class);
         $this->call(ParameterValueSeeder::class);
+        $this->call(CommerceTypeSeeder::class);
     }
 }

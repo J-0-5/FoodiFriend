@@ -27,11 +27,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Last name') }}</label>
+                            <label for="lastName"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Last name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
-                                    name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
+                                <input id="lastName" type="text"
+                                    class="form-control @error('lastName') is-invalid @enderror" name="lastName"
+                                    value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
 
                                 @error('lastName')
                                 <span class="invalid-feedback" role="alert">
@@ -43,53 +45,59 @@
 
                         <div class="form-group row">
                             <div class="col-md-1"></div>
-                            <select name="typeDoc" class="col-md-3 col-form-label custom-select" @error('typeDoc') is-invalid @enderror required id="">
+                            <select name="docType" class="col-md-3 col-form-label custom-select @error('docType')
+                                is-invalid @enderror" required id="">
                                 <option selected disabled value="0">{{ __('Document type') }}</option>
-                                @foreach ($typeDoc as $typeDoc)
-                                    <option value="{{$typeDoc->id}}">{{$typeDoc->value}}</option>
+                                @foreach ($docType as $docType)
+                                <option value="{{$docType->id}}">{{$docType->value}}</option>
                                 @endforeach
                             </select>
-                            @error('typeDoc')
+
+                            <div class="col-md-6">
+                                <input id="numDoc" type="number"
+                                    class="form-control @error('numDoc') is-invalid @enderror" name="numDoc"
+                                    value="{{ old('numDoc') }}" required autocomplete="numDoc"
+                                    placeholder="{{__('Document number')}}" autofocus>
+
+                                @error('docType')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-
-                            <div class="col-md-6">
-                                <input id="numDoc" type="number" class="form-control @error('numDoc') is-invalid @enderror"
-                                    name="numDoc" value="{{ old('numDoc') }}" required autocomplete="numDoc" placeholder="{{__('Document number')}}" autofocus>
+                                @enderror
 
                                 @error('numDoc')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-1"></div>
-                            <select name="department" class="col-md-3 col-form-label custom-select" @error('department') is-invalid @enderror id="department">
+                            <select name="department" class="col-md-3 col-form-label custom-select @error('department')
+                                is-invalid @enderror" id="department">
                                 <option selected disabled value="0">{{ __('Department') }}</option>
                                 @foreach ($departments as $department)
-                                    <option value="{{$department->id}}">{{$department->name}}</option>
+                                <option value="{{$department->id}}">{{$department->name}}</option>
                                 @endforeach
                             </select>
                             @error('department')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
 
                             <div class="col-md-6">
-                                <select name="city" class="col-form-label custom-select" @error('city') is-invalid @enderror id="city">
+                                <select name="city" class="col-form-label custom-select @error('city') is-invalid
+                                    @enderror" id="city">
                                     <option selected disabled value="0">{{ __('City') }}</option>
                                 </select>
 
                                 @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -99,8 +107,9 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="address" class="form-control @error('address') is-invalid @enderror"
-                                    name="address" value="{{ old('address') }}" required autocomplete="address">
+                                <input id="address" type="address"
+                                    class="form-control @error('address') is-invalid @enderror" name="address"
+                                    value="{{ old('address') }}" required autocomplete="address">
 
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -182,11 +191,28 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="commerceName" class="col-md-4 col-form-label text-md-right">{{ __('Commerce name') }}</label>
+                                <div class="col-md-1"></div>
+                                <select name="commerceType" class="col-md-3 col-form-label custom-select
+                                    @error('commerceType') is-invalid @enderror" id="commerceType">
+                                    <option selected disabled value="0">{{ __('Type commerce') }}</option>
+                                    @foreach ($commerceType as $type)
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+
+
 
                                 <div class="col-md-6">
-                                    <input id="commerceName" type="text" class="form-control @error('commerceName') is-invalid @enderror"
-                                        name="commerceName" value="{{ old('commerceName') }}" autocomplete="commerceName" autofocus>
+                                    <input id="commerceName" type="text" placeholder="{{ __('Commerce name') }}"
+                                        class="form-control @error('commerceName') is-invalid @enderror"
+                                        name="commerceName" value="{{ old('commerceName') }}"
+                                        autocomplete="commerceName" autofocus>
+
+                                    @error('commerceType')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
 
                                     @error('commerceName')
                                     <span class="invalid-feedback" role="alert">
@@ -197,25 +223,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="typeCommerce" class="col-md-4 col-form-label text-md-right">{{ __('Type commerce') }}</label>
+                                <label for="description"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="typeCommerce" type="text" class="form-control @error('typeCommerce') is-invalid @enderror"
-                                        name="typeCommerce" value="{{ old('typeCommerce') }}" autocomplete="typeCommerce" autofocus>
-
-                                    @error('typeCommerce')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                    <textarea name="description" id="description"
+                                        class="form-control @error('description') is-invalid @enderror" rows="5"
+                                        autocomplete="description" autofocus>{{ old('description') }}</textarea>
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">

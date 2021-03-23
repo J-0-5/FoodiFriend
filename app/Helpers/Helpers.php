@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\CommerceType;
 use App\Department;
 use App\ParameterValue;
 use Illuminate\Support\Facades\Cookie;
@@ -16,7 +17,8 @@ class Helpers
 
             $data = array(
                 'departments' => Department::get(),
-                'typeDoc' => ParameterValue::where('typeParameter', 1)->get(),
+                'docType' => ParameterValue::where('typeParameter', 1)->get(),
+                'commerceType' => CommerceType::get(),
             );
 
             // $result = json_decode(json_encode($data), true);

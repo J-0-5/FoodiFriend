@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Commerce;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -52,10 +53,16 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
-            'typeDoc' => ['required', 'exists:parameter_value,id'],
+            'docType' => ['required', 'exists:parameter_value,id'],
             'numDoc' => ['required', 'unique:users,numDoc'],
             'city' => ['required', 'exists:city,id'],
             'address' => ['required', 'string', 'max:255'],
+            /////////////////////////////////////////////////////////////////////
+            'nit' => ['nullable', 'unique:commerce,nit'],
+            'commerceName' => ['nullable', 'string', 'max:255'],
+            'commerceType' => ['nullable', 'exists:commerce_type,id'],
+            'description' => ['nullable', 'string', 'max:255'],
+            /////////////////////////////////////////////////////////////////////
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -69,15 +76,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
-            'typeDoc' => $data['typeDoc'],
+            'docType' => $data['docType'],
             'numDoc' => $data['numDoc'],
             'city_id' => $data['city'],
             'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if (!empty($data['nit'])) {
+            Commerce::create([
+                'nit' => $data['nit'],
+                'user_id' => $user->id,
+                'name' => $data['commerceName'],
+                'type' => $data['commerceType'],
+                'description' => $data['description'],
+            ]);
+        }
+        return $user;
     }
 }

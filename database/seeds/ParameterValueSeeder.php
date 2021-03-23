@@ -13,7 +13,7 @@ class ParameterValueSeeder extends Seeder
     public function run()
     {
         $ParameterValue = [
-            1 => ["Cédula de ciudadanía", "Cédula de extranjería", "Pasaporte"] //typeDoc => [id => values]
+            1 => ["Cédula de ciudadanía", "Cédula de extranjería", "Pasaporte"] //docType => [id => values]
         ];
         foreach ($ParameterValue as $id => $values) {
             foreach ($values as $value) {
