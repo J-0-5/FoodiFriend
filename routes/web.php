@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/cities', 'CityController');
+
+Route::resource('/productCategory', 'ProductCategoryController');

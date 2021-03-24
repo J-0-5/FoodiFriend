@@ -40,5 +40,14 @@
     "Commerce name": "Nombre del comercio",
     "Type commerce": "Tipo de comercio",
     "Description": "Descripcion",
-    "You are logged in": "Has iniciado sesión"
+    "You are logged in": "Has iniciado sesión",
+    "Categories": "Categorias",
+    "Category": "Categoria",
+    "Product Category" : "Categorias de productos",
+    "There are no categories to display": "No hay categorias para mostrar",
+    "Create Categories" : "Crear Categorias",
+    "Show Categories" : "Mostrar Categorias",
+    "Update Categories" : "Actualizar Categorias",
+    "Delete Categories" : "Eliminar Categorias",
+    "Manage Categories" : "Administrar Categorias"
 }

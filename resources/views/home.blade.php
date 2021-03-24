@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Bienvenido</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{__('You are logged in')}} {{Auth::user()->name}}!
+                    {{__('You are logged in')}} {{Auth::user()->name}}!<br>
+                    <a href="{{route('productCategory.index')}}">@lang('Manage Categories')</a>
                 </div>
             </div>
         </div>
