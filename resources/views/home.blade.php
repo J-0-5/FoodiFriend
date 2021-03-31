@@ -15,7 +15,7 @@
                     @endif
 
                     {{__('You are logged in')}} {{Auth::user()->name}}!<br>
-                    <a href="{{route('productCategory.index')}}">@lang('Manage Categories')</a>
+
                 </div>
             </div>
         </div>

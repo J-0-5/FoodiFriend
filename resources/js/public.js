@@ -1,4 +1,4 @@
-document.getElementById('department').onchange = function () {
+document.getElementById('department').onchange = function() {
     let department = document.getElementById("department").value;
     let url = new URL("http://127.0.0.1:8000/cities");
     const params = { department_id: department };

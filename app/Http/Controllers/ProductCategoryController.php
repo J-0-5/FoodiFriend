@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::get();
 
-        return view('ProductCategory',compact('productCategory'));
+        return view('ProductCategory', compact('productCategory'));
     }
 
     /**
@@ -26,7 +27,6 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-
         return view('ProductCategories.create');
     }
 
@@ -36,14 +36,15 @@ class ProductCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
-        return ProductCategory::create([
+        ProductCategory::create([
             'name' => request('name'),
-            'commerce_id' => request('commerce_id'),
+            'commerce_id' => Auth::user()->id,
+            'state' => 1
         ]);
-        
+
+        return back()->with('status', __('Category created successfully'));
     }
 
     /**

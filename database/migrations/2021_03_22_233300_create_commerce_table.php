@@ -22,6 +22,7 @@ class CreateCommerceTable extends Migration
             $table->unsignedBigInteger('type');
             $table->foreign('type')->references('id')->on('commerce_type');
             $table->text('description');
+            $table->integer('state');
             $table->timestamps();
         });
     }
