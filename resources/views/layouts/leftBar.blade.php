@@ -3,6 +3,12 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('commerce.index') }}">
+                    {{-- <i class="color-session fas fa-store text-primary"></i> --}}
+                    {{ __('Commerce') }}
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('productCategory.index') }}">
                     {{-- <i class="color-session fas fa-store text-primary"></i> --}}
                     {{ __('Product Category') }}

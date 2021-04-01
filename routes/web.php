@@ -23,4 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/cities', 'CityController');
 
+Route::resource('/commerce', 'CommerceController');
+
 Route::resource('/productCategory', 'ProductCategoryController');
