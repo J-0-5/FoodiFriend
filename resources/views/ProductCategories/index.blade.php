@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-3 mb-3">
     <a href="{{route('productCategory.create')}}">@lang('Create Categories')</a>
-    <div class="row px-3 content">
+    <div class="row px-3">
         <div class="col-11 h2">@lang('Product Category')</div>
         <div class="col-1">
             <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
@@ -25,7 +25,7 @@
         </button>
     </div>
     @endif
-    <div class="card-header border-0 collapse" id="demo" >
+    <div class="card-header border-0 collapse" id="demo">
 
         <form action="{{--}}{{route('products.commerce.show', $commerce->id)}}{{--}}" method="get">
             <div class="row align-items-center">
@@ -61,21 +61,24 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-between">
-                <div class="col-3">
-                    <div class="form-group mb-3">
-                        <a href="{{--}}{{route('products.commerce.show', $commerce->id)}}{{--}}"
-                            class="btn btn-info btn-block"><i class="fas fa-backspace"></i> Borrar</a>
+                <div class="col">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-filter"></i>
+                                    Filtrar</button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <a href="{{ route('productCategory.index') }}"
+                                    class="btn btn-primary btn-block"><i class="fas fa-backspace"></i> Borrar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-info btn-block"><i class="fas fa-filter"></i>
-                            Filtrar</button>
-                    </div>
-                </div>
             </div>
+
         </form>
     </div>
     <div class="table-responsive">
