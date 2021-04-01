@@ -1,15 +1,13 @@
-<nav class=" navbar navbar-static-top navbar-expand-md navbar-light bg-white shadow-sm">
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Menu</span>
-    </a>
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <button class="btn" data-toggle="collapse" data-target="#leftBarCollapse"><i class="fas fa-bars"></i></button>
     <div class="container">
+
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'FoodieFriend') }}
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -40,12 +38,11 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </div>
@@ -55,4 +52,3 @@
         </div>
     </div>
 </nav>
-</header>

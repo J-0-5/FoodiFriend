@@ -8,5 +8,5 @@ class Commerce extends Model
 {
     protected $table = 'commerce';
 
-    protected $fillable = ['nit', 'user_id', 'name', 'type', 'description'];
+    protected $fillable = ['nit', 'user_id', 'name', 'type', 'description', 'state'];
 }
