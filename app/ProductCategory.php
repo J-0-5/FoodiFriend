@@ -11,4 +11,9 @@ class ProductCategory extends Model
     protected $fillable = ['name', 'commerce_id', 'state'];
 
     public $timestamps = false;
+
+    public function getCommerce()
+    {
+        return $this->belongsTo(Commerce::class, 'commerce_id');
+    }
 }

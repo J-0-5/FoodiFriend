@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::get();
 
-        return view('ProductCategory', compact('productCategory'));
+        return view('productCategories.index', compact('productCategory'));
     }
 
     /**
