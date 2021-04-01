@@ -41,7 +41,7 @@ class ProductCategoryController extends Controller
         ProductCategory::create([
             'name' => request('name'),
             'commerce_id' => Auth::user()->id,
-            'state' => 1
+            'state' => request('state')
         ]);
 
         return back()->with('status', __('Category created successfully'));
