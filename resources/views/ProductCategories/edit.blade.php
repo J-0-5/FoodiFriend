@@ -1,50 +1,38 @@
-{{-- <h1>@lang('Create Categories')</h1> --}}
+@extends('layouts.app')
 
-{{-- <ul> --}}
-    {{-- <li><a href="{{route('productCategory.index')}}">@lang('Show Categories')</a></li> --}}
-    {{--
-    <li><a href="{{route('productCategory.edit')}}">@lang('Update Categories')</a></li>
-    <li><a href="{{route('productCategory.delete')}}">@lang('Delete Categories')</a></li>
-    --}}
-{{-- </ul> --}}
-<div class="modal fade" id="createCategories">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
+@section('content')
 
-            <!-- Modal Header -->
-            <div class="modal-header bg-info text-white">
-                <h4 class="modal-title">@lang('Create Categories')</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+@if(session('status'))
+{{session('status')}}
+@endif
+
+    <div class="container col-5 ml-5">
+    <h4 class="modal-title">@lang('Update Category')</h4>
+
+    <form method="POST" action=" {{ route('productCategory.update', $productCategory) }} " class="was-validated">    
+         
+        @csrf @method('PATCH')
+            <div class="form-group">
+                <label>@lang('Name')</label>
+                <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control" required/>
             </div>
+            <div class="form-group">
+                <label>@lang('State')</label>
+                <select class="form-control" name="state" required>
+                    @if($productCategory->state == 1)
+                    <option value="{{ $productCategory->state }}">Activo</option>
+                    <option value="2">Inactivo</option>
+                    @else
+                    <option value="{{ $productCategory->state }}">Inactivo</option>
+                    <option value="1">Activo</option>
+                    @endif
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span>Actualizar</span>
+            </button>
+            
+    </form>
+    
 
-            <form action="{{ route('productCategory.store') }}" method="POST" class="was-validated">
-                @csrf
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>@lang('Name')</label>
-                        <input type="text" class="form-control" name="name" required />
-                    </div>
-                    <div class="form-group">
-                        <label>@lang('State')</label>
-                        <select class="form-control" name="state" required>
-                            <option value="">@lang('Select')</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
-                        <span>Enviar</span>
-                    </button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <span>Cerrar</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@endsection

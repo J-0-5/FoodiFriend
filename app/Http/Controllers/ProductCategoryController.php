@@ -53,9 +53,10 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(ProductCategory $productCategory)
+    {   
+        $productCategory = ProductCategory::get();
+        return view('productCategories.index', compact('productCategory'));
     }
 
     /**
@@ -64,21 +65,30 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ProductCategory $productCategory)
     {
-        //
+        //return $productCategory;
+        return view('productCategories.edit', compact('productCategory'));
+
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+
+    public function update(ProductCategory $productCategory)
+    {   
+        $productCategory->update([
+            'name' => request('name'),
+            'state' => request('state')
+        ]);
+
+        return redirect()->route('productCategory.show', $productCategory);
     }
 
     /**
@@ -87,8 +97,9 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ProductCategory $productCategory)
     {
-        //
+        $productCategory->delete();
+        return back()->with('status', __('Category deleted successfully'));
     }
 }

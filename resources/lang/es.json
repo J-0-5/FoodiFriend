@@ -49,9 +49,10 @@
     "There are no categories to display": "No hay categorias para mostrar",
     "Create Categories" : "Crear Categorias",
     "Category created successfully" : "Categoría creada correctamente",
+    "Category deleted successfully" : "Categoría eliminada correctamente",
     "Show Categories" : "Mostrar Categorias",
-    "Update Categories" : "Actualizar Categorias",
-    "Delete Categories" : "Eliminar Categorias",
+    "Update Category" : "Actualizar Categoria",
+    "Delete Category" : "Eliminar Categoria",
     "Manage Categories" : "Administrar Categorias",
     "Select" : "Seleccionar",
     "State" : "Estado"

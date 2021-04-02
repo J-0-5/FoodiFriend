@@ -1,12 +1,4 @@
-{{--
-@extends('index')
-
-@section('modalCreate')
-
-    @if(session('status'))
-        {{session('status')}}
-    @endif
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategories">
+    <button type="button" class="btn btn-primary ml-5 mb-3" data-toggle="modal" data-target="#createCategories">
         @lang('Create Categories')
     </button>
 
@@ -26,13 +18,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('Name')</label>
-                        <select class="form-control" name="name" required>
-                            <option value="">@lang('Select')</option>
-                            <option value="Panaderia y dulces">Panaderia y dulces</option>
-                            <option value="Carnes y embutidos">Carnes y embutidos</option>
-                            <option value="Frutas y verduras">Frutas y verduras</option>
-                            <option value="Huevos, Lacteos y café">Huevos, Lacteos y café</option>
-                        </select>
+                        <input type="text" name="name" class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label>@lang('State')</label>
@@ -58,6 +44,4 @@
     </div>
     </div>
 
-@stop
--}}
 
