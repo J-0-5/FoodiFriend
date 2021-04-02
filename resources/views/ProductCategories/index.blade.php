@@ -4,14 +4,7 @@
 
 <div class="container-fluid px-3 mb-3">
 
-    {{--  @yield('modalCreate') --}}
-
-    <button type="button" class="btn btn-primary ml-5 mb-3" data-toggle="modal" data-target="#createCategories">
-        @lang('Create Categories')
-    </button>
-
-    @include('ProductCategories.edit')
-
+    @include('ProductCategories.create')
 
     <div class="row px-3">
         <div class="col-11 h2">@lang('Product Category')</div>
@@ -19,8 +12,6 @@
             <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
         </div>
     </div>
-
-
 
     @if($errors->any())
     <div class="alert alert-danger">
@@ -100,31 +91,34 @@
                     <th scope="col">@lang('Name')</th>
                     <th scope="col">@lang('Commerce')</th>
                     <th scope="col">Estado</th>
-                    <th></th>
+                    <th ></th>
                 </tr>
             </thead>
             <tbody>
                 @if($productCategory->count())
-                @foreach ($productCategory as $category)
-                <tr id="{{$category->id}}">
+                @foreach ($productCategory as $productCategory)
+                <tr id="{{$productCategory->id}}">
                     <td>
-                        {{$category->name}}
+                        {{$productCategory->name}}
                     </td>
                     <td>
-                        {{$category->getCommerce->name}}
+                        {{$productCategory->getCommerce->name}}
                     </td>
                     <td>
                         <span
-                            class="badge badge-{{Config::get('const.states')[$category->state]['color']}}">{{Config::get('const.states')[$category->state]['name']}}
+                            class="badge badge-{{Config::get('const.states')[$productCategory->state]['color']}}">{{Config::get('const.states')[$productCategory->state]['name']}}
                         </span>
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-warning" {{--}}href="{{route('restaurant.edit', [$product->id])}}"
-                            {{--}}>
+                        <a class="btn btn-sm btn-warning" href=" {{ route('productCategory.edit', $productCategory) }} ">
                             <i class="fas fa-edit"></i>Editar
                         </a>
-                        <button class="btn btn-sm btn-danger btnEraseRestaurant"><i class="fas fa-trash-alt"></i>
-                            Eliminar</button>
+                        <form method="POST" action="{{ route('productCategory.destroy', $productCategory) }}">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-sm btn-danger btnEraseRestaurant">
+                                <i class="fas fa-trash-alt"></i>Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -135,6 +129,8 @@
                     </td>
                 </tr>
                 @endif
+
+            
             </tbody>
         </table>
     </div>
