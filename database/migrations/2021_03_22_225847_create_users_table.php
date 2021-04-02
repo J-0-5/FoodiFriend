@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->unsignedBigInteger('docType');
             $table->foreign('docType')->references('id')->on('parameter_value');
-            $table->string('numDoc');
+            $table->string('docNum');
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('city');
             $table->string('address');

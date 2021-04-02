@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $departmets = Helpers::dataCookie('departments');
+            $departments = Helpers::dataCookie('departments');
             $docType = Helpers::dataCookie('docType');
             $commerceType = Helpers::dataCookie('commerceType');
-            $view->with('departments', $departmets)->with('docType', $docType)->with('commerceType', $commerceType);
+            $view->with('departments', $departments)->with('docType', $docType)->with('commerceType', $commerceType);
         });
     }
 }

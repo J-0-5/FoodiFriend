@@ -14,8 +14,8 @@ class City extends Model
 
     public $timestamps = false;
 
-    public function getDepartament()
+    public function getDepartment()
     {
-        return $this->hasOne(Departament::class, 'id', 'department_id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }

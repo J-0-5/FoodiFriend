@@ -54,9 +54,9 @@
                             </select>
 
                             <div class="col-md-6">
-                                <input id="numDoc" type="number"
-                                    class="form-control @error('numDoc') is-invalid @enderror" name="numDoc"
-                                    value="{{ old('numDoc') }}" required autocomplete="numDoc"
+                                <input id="docNum" type="number"
+                                    class="form-control @error('docNum') is-invalid @enderror" name="docNum"
+                                    value="{{ old('docNum') }}" required autocomplete="docNum"
                                     placeholder="{{__('Document number')}}" autofocus>
 
                                 @error('docType')
@@ -65,7 +65,7 @@
                                 </span>
                                 @enderror
 
-                                @error('numDoc')
+                                @error('docNum')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -194,7 +194,7 @@
                                 <div class="col-md-1"></div>
                                 <select name="commerceType" class="col-md-3 col-form-label custom-select
                                     @error('commerceType') is-invalid @enderror" id="commerceType">
-                                    <option selected disabled value="0">{{ __('Type commerce') }}</option>
+                                    <option selected disabled value="0">{{ __('Commerce Type') }}</option>
                                     @foreach ($commerceType as $type)
                                     <option value="{{$type->id}}">{{$type->name}}</option>
                                     @endforeach

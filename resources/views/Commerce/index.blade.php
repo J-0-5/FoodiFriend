@@ -24,7 +24,7 @@
                                 <label class="form-control-label">Tipo</label>
                                 <select name="type" class="selecttwo form-control">
                                     <option value="" {{ request()->type == "" ? 'selected' : ''}}>Todos</option>
-                                    @foreach($commerceTypes as $type)
+                                    @foreach($commerceType as $type)
                                         <option value="{{$type->id}}" {{request()->type == $type->id ? 'selected': ''}}>
                                             {{$type->name}}
                                         </option>
@@ -89,7 +89,7 @@
                                         {{$commerce->nit}}
                                     </td>
                                     <td>
-                                        {{$commerce->type}}
+                                        {{$commerce->getType->name}}
                                     </td>
                                     <td>
                                         {{$commerce->description}}
@@ -100,10 +100,10 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" {{--}}href="{{route('restaurant.edit', [$product->id])}}"{{--}}>
+                                        <a class="btn btn-sm btn-warning" href="{{route('commerce.edit', [$commerce->id])}}">
                                             <i class="fas fa-edit"></i>Editar
                                         </a>
-                                        <button class="btn btn-sm btn-danger btnEraseRestaurant"><i class="fas fa-trash-alt"></i>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>
                                             Eliminar
                                         </button>
                                     </td>
@@ -119,18 +119,6 @@
                     </tbody>
                 </table>
             </div>
-        @else
-            <form>
-                <div class="form-group">
-                    <label for="nit" class="col-md-4 col-form-label text-md-right">{{ __('NIT') }}</label>
-                    <label for="formGroupExampleInput">Example label</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-                </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Another label</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-                </div>
-            </form>
         @endif
     </div>
 </div>

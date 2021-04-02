@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'name' => $user[0],
                 'lastName' => $user[1],
                 'docType' => $user[2],
-                'numDoc' => $user[3],
+                'docNum' => $user[3],
                 'city_id' => $user[4],
                 'address' => $user[5],
                 'email' => $user[6],

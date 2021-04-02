@@ -11,14 +11,20 @@ class CommerceController extends Controller
 {
     public function index()
     {
-        $commerceTypes = CommerceType::where('state', 1)->get();
+        $commerces = Commerce::state(request()->state)->get();
 
-        if (Auth::user()->id == 1) {
-            $commerces = Commerce::state(request()->state)->get();
-        } else {
-            $commerces = Commerce::where('id', Auth::user()->id)->get();
-        }
+        return view('Commerce.index', compact('commerces'));
+    }
 
-        return view('Commerce.index', compact('commerceTypes', 'commerces'));
+    public function edit($id)
+    {
+        $commerce = Commerce::where('id', $id)->first();
+
+        return view('Commerce.edit', compact('commerce'));
+    }
+
+    public function update($commerce_id)
+    {
+        return $commerce_id;
     }
 }
