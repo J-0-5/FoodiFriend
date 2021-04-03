@@ -6,48 +6,55 @@ export default class Commerce {
     }
     deleteCommerce() {
         const Swal = require('sweetalert2')
-        let btnDeleteCommerce = document.getElementById('btnDeleteCommerce');
-        btnDeleteCommerce.addEventListener('click', () => {
-            Swal.fire({
-                title: 'Eliminar Comercio!',
-                text: '¿Seguro que quieres continuar?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Confirmar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.value) {
-                    let commerce = document.querySelector('.idCommerce');
-                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                    // alert(token);
+        let btnDeleteCommerce = document.getElementsByClassName('btnDeleteCommerce');
 
-                    let url = '/commerce/' + commerce.id;
+        if (btnDeleteCommerce == null) {
+            return;
+        }
 
+        for (let i = 0; i < (btnDeleteCommerce.length); i++) {
+            btnDeleteCommerce[i].addEventListener('click', () => {
+                console.log(btnDeleteCommerce[i].parentNode.parentNode.id);
+                let commerce = btnDeleteCommerce[i].parentNode.parentNode;
 
-                    fetch(url, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': token
-                        }
-                    })
-                        .then(() => {
-                            Swal.fire({
-                                title: 'Comercio eliminado',
-                                icon: 'success',
-                                confirmButtonText: 'Ok'
-                            })
-                            commerce.remove();
+                Swal.fire({
+                    title: 'Eliminar Comercio!',
+                    text: '¿Seguro que quieres continuar?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirmar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.value) {
+
+                        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                        let url = '/commerce/' + commerce.id;
+
+                        fetch(url, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': token
+                            }
                         })
-                        .catch(function () {
-                            Swal.fire({
-                                title: 'Ups!',
-                                text: 'Ha ocurrido un error. Intentalo mas tarde',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
+                            .then(() => {
+                                Swal.fire({
+                                    title: 'Comercio eliminado',
+                                    icon: 'success',
+                                    confirmButtonText: 'Ok'
+                                })
+                                commerce.remove();
                             })
-                        });
-                }
-            })
-        });
+                            .catch(function () {
+                                Swal.fire({
+                                    title: 'Ups!',
+                                    text: 'Ha ocurrido un error. Intentalo mas tarde',
+                                    icon: 'error',
+                                    confirmButtonText: 'Ok'
+                                })
+                            });
+                    }
+                })
+            });
+        }
     }
 }

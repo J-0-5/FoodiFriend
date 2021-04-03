@@ -41073,44 +41073,55 @@ var Commerce = /*#__PURE__*/function () {
     value: function deleteCommerce() {
       var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 
-      var btnDeleteCommerce = document.getElementById('btnDeleteCommerce');
-      btnDeleteCommerce.addEventListener('click', function () {
-        Swal.fire({
-          title: 'Eliminar Comercio!',
-          text: '¿Seguro que quieres continuar?',
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonText: 'Confirmar',
-          cancelButtonText: 'Cancelar'
-        }).then(function (result) {
-          if (result.value) {
-            var commerce = document.querySelector('.idCommerce');
-            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // alert(token);
+      var btnDeleteCommerce = document.getElementsByClassName('btnDeleteCommerce');
 
-            var url = '/commerce/' + commerce.id;
-            fetch(url, {
-              method: 'DELETE',
-              headers: {
-                'X-CSRF-TOKEN': token
-              }
-            }).then(function () {
-              Swal.fire({
-                title: 'Comercio eliminado',
-                icon: 'success',
-                confirmButtonText: 'Ok'
+      if (btnDeleteCommerce == null) {
+        return;
+      }
+
+      var _loop = function _loop(i) {
+        btnDeleteCommerce[i].addEventListener('click', function () {
+          console.log(btnDeleteCommerce[i].parentNode.parentNode.id);
+          var commerce = btnDeleteCommerce[i].parentNode.parentNode;
+          Swal.fire({
+            title: 'Eliminar Comercio!',
+            text: '¿Seguro que quieres continuar?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+          }).then(function (result) {
+            if (result.value) {
+              var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+              var url = '/commerce/' + commerce.id;
+              fetch(url, {
+                method: 'DELETE',
+                headers: {
+                  'X-CSRF-TOKEN': token
+                }
+              }).then(function () {
+                Swal.fire({
+                  title: 'Comercio eliminado',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                });
+                commerce.remove();
+              })["catch"](function () {
+                Swal.fire({
+                  title: 'Ups!',
+                  text: 'Ha ocurrido un error. Intentalo mas tarde',
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                });
               });
-              commerce.remove();
-            })["catch"](function () {
-              Swal.fire({
-                title: 'Ups!',
-                text: 'Ha ocurrido un error. Intentalo mas tarde',
-                icon: 'error',
-                confirmButtonText: 'Ok'
-              });
-            });
-          }
+            }
+          });
         });
-      });
+      };
+
+      for (var i = 0; i < btnDeleteCommerce.length; i++) {
+        _loop(i);
+      }
     }
   }]);
 
