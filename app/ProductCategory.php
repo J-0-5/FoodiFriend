@@ -8,7 +8,7 @@ class ProductCategory extends Model
 {
     protected $table = 'product_category';
 
-    protected $fillable = ['name', 'commerce_id', 'state'];
+    protected $fillable = ['name', 'commerce_id', 'description', 'state'];
 
     public $timestamps = false;
 

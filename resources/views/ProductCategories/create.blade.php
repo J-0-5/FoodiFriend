@@ -12,31 +12,27 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="{{ route('productCategory.store') }}" method="POST" class="was-validated">    
+            <form action="{{ route('productCategory.store') }}" method="POST">    
             @csrf
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('Name')</label>
-                        <input type="text" name="name" class="form-control" required/>
+                        <input type="text" name="name" class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label>@lang('State')</label>
-                        <select class="form-control" name="state" required>
-                            <option value="">@lang('Select')</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
-                        </select>
+                        <label>@lang('Description')</label>
+                        <textarea type="text" name="description" class="form-control"></textarea>
                     </div>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        <span>Enviar</span>
+                        <span>@lang('Create')</span>
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <span>Cerrar</span>
+                        <span>@lang('Close')</span>
                     </button>
                 </div>
             </form>

@@ -38,10 +38,11 @@ class ProductCategoryController extends Controller
      */
     public function store()
     {
+        //return request('description');
         ProductCategory::create([
             'name' => request('name'),
             'commerce_id' => Auth::user()->id,
-            'state' => request('state')
+            'description' => request('description')
         ]);
 
         return back()->with('status', __('Category created successfully'));
@@ -85,6 +86,7 @@ class ProductCategoryController extends Controller
     {   
         $productCategory->update([
             'name' => request('name'),
+            'description' => request('description'),
             'state' => request('state')
         ]);
 

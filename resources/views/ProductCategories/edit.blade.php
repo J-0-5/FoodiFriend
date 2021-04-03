@@ -9,16 +9,20 @@
     <div class="container col-5 ml-5">
     <h4 class="modal-title">@lang('Update Category')</h4>
 
-    <form method="POST" action=" {{ route('productCategory.update', $productCategory) }} " class="was-validated">    
+    <form method="POST" action=" {{ route('productCategory.update', $productCategory) }} ">    
          
         @csrf @method('PATCH')
             <div class="form-group">
                 <label>@lang('Name')</label>
-                <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control" required/>
+                <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>@lang('Description')</label>
+                <textarea type="text" name="description" class="form-control">{{ $productCategory->description }}</textarea>
             </div>
             <div class="form-group">
                 <label>@lang('State')</label>
-                <select class="form-control" name="state" required>
+                <select class="form-control" name="state">
                     @if($productCategory->state == 1)
                     <option value="{{ $productCategory->state }}">Activo</option>
                     <option value="2">Inactivo</option>

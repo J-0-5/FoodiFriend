@@ -8,11 +8,13 @@
 
     <div class="row px-3">
         <div class="col-11 h2">@lang('Product Category')</div>
+        
         <div class="col-1">
             <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
         </div>
     </div>
 
+@if($productCategory->count())
     @if($errors->any())
     <div class="alert alert-danger">
         @foreach($errors->all() as $error)
@@ -90,12 +92,13 @@
                 <tr>
                     <th scope="col">@lang('Name')</th>
                     <th scope="col">@lang('Commerce')</th>
-                    <th scope="col">Estado</th>
-                    <th ></th>
+                    <th scope="col">@lang('State')</th>
+                    <th scope="col">@lang('Description')</th>
+                    <th colspan="1"></th>
                 </tr>
             </thead>
             <tbody>
-                @if($productCategory->count())
+                
                 @foreach ($productCategory as $productCategory)
                 <tr id="{{$productCategory->id}}">
                     <td>
@@ -105,11 +108,14 @@
                         {{$productCategory->getCommerce->name}}
                     </td>
                     <td>
+                        {{$productCategory->description}}
+                    </td>
+                    <td>
                         <span
                             class="badge badge-{{Config::get('const.states')[$productCategory->state]['color']}}">{{Config::get('const.states')[$productCategory->state]['name']}}
                         </span>
                     </td>
-                    <td>
+                    <td colspan="5">
                         <a class="btn btn-sm btn-warning" href=" {{ route('productCategory.edit', $productCategory) }} ">
                             <i class="fas fa-edit"></i>Editar
                         </a>
@@ -122,18 +128,14 @@
                     </td>
                 </tr>
                 @endforeach
-                @else
-                <tr>
-                    <td colspan="5" class="text-center">
-                        {{__('There are no categories to display')}}
-                    </td>
-                </tr>
-                @endif
-
-            
             </tbody>
         </table>
     </div>
+@else       
+    <h1 class="text-center">
+        {{__('There are no categories to display')}}
+    </h1>            
+@endif
 </div>
 
 @endsection

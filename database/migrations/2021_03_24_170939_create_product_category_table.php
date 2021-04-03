@@ -18,6 +18,7 @@ class CreateProductCategoryTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('commerce_id');
             $table->foreign('commerce_id')->references('id')->on('commerce');
+            $table->text('description');
             $table->integer('state')->default(1);
         });
     }
