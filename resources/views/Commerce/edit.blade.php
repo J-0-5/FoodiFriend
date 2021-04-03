@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div class="flex-column container">
+    @if(session('status'))
+    <div class="alert alert-success" role="alert">
+        {{session('status')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">x</span>
+        </button>
+    </div>
+    @endif
     <div class="card shadow">
         <form method="post" action="{{route('commerce.update',[$commerce->id])}}">
 
@@ -239,7 +247,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success mt-4">{{__('Commerce Update')}}</button>
+                    <button type="submit" class="btn btn-primary mt-4">{{__('Commerce Update')}}</button>
                 </div>
             </div>
         </form>

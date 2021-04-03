@@ -81,7 +81,7 @@
                     <tbody>
                         @if($commerces->count())
                             @foreach ($commerces as $commerce)
-                                <tr id="{{$commerce->id}}">
+                                <tr class="idCommerce" id="{{$commerce->id}}">
                                     <td>
                                         {{$commerce->name}}
                                     </td>
@@ -103,7 +103,7 @@
                                         <a class="btn btn-sm btn-warning" href="{{route('commerce.edit', [$commerce->id])}}">
                                             <i class="fas fa-edit"></i>Editar
                                         </a>
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>
+                                        <button class="btn btn-sm btn-danger" id="btnDeleteCommerce"><i class="fas fa-trash-alt"></i>
                                             Eliminar
                                         </button>
                                     </td>
