@@ -119,12 +119,15 @@
                         <a class="btn btn-sm btn-warning" href=" {{ route('productCategory.edit', $productCategory) }} ">
                             <i class="fas fa-edit"></i>Editar
                         </a>
-                        <form method="POST" action="{{ route('productCategory.destroy', $productCategory) }}">
+                        <button class="btn btn-sm btn-danger btnDeleteProductCategory"><i
+                            class="fas fa-trash-alt"></i>Eliminar
+                        </button>
+                        {{-- <form method="POST" action="{{ route('productCategory.destroy', $productCategory) }}">
                             @csrf @method('DELETE')
                             <button class="btn btn-sm btn-danger btnEraseRestaurant">
                                 <i class="fas fa-trash-alt"></i>Eliminar
                             </button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
                 @endforeach

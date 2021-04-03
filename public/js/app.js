@@ -41189,6 +41189,94 @@ var Global = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/_productCategory.js":
+/*!******************************************!*\
+  !*** ./resources/js/_productCategory.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductCategory; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ProductCategory = /*#__PURE__*/function () {
+  function ProductCategory() {
+    _classCallCheck(this, ProductCategory);
+  }
+
+  _createClass(ProductCategory, [{
+    key: "initialize",
+    value: function initialize() {
+      this.deleteProductCategory();
+    }
+  }, {
+    key: "deleteProductCategory",
+    value: function deleteProductCategory() {
+      console.log("adentro");
+
+      var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+      var btnDeleteProductCategory = document.getElementsByClassName('btnDeleteProductCategory');
+
+      if (btnDeleteProductCategory == null) {
+        return;
+      }
+
+      [].forEach.call(btnDeleteProductCategory, function (btn) {
+        btn.addEventListener('click', function () {
+          console.log(btn.parentNode.parentNode.id);
+          var productCategory = btn.parentNode.parentNode;
+          Swal.fire({
+            title: 'Eliminar Categoria de Producto!',
+            text: '¿Seguro que quieres continuar?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+          }).then(function (result) {
+            if (result.value) {
+              var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+              var url = '/productCategory/' + productCategory.id;
+              fetch(url, {
+                method: 'DELETE',
+                headers: {
+                  'X-CSRF-TOKEN': token
+                }
+              }).then(function () {
+                Swal.fire({
+                  title: 'Categoria de Producto eliminada',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                });
+                productCategory.remove();
+              })["catch"](function () {
+                Swal.fire({
+                  title: 'Ups!',
+                  text: 'Ha ocurrido un error. Intentalo mas tarde',
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                });
+              });
+            }
+          });
+        });
+      });
+    }
+  }]);
+
+  return ProductCategory;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -41200,15 +41288,19 @@ var Global = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_global */ "./resources/js/_global.js");
 /* harmony import */ var _commerce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_commerce */ "./resources/js/_commerce.js");
+/* harmony import */ var _productCategory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_productCategory */ "./resources/js/_productCategory.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
 var global = new _global__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var commerce = new _commerce__WEBPACK_IMPORTED_MODULE_1__["default"]();
+var productCategory = new _productCategory__WEBPACK_IMPORTED_MODULE_2__["default"]();
 document.addEventListener("DOMContentLoaded", function (event) {
   global.initialize();
   commerce.initialize();
+  productCategory.initialize();
 });
 
 /***/ }),
