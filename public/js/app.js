@@ -41079,10 +41079,10 @@ var Commerce = /*#__PURE__*/function () {
         return;
       }
 
-      var _loop = function _loop(i) {
-        btnDeleteCommerce[i].addEventListener('click', function () {
-          console.log(btnDeleteCommerce[i].parentNode.parentNode.id);
-          var commerce = btnDeleteCommerce[i].parentNode.parentNode;
+      [].forEach.call(btnDeleteCommerce, function (btn) {
+        btn.addEventListener('click', function () {
+          console.log(btn.parentNode.parentNode.id);
+          var commerce = btn.parentNode.parentNode;
           Swal.fire({
             title: 'Eliminar Comercio!',
             text: '¿Seguro que quieres continuar?',
@@ -41117,11 +41117,7 @@ var Commerce = /*#__PURE__*/function () {
             }
           });
         });
-      };
-
-      for (var i = 0; i < btnDeleteCommerce.length; i++) {
-        _loop(i);
-      }
+      });
     }
   }]);
 

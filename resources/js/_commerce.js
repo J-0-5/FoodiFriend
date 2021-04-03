@@ -12,10 +12,12 @@ export default class Commerce {
             return;
         }
 
-        for (let i = 0; i < (btnDeleteCommerce.length); i++) {
-            btnDeleteCommerce[i].addEventListener('click', () => {
-                console.log(btnDeleteCommerce[i].parentNode.parentNode.id);
-                let commerce = btnDeleteCommerce[i].parentNode.parentNode;
+
+        [].forEach.call(btnDeleteCommerce, function (btn) {
+            btn.addEventListener('click', () => {
+
+                console.log(btn.parentNode.parentNode.id);
+                let commerce = btn.parentNode.parentNode;
 
                 Swal.fire({
                     title: 'Eliminar Comercio!',
@@ -55,6 +57,6 @@ export default class Commerce {
                     }
                 })
             });
-        }
+        });
     }
 }
