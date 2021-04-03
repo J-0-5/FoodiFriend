@@ -1,9 +1,11 @@
 export default class ProductCategory {
+
     initialize() {
         this.deleteProductCategory()
     }
+
     deleteProductCategory() {
-        console.log("adentro")
+
         const Swal = require('sweetalert2')
         let btnDeleteProductCategory = document.getElementsByClassName('btnDeleteProductCategory');
 
@@ -20,7 +22,7 @@ export default class ProductCategory {
 
                 Swal.fire({
                     title: 'Eliminar Categoria de Producto!',
-                    text: '¿Seguro que quieres continuar?', 
+                    text: '¿Seguro que quieres continuar?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Confirmar',

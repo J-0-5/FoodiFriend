@@ -1,10 +1,11 @@
-import { result } from 'lodash';
-
 export default class Commerce {
+
     initialize() {
         this.deleteCommerce()
     }
+
     deleteCommerce() {
+
         const Swal = require('sweetalert2')
         let btnDeleteCommerce = document.getElementsByClassName('btnDeleteCommerce');
 

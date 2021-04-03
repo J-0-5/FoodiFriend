@@ -1,4 +1,4 @@
-<nav class="col-md-2 bg-light sidebar h-100" id="leftBarCollapse">
+<nav class="col-md-2 bg-light sidebar" id="leftBarCollapse">
     @auth
     <div class="sidebar-sticky">
         <ul class="nav flex-column">

@@ -7,7 +7,7 @@ return [
         ],
         2 => [
             'name' => 'Inactivo',
-            'color' => 'warning'
+            'color' => 'danger'
         ],
     ],
 ];
