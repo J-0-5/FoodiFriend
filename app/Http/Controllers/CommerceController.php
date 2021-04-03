@@ -12,7 +12,7 @@ class CommerceController extends Controller
 {
     public function index()
     {
-        $commerces = Commerce::state(request()->state)->get();
+        $commerces = Commerce::name(request()->name)->type(request()->type)->state(request()->state)->get();
 
         return view('Commerce.index', compact('commerces'));
     }
