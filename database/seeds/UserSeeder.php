@@ -14,7 +14,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $Users = [ //id => data
-            1 => ["Admin", "", 1, "123456789", 1, "dir", "admin@foodie.com", "secret"]
+            1 => ["Admin", "", 1, "123456789", 1, "dir", "admin@foodie.com", "secret"],
+            2 => ["Comercio", "", 1, "147852369", 1, "dir", "comercio@foodie.com", "secret"]
         ];
 
         foreach ($Users as $id => $user) {

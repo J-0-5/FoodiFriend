@@ -23,7 +23,9 @@ class ProductCategorySeeder extends Seeder
 
         foreach ($ProductCategories as $name) {
             ProductCategory::create([
-                'name' => $name
+                'name' => $name,
+                'description' => $name,
+                'commerce_id' => 1,
             ]);
         }
     }
