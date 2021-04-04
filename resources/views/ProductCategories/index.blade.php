@@ -8,10 +8,11 @@
                 <button type="button" class="btn btn-primary mb-3 mr-5" data-toggle="modal" data-target="#createCategories">
                     @lang('Create Categories')
                 </button>
+                
             </div>
             @include('ProductCategories.create')
             <div class="col">
-                <button class="btn btn-primary" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i>Filtrar</button>
+                <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
             </div>
         </div>
 
