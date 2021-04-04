@@ -25,7 +25,7 @@ class ProductCategorySeeder extends Seeder
             ProductCategory::create([
                 'name' => $name,
                 'description' => $name,
-                'commerce_id' => 1,
+                'commerce_id' => 2,
             ]);
         }
     }
