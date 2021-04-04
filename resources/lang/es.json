@@ -67,5 +67,7 @@
     "Create" : "Crear",
     "Delete" : "Eliminar",
     "Update" : "Actualizar",
-    "Edit" : "Editar"
+    "Edit" : "Editar",
+    "Category Name" : "Nombre De Categoria",
+    "Commerce Name" : "Nombre De Comercio"
 }

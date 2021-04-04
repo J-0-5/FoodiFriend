@@ -1,8 +1,4 @@
-    <button type="button" class="btn btn-primary ml-5 mb-3" data-toggle="modal" data-target="#createCategories">
-        @lang('Create Categories')
-    </button>
-
-    <div class="modal fade" id="createCategories">
+<div class="modal fade" id="createCategories">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
 
@@ -25,7 +21,7 @@
                         <label>@lang('Commerce')</label>
                         <select class="form-control" name="commerce_id">
                             <option value="">@lang('Select')</option>
-                            @foreach ($commerce as $commerce)
+                            @foreach ($commerces as $commerce)
                                 <option value="{{$commerce->id}}">{{$commerce->name}}</option>
                             @endforeach
                         </select>
@@ -49,6 +45,6 @@
             </form>
         </div>
     </div>
-    </div>
+</div>
 
 

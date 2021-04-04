@@ -19,7 +19,7 @@
                         <label>@lang('Commerce')</label>
                         <select class="form-control" name="commerce_id">
                             <option value="">{{ $productCategory->getCommerce->name }}</option>
-                            @foreach ($commerce as $commerce)
+                            @foreach ($commerces as $commerce)
                                 @if($productCategory->getCommerce->name != $commerce->name)
                                     <option value="{{$commerce->id}}">{{$commerce->name}}</option>
                                 @endif
