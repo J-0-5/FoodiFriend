@@ -13,7 +13,7 @@ class CommerceSeeder extends Seeder
     public function run()
     {
         $Commerces = [ //id => data
-            1 => [1, "987456321", 'fastfood', 1, "comercio de comidas rapidas"]
+            1 => [2, "987456321", 'fastfood', 1, "comercio de comidas rapidas"]
         ];
 
         foreach ($Commerces as $id => $commerce) {
