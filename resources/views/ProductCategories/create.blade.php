@@ -20,6 +20,17 @@
                         <label>@lang('Name')</label>
                         <input type="text" name="name" class="form-control"/>
                     </div>
+                    @if(Auth::user()->id == 1)
+                    <div class="form-group">
+                        <label>@lang('Commerce')</label>
+                        <select class="form-control" name="commerce_id">
+                            <option value="">@lang('Select')</option>
+                            @foreach ($commerce as $commerce)
+                                <option value="{{$commerce->id}}">{{$commerce->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                     <div class="form-group">
                         <label>@lang('Description')</label>
                         <textarea type="text" name="description" class="form-control"></textarea>

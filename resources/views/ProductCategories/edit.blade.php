@@ -16,6 +16,19 @@
                 <label>@lang('Name')</label>
                 <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control"/>
             </div>
+            @if(Auth::user()->id == 1)
+            <div class="form-group">
+                <label>@lang('Commerce')</label>
+                <select class="form-control" name="commerce_id">
+                    <option value="">{{ $productCategory->getCommerce->name }}</option>
+                    @foreach ($commerce as $commerce)
+                        @if($productCategory->getCommerce->name != $commerce->name)
+                            <option value="{{$commerce->id}}">{{$commerce->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+            @endif
             <div class="form-group">
                 <label>@lang('Description')</label>
                 <textarea type="text" name="description" class="form-control">{{ $productCategory->description }}</textarea>

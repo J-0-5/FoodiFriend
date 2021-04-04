@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commerce;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,9 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $productCategory = ProductCategory::get();
+        $commerce = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory'));
+        return view('productCategories.index', compact('productCategory','commerce'));
     }
 
     /**
@@ -39,9 +41,16 @@ class ProductCategoryController extends Controller
     public function store()
     {
         //return request('description');
+        if(Auth::user()->id == 1){
+            $commerce_id = request('commerce_id');
+        }else{
+            $commerce_id = Auth::user()->getCommerce->id;
+            
+        }
+
         ProductCategory::create([
             'name' => request('name'),
-            'commerce_id' => Auth::user()->id,
+            'commerce_id' => $commerce_id,
             'description' => request('description')
         ]);
 
@@ -68,8 +77,9 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $productCategory)
     {
+        $commerce = Commerce::get();
         //return $productCategory;
-        return view('productCategories.edit', compact('productCategory'));
+        return view('productCategories.edit', compact('productCategory','commerce'));
 
         
     }
