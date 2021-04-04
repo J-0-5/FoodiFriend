@@ -13,6 +13,7 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $productCategory = ProductCategory::get();
@@ -55,7 +56,7 @@ class ProductCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(ProductCategory $productCategory)
-    {   
+    {
         $productCategory = ProductCategory::get();
         return view('productCategories.index', compact('productCategory'));
     }
@@ -71,19 +72,19 @@ class ProductCategoryController extends Controller
         //return $productCategory;
         return view('productCategories.edit', compact('productCategory'));
 
-        
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id 
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
 
     public function update(ProductCategory $productCategory)
-    {   
+    {
         $productCategory->update([
             'name' => request('name'),
             'description' => request('description'),
