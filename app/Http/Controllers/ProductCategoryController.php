@@ -2,73 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Commerce;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
+=======
+>>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
     public function index()
     {
         $productCategory = ProductCategory::get();
+        $commerce = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory'));
+        return view('productCategories.index', compact('productCategory','commerce'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('ProductCategories.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store()
     {
-        //return request('description');
+        if(Auth::user()->id == 1){
+            $commerce_id = request('commerce_id');
+        }else{
+            $commerce_id = Auth::user()->getCommerce->id;
+            
+        }
+
         ProductCategory::create([
             'name' => request('name'),
-            'commerce_id' => Auth::user()->id,
+            'commerce_id' => $commerce_id,
             'description' => request('description')
         ]);
 
         return back()->with('status', __('Category created successfully'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(ProductCategory $productCategory)
+<<<<<<< HEAD
     {
         $productCategory = ProductCategory::get();
         return view('productCategories.index', compact('productCategory'));
+=======
+    {   
+        //
+>>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ProductCategory $productCategory)
     {
+<<<<<<< HEAD
         //return $productCategory;
         return view('productCategories.edit', compact('productCategory'));
 
@@ -83,6 +77,11 @@ class ProductCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+=======
+        //
+    }
+
+>>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
     public function update(ProductCategory $productCategory)
     {
         $productCategory->update([
@@ -91,15 +90,9 @@ class ProductCategoryController extends Controller
             'state' => request('state')
         ]);
 
-        return redirect()->route('productCategory.show', $productCategory);
+        return redirect()->route('productCategory.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ProductCategory $productCategory)
     {
         $productCategory->delete();
