@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('Name')</label>
-                        <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control"/>
+                        <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control" required/>
                     </div>
                     @if(Auth::user()->id == 1)
                     <div class="form-group">
@@ -29,7 +29,7 @@
                     @endif
                     <div class="form-group">
                         <label>@lang('Description')</label>
-                        <textarea type="text" name="description" class="form-control">{{ $productCategory->description }}</textarea>
+                        <textarea type="text" name="description" class="form-control" required>{{ $productCategory->description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label>@lang('State')</label>
