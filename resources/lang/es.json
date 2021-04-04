@@ -58,10 +58,14 @@
     "Category deleted successfully" : "Categoría eliminada correctamente",
     "Show Categories" : "Mostrar Categorias",
     "Update Category" : "Actualizar Categoria",
+    "Edit Category" : "Editar Categoria",
     "Delete Category" : "Eliminar Categoria",
     "Manage Categories" : "Administrar Categorias",
     "Select" : "Seleccionar",
     "State" : "Estado",
     "Close" : "Cerrar",
-    "Create" : "Crear"
+    "Create" : "Crear",
+    "Delete" : "Eliminar",
+    "Update" : "Actualizar",
+    "Edit" : "Editar"
 }

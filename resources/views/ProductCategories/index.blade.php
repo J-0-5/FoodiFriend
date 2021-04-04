@@ -63,18 +63,14 @@
                         </span>
                     </td>
                     <td colspan="5">
-                        <a class="btn btn-sm btn-warning" href=" {{ route('productCategory.edit', $productCategory) }} ">
-                            <i class="fas fa-edit"></i>Editar
-                        </a>
-                        <button class="btn btn-sm btn-danger btnDeleteProductCategory"><i
-                            class="fas fa-trash-alt"></i>Eliminar
+                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#EditCategory">
+                            <i class="fas fa-edit"></i>
+                            @lang('Edit')
                         </button>
-                        {{-- <form method="POST" action="{{ route('productCategory.destroy', $productCategory) }}">
-                            @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-danger btnEraseRestaurant">
-                                <i class="fas fa-trash-alt"></i>Eliminar
-                            </button>
-                        </form> --}}
+                        @include('ProductCategories.edit')
+                        <button class="btn btn-sm btn-danger btnDeleteProductCategory"><i
+                            class="fas fa-trash-alt"></i>@lang('Delete')
+                        </button>
                     </td>
                 </tr>
                 @endforeach
