@@ -41080,8 +41080,8 @@ var Commerce = /*#__PURE__*/function () {
           console.log(btn.parentNode.parentNode.id);
           var commerce = btn.parentNode.parentNode;
           Swal.fire({
-            title: 'Eliminar Comercio!',
-            text: '¿Seguro que quieres continuar?',
+            title: '¿Seguro que quieres continuar?',
+            text: 'Se eliminaran todos los productos y su categorias',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Confirmar',
