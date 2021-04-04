@@ -13,10 +13,10 @@ class ProductCategorySeeder extends Seeder
     public function run()
     {
         $ProductCategories = [
-            1 => ['Chococono',1,'Helado cono sabor a chocolate',1],
-            2 => ['Bananasplit',1,'Helado con banana',1],
-            3 => ['Pizza Italiana',2,'Pizza de italia',1],
-            4 => ['ChoriPizza',2,'Pizza con chorizo',1]
+            1 => ['Chococono',1,'Helado cono sabor a chocolate'],
+            2 => ['Bananasplit',1,'Helado con banana'],
+            3 => ['Pizza Italiana',2,'Pizza de italia'],
+            4 => ['ChoriPizza',2,'Pizza con chorizo']
         ];
 
         foreach ($ProductCategories as $id => $productCategories) {
@@ -24,7 +24,6 @@ class ProductCategorySeeder extends Seeder
                 'name' => $productCategories[0],
                 'commerce_id' => $productCategories[1],
                 'description' => $productCategories[2],
-                'state' => $productCategories[3],
             ]);
         }
     }

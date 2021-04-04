@@ -19,9 +19,9 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->get();
+        $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->filterByCommerce()->get();
         $commerces = Commerce::get();
-
+        
         return view('productCategories.index', compact('productCategory','commerces'));
     }
 

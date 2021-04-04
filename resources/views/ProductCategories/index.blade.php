@@ -39,7 +39,9 @@
                 <thead class="thead-light ">
                     <tr>
                         <th scope="col">@lang('Name')</th>
+                        @if(Auth::user()->id == 1)
                         <th scope="col">@lang('Commerce')</th>
+                        @endif
                         <th scope="col">@lang('Description')</th>
                         <th scope="col">@lang('State')</th>
                         <th scope="col"></th>
@@ -52,9 +54,11 @@
                         <td>
                             {{$productCategory->name}}
                         </td>
+                        @if(Auth::user()->id == 1)
                         <td>
                             {{$productCategory->getCommerce->name}}
                         </td>
+                        @endif
                         <td>
                             {{$productCategory->description}}
                         </td>
@@ -64,7 +68,7 @@
                             </span>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#EditCategory">
+                            <button type="button" class="btn btn-sm btn-warning btnEditProductCategory" data-toggle="modal" data-target="#EditCategory">
                                 <i class="fas fa-edit"></i>
                                 @lang('Edit')
                             </button>

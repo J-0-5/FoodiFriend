@@ -13,8 +13,8 @@ class CommerceSeeder extends Seeder
     public function run()
     {
         $Commerces = [ //id => data
-            1 => [2, "1111111", "Helados Buggy", 2, "Se venden todo tipo de helados", 1],
-            2 => [3, "2222222", "Jennos Pizza", 3, "Se venden todo dipo de pizzas", 1],
+            1 => [2, "1111111", "Helados Buggy", 2, "Se venden todo tipo de helados"],
+            2 => [3, "2222222", "Jennos Pizza", 3, "Se venden todo dipo de pizzas"],
         ];
 
         foreach ($Commerces as $id => $commerce) {
@@ -23,8 +23,7 @@ class CommerceSeeder extends Seeder
                 'nit' => $commerce[1],
                 'name' => $commerce[2],
                 'type' => $commerce[3],
-                'description' => $commerce[4],
-                'state' => $commerce[5],
+                'description' => $commerce[4]
             ]);
         }
     }

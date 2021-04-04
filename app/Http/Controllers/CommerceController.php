@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Commerce;
 use App\CommerceType;
+use App\ProductCategory;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,10 +75,12 @@ class CommerceController extends Controller
 
     public function destroy($id)
     {
-        if (Commerce::where('id', $id)->delete()) {
-            return response()->json(['code' => 200], 200);
-        } else {
-            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+        if (ProductCategory::where('commerce_id', $id)->delete()) {
+            if (Commerce::where('id', $id)->delete()) {
+                return response()->json(['code' => 200], 200);
+            } else {
+                return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+            }
         }
     }
 }
