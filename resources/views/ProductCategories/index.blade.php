@@ -15,7 +15,6 @@
             </div>
         </div>
 
-        @if($productCategory->count())
         @if($errors->any())
         <div class="alert alert-danger">
             @foreach($errors->all() as $error)
@@ -46,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @if($productCategory->count())
                     @foreach ($productCategory as $productCategory)
                     <tr id="{{$productCategory->id}}">
                         <td>
@@ -75,14 +74,17 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else       
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            {{__('There are no categories to display')}}
+                        </td>
+                    </tr>  
+                    @endif
                 </tbody>
             </table>
         </div>
-    @else       
-        <h1 class="text-center">
-            {{__('There are no categories to display')}}
-        </h1>            
-    @endif
+    
     </div>
 </div>
 @endsection
