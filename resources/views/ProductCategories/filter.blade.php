@@ -1,22 +1,22 @@
 <div class="card-header border-0 collapse" id="demo">
-    <form action="{{--}}{{route('products.commerce.show', $commerce->id)}}{{--}}" method="get">
+    <form action="{{route('productCategory.index')}}" method="get">
         <div class="row align-items-center">
             <div class="col">
                 <div class="form-group mb-3">
-                    <label class="form-control-label">Nombre</label>
-                    <input type="text" placeholder="Nombre del producto" value="{{request()->name}}" name="name"
+                    <label class="form-control-label">@lang('Name')</label>
+                    <input type="text" placeholder="@lang('Category Name')" value="{{request()->name}}" name="name"
                         class="form-control name">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group mb-3">
-                    <label class="form-control-label">Categoria</label>
-                    <select name="category" class="selecttwo form-control">
-                        <option value="" {{ request()->category == "" ? 'selected' : ''}}>Todos</option>
-                        {{--}} @foreach($categories as $category)
-                        <option value="{{$category->id}}" {{request()->category == $category->id ? 'selected': ''}}>
-                            {{$category->name}}</option>
-                        @endforeach{{--}}
+                    <label class="form-control-label">@lang('Commerce Name')</label>
+                    <select name="CommerceId" class="selecttwo form-control">
+                        <option value="" {{ request()->CommerceId == "" ? 'selected' : ''}}>@lang('All')</option>
+                        @foreach($commerces as $commerce)
+                        <option value="{{$commerce->id}}" {{request()->CommerceId == $commerce->id ? 'selected': ''}}>
+                            {{$commerce->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

@@ -11,10 +11,10 @@ class ProductCategoryController extends Controller
 {
     public function index()
     {
-        $productCategory = ProductCategory::get();
-        $commerce = Commerce::get();
+        $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->get();
+        $commerces = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory','commerce'));
+        return view('productCategories.index', compact('productCategory','commerces'));
     }
 
     public function create()

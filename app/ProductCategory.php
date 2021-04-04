@@ -16,4 +16,25 @@ class ProductCategory extends Model
     {
         return $this->belongsTo(Commerce::class, 'commerce_id');
     }
+
+    public function scopeName($query, $name)
+    {
+        if (trim($name) != null) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+    }
+
+    public function scopeCommerceId($query, $id)
+    {
+        if (trim($id) != null) {
+            $query->where('commerce_id', $id);
+        }
+    }
+
+    public function scopeState($query, $state)
+    {
+        if (trim($state) != null) {
+            $query->where('state', $state);
+        }
+    }
 }
