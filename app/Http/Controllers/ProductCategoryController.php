@@ -9,35 +9,33 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
-<<<<<<< HEAD
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-=======
->>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
+
     public function index()
     {
         $productCategory = ProductCategory::get();
         $commerce = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory','commerce'));
+        return view('productCategories.index', compact('productCategory', 'commerce'));
     }
 
     public function create()
     {
         return view('ProductCategories.create');
     }
-   
+
     public function store()
     {
-        if(Auth::user()->id == 1){
+        if (Auth::user()->id == 1) {
             $commerce_id = request('commerce_id');
-        }else{
+        } else {
             $commerce_id = Auth::user()->getCommerce->id;
-            
         }
 
         ProductCategory::create([
@@ -50,23 +48,21 @@ class ProductCategoryController extends Controller
     }
 
     public function show(ProductCategory $productCategory)
-<<<<<<< HEAD
+
     {
         $productCategory = ProductCategory::get();
         return view('productCategories.index', compact('productCategory'));
-=======
-    {   
+
+
         //
->>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
+
     }
 
     public function edit(ProductCategory $productCategory)
     {
-<<<<<<< HEAD
+
         //return $productCategory;
         return view('productCategories.edit', compact('productCategory'));
-
-
     }
 
     /**
@@ -77,11 +73,10 @@ class ProductCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-=======
-        //
-    }
 
->>>>>>> 8033db1bbad2d760cb456dd31e1253aeb80d1c36
+    //
+
+
     public function update(ProductCategory $productCategory)
     {
         $productCategory->update([
