@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
     public function index()
     {
         $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->get();
@@ -21,14 +29,13 @@ class ProductCategoryController extends Controller
     {
         return view('ProductCategories.create');
     }
-   
+
     public function store()
     {
-        if(Auth::user()->id == 1){
+        if (Auth::user()->id == 1) {
             $commerce_id = request('commerce_id');
-        }else{
+        } else {
             $commerce_id = Auth::user()->getCommerce->id;
-            
         }
 
         ProductCategory::create([
@@ -41,17 +48,37 @@ class ProductCategoryController extends Controller
     }
 
     public function show(ProductCategory $productCategory)
-    {   
+
+    {
+        $productCategory = ProductCategory::get();
+        return view('productCategories.index', compact('productCategory'));
+
+
         //
+
     }
 
     public function edit(ProductCategory $productCategory)
     {
-        //
+
+        //return $productCategory;
+        return view('productCategories.edit', compact('productCategory'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
+    //
+
+
     public function update(ProductCategory $productCategory)
-    {   
+    {
         $productCategory->update([
             'name' => request('name'),
             'description' => request('description'),
