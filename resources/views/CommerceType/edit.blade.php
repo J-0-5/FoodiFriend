@@ -7,10 +7,11 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="POST" >
+            <form method="post" id="editForm" action="commerceType">
                 @csrf
+                @method('put')
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="edit_id">
+
                     <div class="form-group">
                         <label>@lang('Name')</label>
                         <input type="text" name="name" id="edit_name" class="form-control"/>
@@ -19,9 +20,9 @@
                     <div class="form-group">
                         <label>@lang('State')</label>
                         <select class="form-control" id="edit_state" name="state">
-
                         </select>
                     </div>
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">

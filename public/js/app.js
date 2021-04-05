@@ -41165,7 +41165,7 @@ var CommerceType = /*#__PURE__*/function () {
     key: "editCommerceType",
     value: function editCommerceType() {
       var btnEditType = document.getElementsByClassName('btnEditType');
-      var modal = document.getElementsByClassName('editModal');
+      var form = document.getElementById('editForm');
 
       if (btnEditType == null) {
         return;
@@ -41182,7 +41182,7 @@ var CommerceType = /*#__PURE__*/function () {
           }).then(function (response) {
             return response.json();
           }).then(function (data) {
-            document.getElementById('edit_id').value = data.data.id;
+            form.setAttribute("action", 'commerceType/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
             var select = document.getElementById('edit_state');
             var selected = '';
@@ -41191,7 +41191,7 @@ var CommerceType = /*#__PURE__*/function () {
               selected = 'selected';
             }
 
-            select.innerHTML = "<option value=\"0\">Inactivo</option> <option ".concat(selected, " value=\"1\">Activo</option>");
+            select.innerHTML = "<option value=\"2\">Inactivo</option> <option ".concat(selected, " value=\"1\">Activo</option>");
           });
         });
       });
@@ -41349,7 +41349,35 @@ var ProductCategory = /*#__PURE__*/function () {
   _createClass(ProductCategory, [{
     key: "initialize",
     value: function initialize() {
+      this.editProductCategory();
       this.deleteProductCategory();
+    }
+  }, {
+    key: "editProductCategory",
+    value: function editProductCategory() {
+      var btnEditProductCategory = document.getElementsByClassName('btnEditProductCategory');
+      [].forEach.call(btnEditProductCategory, function (btn) {
+        btn.addEventListener('click', function () {
+          console.log("AAAAAAAAAAA");
+          alert("si");
+          console.log(btn.parentNode.parentNode.id);
+          var productCategory = btn.parentNode.parentNode;
+          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          var url = '/productCategory/' + productCategory.id;
+          fetch(url, {
+            method: 'GET',
+            headers: {
+              'X-CSRF-TOKEN': token
+            }
+          }).then(function (result) {
+            return result.json();
+          }).then(function (data) {
+            console.log(data);
+          })["catch"](function (error) {
+            console.error(error);
+          });
+        });
+      });
     }
   }, {
     key: "deleteProductCategory",

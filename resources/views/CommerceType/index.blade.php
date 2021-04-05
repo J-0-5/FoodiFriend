@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="card-header border-0 collapse" id="demo">
-            <form action="{{ route('commerce.index') }}" method="get">
+            <form action="{{ route('commerceType.index') }}" method="get">
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="form-group mb-3">
@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <a href="{{ route('commerce.index') }}" class="btn btn-primary btn-block"><i
+                                    <a href="{{ route('commerceType.index') }}" class="btn btn-primary btn-block"><i
                                             class="fas fa-backspace"></i>
                                         Borrar
                                     </a>
@@ -61,7 +61,7 @@
                     <tr>
                         <th scope="col">@lang('Name')</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Fecha de creación</th>
+                        <th scope="col"></th>
                         <th></th>
                     </tr>
                 </thead>

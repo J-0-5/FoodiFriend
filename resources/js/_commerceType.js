@@ -7,7 +7,7 @@ export default class CommerceType {
 
     editCommerceType() {
         let btnEditType = document.getElementsByClassName('btnEditType');
-        let modal = document.getElementsByClassName('editModal');
+        let form = document.getElementById('editForm');
 
         if (btnEditType == null) {
             return;
@@ -29,7 +29,8 @@ export default class CommerceType {
                     .then(response => response.json())
                     .then(data => {
 
-                        document.getElementById('edit_id').value = data.data.id;
+                        form.setAttribute("action", 'commerceType/' + data.data.id);
+
                         document.getElementById('edit_name').value = data.data.name;
 
                         let select = document.getElementById('edit_state');
@@ -39,7 +40,7 @@ export default class CommerceType {
                             selected = 'selected';
                         }
 
-                        select.innerHTML = `<option value="0">Inactivo</option> <option ${selected} value="1">Activo</option>`;
+                        select.innerHTML = `<option value="2">Inactivo</option> <option ${selected} value="1">Activo</option>`;
                     });
             });
         });

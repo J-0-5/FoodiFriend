@@ -26,9 +26,20 @@ class CommerceTypeController extends Controller
         }
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
-        return;
+        $request->validate([
+            'name' => 'required|string',
+            'state' => 'required',
+        ]);
+
+        $commerceType = CommerceType::where('id', $id)->first();
+
+        $commerceType->name = $request->name;
+        $commerceType->state = $request->state;
+        $commerceType->update();
+
+        return back()->with('status', __('Commerce Type updated successfully'));
     }
 
     public function destroy($id)
