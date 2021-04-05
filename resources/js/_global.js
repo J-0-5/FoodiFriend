@@ -13,7 +13,6 @@ export default class Global {
             fetch(`/cities?department_id=${department}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.cities);
                     let select = document.getElementById('city');
                     select.innerHTML = `<option selected disabled value="0">Ciudad</option>`;
 

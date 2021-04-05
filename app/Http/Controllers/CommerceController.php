@@ -75,12 +75,12 @@ class CommerceController extends Controller
 
     public function destroy($id)
     {
-        if (ProductCategory::where('commerce_id', $id)->delete()) {
-            if (Commerce::where('id', $id)->delete()) {
-                return response()->json(['code' => 200], 200);
-            } else {
-                return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
-            }
+        ProductCategory::where('commerce_id', $id)->delete();
+
+        if (Commerce::where('id', $id)->delete()) {
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
         }
     }
 }

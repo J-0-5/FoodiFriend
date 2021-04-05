@@ -1,28 +1,68 @@
-export default class Commerce {
+export default class CommerceType {
 
     initialize() {
-        this.deleteCommerce()
+        this.editCommerceType();
+        this.deleteCommerceType();
     }
 
-    deleteCommerce() {
+    editCommerceType() {
+        let btnEditType = document.getElementsByClassName('btnEditType');
+        let modal = document.getElementsByClassName('editModal');
+
+        if (btnEditType == null) {
+            return;
+        }
+
+        [].forEach.call(btnEditType, function (btn) {
+            btn.addEventListener('click', () => {
+                let commerceType = btn.parentNode.parentNode;
+                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+
+                fetch(`/commerceType/${commerceType.id}/edit`,
+                    {
+                        headers:
+                        {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+
+                        document.getElementById('edit_id').value = data.data.id;
+                        document.getElementById('edit_name').value = data.data.name;
+
+                        let select = document.getElementById('edit_state');
+                        let selected = '';
+
+                        if (data.data.state == 1) {
+                            selected = 'selected';
+                        }
+
+                        select.innerHTML = `<option value="0">Inactivo</option> <option ${selected} value="1">Activo</option>`;
+                    });
+            });
+        });
+    }
+
+    deleteCommerceType() {
 
         const Swal = require('sweetalert2')
-        let btnDeleteCommerce = document.getElementsByClassName('btnDeleteCommerce');
+        let btnDeletecommerceType = document.getElementsByClassName('btnDeletecommerceType');
 
-        if (btnDeleteCommerce == null) {
+        if (btnDeletecommerceType == null) {
             return;
         }
 
 
-        [].forEach.call(btnDeleteCommerce, function (btn) {
+        [].forEach.call(btnDeletecommerceType, function (btn) {
             btn.addEventListener('click', () => {
 
-                console.log(btn.parentNode.parentNode.id);
-                let commerce = btn.parentNode.parentNode;
+                let commerceType = btn.parentNode.parentNode;
 
                 Swal.fire({
                     title: '¿Seguro que quieres continuar?',
-                    text: 'Se eliminaran todos los productos y categorias de este comercio',
+                    text: 'Se eliminaran todos los comercios de este tipo',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Confirmar',
@@ -31,7 +71,7 @@ export default class Commerce {
                     if (result.value) {
 
                         let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                        let url = '/commerce/' + commerce.id;
+                        let url = '/commerceType/' + commerceType.id;
 
                         fetch(url, {
                             method: 'DELETE',
@@ -47,7 +87,7 @@ export default class Commerce {
                                         icon: 'success',
                                         confirmButtonText: 'Ok'
                                     })
-                                    commerce.remove();
+                                    commerceType.remove();
                                 } else {
                                     Swal.fire({
                                         title: data.message,

@@ -4,7 +4,14 @@
         <ul class="nav flex-column">
             @if (Auth::user()->id == 1 || !empty(Auth::user()->getCommerce))
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ Auth::user()->id == 1 ? route('commerce.index') : route('commerce.edit', [Auth::user()->getCommerce->id])}}">
+                    <a class="nav-link" href="{{ route('commerceType.index') }}">
+                        {{-- <i class="color-session fas fa-store text-primary"></i> --}}
+                        {{ __('Commerce Type')}}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        href="{{ Auth::user()->id == 1 ? route('commerce.index') : route('commerce.edit', [Auth::user()->getCommerce->id])}}">
                         {{-- <i class="color-session fas fa-store text-primary"></i> --}}
                         {{ __('Commerce').(Auth::user()->id == 1 ? 's' : '')}}
                     </a>

@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::resource('/commerceType', 'CommerceTypeController');
+
     Route::resource('/commerce', 'CommerceController');
 
     Route::resource('/productCategory', 'ProductCategoryController');

@@ -41081,7 +41081,7 @@ var Commerce = /*#__PURE__*/function () {
           var commerce = btn.parentNode.parentNode;
           Swal.fire({
             title: '¿Seguro que quieres continuar?',
-            text: 'Se eliminaran todos los productos y su categorias',
+            text: 'Se eliminaran todos los productos y categorias de este comercio',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Confirmar',
@@ -41095,13 +41095,23 @@ var Commerce = /*#__PURE__*/function () {
                 headers: {
                   'X-CSRF-TOKEN': token
                 }
-              }).then(function () {
-                Swal.fire({
-                  title: 'Comercio eliminado',
-                  icon: 'success',
-                  confirmButtonText: 'Ok'
-                });
-                commerce.remove();
+              }).then(function (response) {
+                return response.json();
+              }).then(function (data) {
+                if (data.code == 200) {
+                  Swal.fire({
+                    title: 'Comercio eliminado',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  });
+                  commerce.remove();
+                } else {
+                  Swal.fire({
+                    title: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  });
+                }
               })["catch"](function () {
                 Swal.fire({
                   title: 'Ups!',
@@ -41118,6 +41128,137 @@ var Commerce = /*#__PURE__*/function () {
   }]);
 
   return Commerce;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/_commerceType.js":
+/*!***************************************!*\
+  !*** ./resources/js/_commerceType.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CommerceType; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CommerceType = /*#__PURE__*/function () {
+  function CommerceType() {
+    _classCallCheck(this, CommerceType);
+  }
+
+  _createClass(CommerceType, [{
+    key: "initialize",
+    value: function initialize() {
+      this.editCommerceType();
+      this.deleteCommerceType();
+    }
+  }, {
+    key: "editCommerceType",
+    value: function editCommerceType() {
+      var btnEditType = document.getElementsByClassName('btnEditType');
+      var modal = document.getElementsByClassName('editModal');
+
+      if (btnEditType == null) {
+        return;
+      }
+
+      [].forEach.call(btnEditType, function (btn) {
+        btn.addEventListener('click', function () {
+          var commerceType = btn.parentNode.parentNode;
+          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          fetch("/commerceType/".concat(commerceType.id, "/edit"), {
+            headers: {
+              'X-CSRF-TOKEN': token
+            }
+          }).then(function (response) {
+            return response.json();
+          }).then(function (data) {
+            document.getElementById('edit_id').value = data.data.id;
+            document.getElementById('edit_name').value = data.data.name;
+            var select = document.getElementById('edit_state');
+            var selected = '';
+
+            if (data.data.state == 1) {
+              selected = 'selected';
+            }
+
+            select.innerHTML = "<option value=\"0\">Inactivo</option> <option ".concat(selected, " value=\"1\">Activo</option>");
+          });
+        });
+      });
+    }
+  }, {
+    key: "deleteCommerceType",
+    value: function deleteCommerceType() {
+      var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+      var btnDeletecommerceType = document.getElementsByClassName('btnDeletecommerceType');
+
+      if (btnDeletecommerceType == null) {
+        return;
+      }
+
+      [].forEach.call(btnDeletecommerceType, function (btn) {
+        btn.addEventListener('click', function () {
+          var commerceType = btn.parentNode.parentNode;
+          Swal.fire({
+            title: '¿Seguro que quieres continuar?',
+            text: 'Se eliminaran todos los comercios de este tipo',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+          }).then(function (result) {
+            if (result.value) {
+              var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+              var url = '/commerceType/' + commerceType.id;
+              fetch(url, {
+                method: 'DELETE',
+                headers: {
+                  'X-CSRF-TOKEN': token
+                }
+              }).then(function (response) {
+                return response.json();
+              }).then(function (data) {
+                if (data.code == 200) {
+                  Swal.fire({
+                    title: 'Comercio eliminado',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  });
+                  commerceType.remove();
+                } else {
+                  Swal.fire({
+                    title: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  });
+                }
+              })["catch"](function () {
+                Swal.fire({
+                  title: 'Ups!',
+                  text: 'Ha ocurrido un error. Intentalo mas tarde',
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                });
+              });
+            }
+          });
+        });
+      });
+    }
+  }]);
+
+  return CommerceType;
 }();
 
 
@@ -41164,7 +41305,6 @@ var Global = /*#__PURE__*/function () {
         fetch("/cities?department_id=".concat(department)).then(function (response) {
           return response.json();
         }).then(function (data) {
-          console.log(data.cities);
           var select = document.getElementById('city');
           select.innerHTML = "<option selected disabled value=\"0\">Ciudad</option>";
           data.cities.map(function (c) {
@@ -41281,18 +41421,22 @@ var ProductCategory = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_global */ "./resources/js/_global.js");
-/* harmony import */ var _commerce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_commerce */ "./resources/js/_commerce.js");
-/* harmony import */ var _productCategory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_productCategory */ "./resources/js/_productCategory.js");
+/* harmony import */ var _commerceType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_commerceType */ "./resources/js/_commerceType.js");
+/* harmony import */ var _commerce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_commerce */ "./resources/js/_commerce.js");
+/* harmony import */ var _productCategory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_productCategory */ "./resources/js/_productCategory.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
+
 var global = new _global__WEBPACK_IMPORTED_MODULE_0__["default"]();
-var commerce = new _commerce__WEBPACK_IMPORTED_MODULE_1__["default"]();
-var productCategory = new _productCategory__WEBPACK_IMPORTED_MODULE_2__["default"]();
+var commerceType = new _commerceType__WEBPACK_IMPORTED_MODULE_1__["default"]();
+var commerce = new _commerce__WEBPACK_IMPORTED_MODULE_2__["default"]();
+var productCategory = new _productCategory__WEBPACK_IMPORTED_MODULE_3__["default"]();
 document.addEventListener("DOMContentLoaded", function (event) {
   global.initialize();
+  commerceType.initialize();
   commerce.initialize();
   productCategory.initialize();
 });
