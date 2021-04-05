@@ -21,7 +21,7 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->filterByCommerce()->get();
         $commerces = Commerce::get();
-        
+
         return view('productCategories.index', compact('productCategory','commerces'));
     }
 
@@ -48,34 +48,24 @@ class ProductCategoryController extends Controller
     }
 
     public function show(ProductCategory $productCategory)
-
     {
         $productCategory = ProductCategory::get();
         return view('productCategories.index', compact('productCategory'));
-
-
-        //
-
     }
 
-    public function edit(ProductCategory $productCategory)
+    public function edit($id)
     {
+        $productCategory = ProductCategory::where('id', $id)->first();
+        $commerces = Commerce::get();
+        
+        if (!empty($productCategory)) {
+            return response()->json(['code' => 200, 'data' => $productCategory, 'CommerceSelected' => $productCategory->getCommerce, 'commerces' => $commerces], 200);
+        } else {
+            return response()->json(['code' => 404, 'data' => null, 'message' => 'Categoria de producto no encontrada'], 404);
+        }
 
-        //return $productCategory;
-        return view('productCategories.edit', compact('productCategory'));
+        //return view('productCategories.edit', compact('productCategory'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-
-    //
-
 
     public function update(ProductCategory $productCategory)
     {

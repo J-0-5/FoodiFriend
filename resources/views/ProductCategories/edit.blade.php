@@ -7,40 +7,30 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="POST" action=" {{ route('productCategory.update', $productCategory) }} ">                
+            <form method="POST" action="{{ route('productCategory.update', $productCategory) }}">                
                 @csrf @method('PATCH')
                 <div class="modal-body">
+                    <input type="hidden" name="id" id="edit_id">
                     <div class="form-group">
                         <label>@lang('Name')</label>
-                        <input type="text" value="{{ $productCategory->name }}" name="name" class="form-control" required/>
+                        <input type="text" id="edit_name" name="name" class="form-control" required/>
                     </div>
                     @if(Auth::user()->id == 1)
                     <div class="form-group">
                         <label>@lang('Commerce')</label>
-                        <select class="form-control" name="commerce_id">
-                            <option value="">{{ $productCategory->getCommerce->name }}</option>
-                            @foreach ($commerces as $commerce)
-                                @if($productCategory->getCommerce->name != $commerce->name)
-                                    <option value="{{$commerce->id}}">{{$commerce->name}}</option>
-                                @endif
-                            @endforeach
+                        <select class="form-control" name="commerce_id" id="edit_commerce_id">
+
                         </select>
                     </div>
                     @endif
                     <div class="form-group">
                         <label>@lang('Description')</label>
-                        <textarea type="text" name="description" class="form-control" required>{{ $productCategory->description }}</textarea>
+                        <textarea type="text" name="description" id="edit_description" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>@lang('State')</label>
-                        <select class="form-control" name="state">
-                            @if($productCategory->state == 1)
-                            <option value="{{ $productCategory->state }}">Activo</option>
-                            <option value="2">Inactivo</option>
-                            @else
-                            <option value="{{ $productCategory->state }}">Inactivo</option>
-                            <option value="1">Activo</option>
-                            @endif
+                        <select class="form-control" id="edit_state" name="state">
+
                         </select>
                     </div>
                 </div>

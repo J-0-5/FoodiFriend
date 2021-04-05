@@ -1,3 +1,5 @@
+import { forEach } from 'lodash';
+
 export default class ProductCategory {
 
     initialize() {
@@ -5,34 +7,63 @@ export default class ProductCategory {
         this.deleteProductCategory()
     }
 
-    editProductCategory(){
+    editProductCategory() {
+        let btnEdit = document.getElementsByClassName('btnEditProductCategory');
+        let modal = document.getElementsByClassName('editModal');
 
-        let btnEditProductCategory = document.getElementsByClassName('btnEditProductCategory');
-        [].forEach.call(btnEditProductCategory, function (btn) {
+        if (btnEdit == null) {
+            return;
+        }
+
+        [].forEach.call(btnEdit, function (btn) {
             btn.addEventListener('click', () => {
-                console.log("AAAAAAAAAAA")
-                alert("si");
-                console.log(btn.parentNode.parentNode.id);
-
+                console.log("INSIDE")
                 let productCategory = btn.parentNode.parentNode;
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                let url = '/productCategory/' + productCategory.id;
-                    fetch(url, {
-                        method: 'GET',
-                        headers: {
+                console.log(productCategory);
+
+                fetch(`/productCategory/${productCategory.id}/edit`,
+                    {
+                        headers:
+                        {
                             'X-CSRF-TOKEN': token
                         }
-                    }).then((result) => result.json())
-                    .then((data) => {
-                        console.log(data);
-                    }).catch((error) => {
-                        console.error(error);
                     })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        
+                        document.getElementById('edit_id').value = data.data.id;
+                        document.getElementById('edit_name').value = data.data.name;
+                        document.getElementById('edit_description').value = data.data.description;
+                        
+                        let selectedCommerceId = data.CommerceSelected.id;
+                        let selectCommerceId = document.getElementById('edit_commerce_id');
 
+                        //Insertar datos de los comercios
+                        let options = ``;
+                        data.commerces.map(commerce => {
+                            if(commerce.id == selectedCommerceId){
+                                options += `<option selected value="${commerce.id}">${commerce.name}</option>`;
+                            }else{
+                                options += `<option value="${commerce.id}">${commerce.name}</option>`;
+                            }
+                            
+                        });
+                        selectCommerceId.innerHTML = options;
+
+                        //Insertar datos del estado
+                        let selectState = document.getElementById('edit_state');
+                        if (data.data.state == 1) {
+                            selectState.innerHTML = `<option selected value="1">Activo</option> <option value="2">Inactivo</option>`;
+                        } else {
+                            selectState.innerHTML = `<option selected value="2">Inactivo</option> <option value="1">Activo</option>`;
+                        }
+
+                    });
             });
         });
     }
-    
 
     deleteProductCategory() {
 

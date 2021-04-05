@@ -41335,11 +41335,15 @@ var Global = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductCategory; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var ProductCategory = /*#__PURE__*/function () {
   function ProductCategory() {
@@ -41349,7 +41353,59 @@ var ProductCategory = /*#__PURE__*/function () {
   _createClass(ProductCategory, [{
     key: "initialize",
     value: function initialize() {
+      this.editProductCategory();
       this.deleteProductCategory();
+    }
+  }, {
+    key: "editProductCategory",
+    value: function editProductCategory() {
+      var btnEdit = document.getElementsByClassName('btnEditProductCategory');
+      var modal = document.getElementsByClassName('editModal');
+
+      if (btnEdit == null) {
+        return;
+      }
+
+      [].forEach.call(btnEdit, function (btn) {
+        btn.addEventListener('click', function () {
+          console.log("INSIDE");
+          var productCategory = btn.parentNode.parentNode;
+          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          console.log(productCategory);
+          fetch("/productCategory/".concat(productCategory.id, "/edit"), {
+            headers: {
+              'X-CSRF-TOKEN': token
+            }
+          }).then(function (response) {
+            return response.json();
+          }).then(function (data) {
+            console.log(data);
+            document.getElementById('edit_id').value = data.data.id;
+            document.getElementById('edit_name').value = data.data.name;
+            document.getElementById('edit_description').value = data.data.description;
+            var selectedCommerceId = data.CommerceSelected.id;
+            var selectCommerceId = document.getElementById('edit_commerce_id'); //Insertar datos de los comercios
+
+            var options = "";
+            data.commerces.map(function (commerce) {
+              if (commerce.id == selectedCommerceId) {
+                options += "<option selected value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
+              } else {
+                options += "<option value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
+              }
+            });
+            selectCommerceId.innerHTML = options; //Insertar datos del estado
+
+            var selectState = document.getElementById('edit_state');
+
+            if (data.data.state == 1) {
+              selectState.innerHTML = "<option selected value=\"1\">Activo</option> <option value=\"2\">Inactivo</option>";
+            } else {
+              selectState.innerHTML = "<option selected value=\"2\">Inactivo</option> <option value=\"1\">Activo</option>";
+            }
+          });
+        });
+      });
     }
   }, {
     key: "deleteProductCategory",
