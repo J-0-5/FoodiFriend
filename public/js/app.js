@@ -41383,18 +41383,22 @@ var ProductCategory = /*#__PURE__*/function () {
             form.setAttribute("action", 'productCategory/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
             document.getElementById('edit_description').value = data.data.description;
-            var selectedCommerceId = data.CommerceSelected.id;
-            var selectCommerceId = document.getElementById('edit_commerce_id'); //Insertar datos de los comercios
 
-            var options = "";
-            data.commerces.map(function (commerce) {
-              if (commerce.id == selectedCommerceId) {
-                options += "<option selected value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
-              } else {
-                options += "<option value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
-              }
-            });
-            selectCommerceId.innerHTML = options; //Insertar datos del estado
+            if (data.userId == 1) {
+              var selectedCommerceId = data.CommerceSelected.id;
+              var selectCommerceId = document.getElementById('edit_commerce_id'); //Insertar datos de los comercios
+
+              var options = "";
+              data.commerces.map(function (commerce) {
+                if (commerce.id == selectedCommerceId) {
+                  options += "<option selected value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
+                } else {
+                  options += "<option value=\"".concat(commerce.id, "\">").concat(commerce.name, "</option>");
+                }
+              });
+              selectCommerceId.innerHTML = options;
+            } //Insertar datos del estado
+
 
             var selectState = document.getElementById('edit_state');
 

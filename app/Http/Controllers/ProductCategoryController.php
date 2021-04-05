@@ -59,7 +59,7 @@ class ProductCategoryController extends Controller
         $commerces = Commerce::get();
         
         if (!empty($productCategory)) {
-            return response()->json(['code' => 200, 'data' => $productCategory, 'CommerceSelected' => $productCategory->getCommerce, 'commerces' => $commerces], 200);
+            return response()->json(['code' => 200, 'data' => $productCategory, 'CommerceSelected' => $productCategory->getCommerce, 'commerces' => $commerces, 'userId' => Auth::user()->id], 200);
         } else {
             return response()->json(['code' => 404, 'data' => null, 'message' => 'Categoria de producto no encontrada'], 404);
         }

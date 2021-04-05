@@ -37,20 +37,24 @@ export default class ProductCategory {
                         document.getElementById('edit_name').value = data.data.name;
                         document.getElementById('edit_description').value = data.data.description;
                         
-                        let selectedCommerceId = data.CommerceSelected.id;
-                        let selectCommerceId = document.getElementById('edit_commerce_id');
+                        
+                        if(data.userId == 1){
+                            let selectedCommerceId = data.CommerceSelected.id;
+                            let selectCommerceId = document.getElementById('edit_commerce_id');
 
-                        //Insertar datos de los comercios
-                        let options = ``;
-                        data.commerces.map(commerce => {
-                            if(commerce.id == selectedCommerceId){
-                                options += `<option selected value="${commerce.id}">${commerce.name}</option>`;
-                            }else{
-                                options += `<option value="${commerce.id}">${commerce.name}</option>`;
-                            }
-                            
-                        });
-                        selectCommerceId.innerHTML = options;
+                            //Insertar datos de los comercios
+                            let options = ``;
+                            data.commerces.map(commerce => {
+                                if(commerce.id == selectedCommerceId){
+                                    options += `<option selected value="${commerce.id}">${commerce.name}</option>`;
+                                }else{
+                                    options += `<option value="${commerce.id}">${commerce.name}</option>`;
+                                }
+                                
+                            });
+                            selectCommerceId.innerHTML = options;
+                        }
+                        
 
                         //Insertar datos del estado
                         let selectState = document.getElementById('edit_state');
