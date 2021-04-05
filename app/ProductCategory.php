@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCategory extends Model
 {
@@ -35,6 +36,13 @@ class ProductCategory extends Model
     {
         if (trim($state) != null) {
             $query->where('state', $state);
+        }
+    }
+
+    public function scopeFilterByCommerce($query)
+    {
+        if (Auth::user()->id != 1) {
+            $query->where('commerce_id', Auth::user()->getCommerce->id);
         }
     }
 }

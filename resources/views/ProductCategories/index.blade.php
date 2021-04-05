@@ -8,14 +8,14 @@
                 <button type="button" class="btn btn-primary mb-3 mr-5" data-toggle="modal" data-target="#createCategories">
                     @lang('Create Categories')
                 </button>
+                
             </div>
             @include('ProductCategories.create')
             <div class="col">
-                <button class="btn btn-primary" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i>Filtrar</button>
+                <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
             </div>
         </div>
 
-        @if($productCategory->count())
         @if($errors->any())
         <div class="alert alert-danger">
             @foreach($errors->all() as $error)
@@ -39,22 +39,26 @@
                 <thead class="thead-light ">
                     <tr>
                         <th scope="col">@lang('Name')</th>
+                        @if(Auth::user()->id == 1)
                         <th scope="col">@lang('Commerce')</th>
+                        @endif
                         <th scope="col">@lang('Description')</th>
                         <th scope="col">@lang('State')</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @if($productCategory->count())
                     @foreach ($productCategory as $productCategory)
                     <tr id="{{$productCategory->id}}">
                         <td>
                             {{$productCategory->name}}
                         </td>
+                        @if(Auth::user()->id == 1)
                         <td>
                             {{$productCategory->getCommerce->name}}
                         </td>
+                        @endif
                         <td>
                             {{$productCategory->description}}
                         </td>
@@ -64,7 +68,7 @@
                             </span>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#EditCategory">
+                            <button type="button" class="btn btn-sm btn-warning btnEditProductCategory" data-toggle="modal" data-target="#EditCategory">
                                 <i class="fas fa-edit"></i>
                                 @lang('Edit')
                             </button>
@@ -75,14 +79,17 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else       
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            {{__('There are no categories to display')}}
+                        </td>
+                    </tr>  
+                    @endif
                 </tbody>
             </table>
         </div>
-    @else       
-        <h1 class="text-center">
-            {{__('There are no categories to display')}}
-        </h1>            
-    @endif
+    
     </div>
 </div>
 @endsection

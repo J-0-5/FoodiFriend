@@ -1,8 +1,38 @@
 export default class ProductCategory {
 
     initialize() {
+        this.editProductCategory()
         this.deleteProductCategory()
     }
+
+    editProductCategory(){
+
+        let btnEditProductCategory = document.getElementsByClassName('btnEditProductCategory');
+        [].forEach.call(btnEditProductCategory, function (btn) {
+            btn.addEventListener('click', () => {
+                console.log("AAAAAAAAAAA")
+                alert("si");
+                console.log(btn.parentNode.parentNode.id);
+
+                let productCategory = btn.parentNode.parentNode;
+                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                let url = '/productCategory/' + productCategory.id;
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    }).then((result) => result.json())
+                    .then((data) => {
+                        console.log(data);
+                    }).catch((error) => {
+                        console.error(error);
+                    })
+
+            });
+        });
+    }
+    
 
     deleteProductCategory() {
 
