@@ -3,12 +3,23 @@
 <div class="flex-column">
     <div class="container">
         @if(Auth::user()->id == 1)
-        <div class="row px-3">
-            <div class="col-11 h2">{{__('Commerce Type')}}</div>
-            <div class="col-1">
-                <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
-            </div>
+        <div class="row mt-3">
+            <div class="col-10 h2 mr-3">{{__('Commerce Type')}}</div>
+            <button class="btn btn-md btn-primary ml-3" data-toggle="modal" data-target="#createType">
+                {{__('Create')}}
+            </button>
         </div>
+        <div class="container col-11 d-flex justify-content-end mt-3">
+            <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
+        </div>
+        @if(session('status'))
+        <div class="alert alert-success" role="alert">
+            {{session('status')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+        </div>
+        @endif
         <div class="card-header border-0 collapse" id="demo">
             <form action="{{ route('commerceType.index') }}" method="get">
                 <div class="row align-items-center">
@@ -78,7 +89,8 @@
                             </span>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-warning btnEditType" data-toggle="modal" data-target="#EditType">
+                            <button class="btn btn-sm btn-warning btnEditType" data-toggle="modal"
+                                data-target="#EditType">
                                 <i class="fas fa-edit"></i>{{__('Edit')}}
                             </button>
                             <button class="btn btn-sm btn-danger btnDeletecommerceType"><i class="fas fa-trash-alt"></i>
@@ -101,4 +113,5 @@
     </div>
 </div>
 @include('CommerceType.edit')
+@include('CommerceType.create')
 @endsection

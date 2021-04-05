@@ -1,33 +1,27 @@
-<div class="modal fade" id="EditType">
+<div class="modal fade" id="createType">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header bg-info text-white">
-                <h4 class="modal-title">{{__('Edit').' '.__('Commerce Type')}}</h4>
+                <h4 class="modal-title">{{__('Create').' '.__('Commerce Type')}}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="post" id="editForm" action="commerceType">
+            <form method="post" action="{{route('commerceType.store')}}">
                 @csrf
-                @method('put')
+
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label>@lang('Name')</label>
-                        <input type="text" name="name" id="edit_name" class="form-control"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>@lang('State')</label>
-                        <select class="form-control" id="edit_state" name="state">
-                        </select>
+                        <input type="text" name="name" id="edit_name" class="form-control" />
                     </div>
 
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        <span>@lang('Update')</span>
+                        <span>@lang('Create')</span>
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <span>@lang('Close')</span>
