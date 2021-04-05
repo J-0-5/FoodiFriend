@@ -15,6 +15,19 @@ class CommerceTypeController extends Controller
         return view('CommerceType.index', compact('commerceTypes'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        CommerceType::create([
+            'name' => $request->name
+        ]);
+
+        return back()->with('status', __('Commerce Type created successfully'));
+    }
+
     public function edit($id)
     {
         $commerceType = CommerceType::where('id', $id)->first();
@@ -26,9 +39,20 @@ class CommerceTypeController extends Controller
         }
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
-        return;
+        $request->validate([
+            'name' => 'required|string',
+            'state' => 'required',
+        ]);
+
+        $commerceType = CommerceType::where('id', $id)->first();
+
+        $commerceType->name = $request->name;
+        $commerceType->state = $request->state;
+        $commerceType->update();
+
+        return back()->with('status', __('Commerce Type updated successfully'));
     }
 
     public function destroy($id)

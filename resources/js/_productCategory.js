@@ -9,7 +9,7 @@ export default class ProductCategory {
 
     editProductCategory() {
         let btnEdit = document.getElementsByClassName('btnEditProductCategory');
-        let modal = document.getElementsByClassName('editModal');
+        let form = document.getElementById('editForm');
 
         if (btnEdit == null) {
             return;
@@ -33,7 +33,7 @@ export default class ProductCategory {
                     .then(data => {
                         console.log(data);
                         
-                        document.getElementById('edit_id').value = data.data.id;
+                        form.setAttribute("action", 'productCategory/' + data.data.id);
                         document.getElementById('edit_name').value = data.data.name;
                         document.getElementById('edit_description').value = data.data.description;
                         

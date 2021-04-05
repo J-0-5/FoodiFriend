@@ -67,15 +67,20 @@ class ProductCategoryController extends Controller
         //return view('productCategories.edit', compact('productCategory'));
     }
 
-    public function update(ProductCategory $productCategory)
-    {
-        $productCategory->update([
-            'name' => request('name'),
-            'description' => request('description'),
-            'state' => request('state')
-        ]);
+    public function update($id)
+    {   
 
-        return redirect()->route('productCategory.index');
+        $productCategory = ProductCategory::where('id', $id)->first();
+
+        $productCategory->name = request('name');
+        if(Auth::user()->id == 1){
+            $productCategory->commerce_id = request('commerce_id');    
+        }
+        $productCategory->description = request('description');
+        $productCategory->state = request('state');
+        $productCategory->update();
+
+        return back()->with('status', __('Product category updated successfully'));
     }
 
     public function destroy(ProductCategory $productCategory)

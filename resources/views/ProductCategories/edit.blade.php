@@ -7,10 +7,9 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="POST" action="{{ route('productCategory.update', $productCategory) }}">                
-                @csrf @method('PATCH')
+            <form method="POST" id="editForm" action="productCategory">                
+                @csrf @method('put')
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="edit_id">
                     <div class="form-group">
                         <label>@lang('Name')</label>
                         <input type="text" id="edit_name" name="name" class="form-control" required/>

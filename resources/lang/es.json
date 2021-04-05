@@ -46,6 +46,8 @@
     "Commerce updated successfully" : "Comercio actualizado correctamente",
     "Type": "Tipo",
     "Commerce Type": "Tipo de comercio",
+    "Commerce Type created successfully" : "Tipo de comercio creado correctamente",
+    "Commerce Type updated successfully" : "Tipo de comercio actualizado correctamente",
     "Description": "Descripcion",
     "You are logged in": "Has iniciado sesión",
     "Categories": "Categorias",
@@ -70,5 +72,6 @@
     "Update" : "Actualizar",
     "Edit" : "Editar",
     "Category Name" : "Nombre De Categoria",
-    "Commerce Name" : "Nombre De Comercio"
+    "Commerce Name" : "Nombre De Comercio",
+    "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente"
 }

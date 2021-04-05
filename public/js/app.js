@@ -41165,7 +41165,7 @@ var CommerceType = /*#__PURE__*/function () {
     key: "editCommerceType",
     value: function editCommerceType() {
       var btnEditType = document.getElementsByClassName('btnEditType');
-      var modal = document.getElementsByClassName('editModal');
+      var form = document.getElementById('editForm');
 
       if (btnEditType == null) {
         return;
@@ -41182,7 +41182,7 @@ var CommerceType = /*#__PURE__*/function () {
           }).then(function (response) {
             return response.json();
           }).then(function (data) {
-            document.getElementById('edit_id').value = data.data.id;
+            form.setAttribute("action", 'commerceType/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
             var select = document.getElementById('edit_state');
             var selected = '';
@@ -41191,7 +41191,7 @@ var CommerceType = /*#__PURE__*/function () {
               selected = 'selected';
             }
 
-            select.innerHTML = "<option value=\"0\">Inactivo</option> <option ".concat(selected, " value=\"1\">Activo</option>");
+            select.innerHTML = "<option value=\"2\">Inactivo</option> <option ".concat(selected, " value=\"1\">Activo</option>");
           });
         });
       });
@@ -41360,7 +41360,7 @@ var ProductCategory = /*#__PURE__*/function () {
     key: "editProductCategory",
     value: function editProductCategory() {
       var btnEdit = document.getElementsByClassName('btnEditProductCategory');
-      var modal = document.getElementsByClassName('editModal');
+      var form = document.getElementById('editForm');
 
       if (btnEdit == null) {
         return;
@@ -41380,7 +41380,7 @@ var ProductCategory = /*#__PURE__*/function () {
             return response.json();
           }).then(function (data) {
             console.log(data);
-            document.getElementById('edit_id').value = data.data.id;
+            form.setAttribute("action", 'productCategory/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
             document.getElementById('edit_description').value = data.data.description;
             var selectedCommerceId = data.CommerceSelected.id;
