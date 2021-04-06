@@ -11,20 +11,18 @@
                 @csrf
 
                 <div class="modal-body">
-
                     <div class="form-group">
-                        <label>@lang('Name')</label>
+                        <label>{{__('Name')}}</label>
                         <input type="text" name="name" id="edit_name" class="form-control" />
                     </div>
-
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        <span>@lang('Create')</span>
+                        <span>{{__('Create')}}</span>
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <span>@lang('Close')</span>
+                        <span>{{__('Close')}}</span>
                     </button>
                 </div>
             </form>

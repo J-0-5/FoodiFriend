@@ -13,12 +13,12 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label>@lang('Name')</label>
+                        <label>{{__('Name')}}</label>
                         <input type="text" name="name" id="edit_name" class="form-control"/>
                     </div>
 
                     <div class="form-group">
-                        <label>@lang('State')</label>
+                        <label>{{__('State')}}</label>
                         <select class="form-control" id="edit_state" name="state">
                         </select>
                     </div>
@@ -27,10 +27,10 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        <span>@lang('Update')</span>
+                        <span>{{__('Update')}}</span>
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <span>@lang('Close')</span>
+                        <span>{{__('Close')}}</span>
                     </button>
                 </div>
             </form>

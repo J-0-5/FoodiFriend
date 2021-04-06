@@ -19,10 +19,15 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $productCategory = ProductCategory::name(request()->name)->CommerceId(request()->CommerceId)->state(request()->state)->filterByCommerce()->get();
+        $productCategory = ProductCategory::filterByCommerce()
+            ->name(request('name'))
+            ->CommerceId(request('commerce_id'))
+            ->state(request('state'))
+            ->get();
+
         $commerces = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory','commerces'));
+        return view('productCategories.index', compact('productCategory', 'commerces'));
     }
 
     public function create()
@@ -30,8 +35,14 @@ class ProductCategoryController extends Controller
         return view('ProductCategories.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'commerce_id' => 'nullable|exist:commerce,id',
+            'description' => 'required',
+        ]);
+
         if (Auth::user()->id == 1) {
             $commerce_id = request('commerce_id');
         } else {
@@ -50,6 +61,7 @@ class ProductCategoryController extends Controller
     public function show(ProductCategory $productCategory)
     {
         $productCategory = ProductCategory::get();
+
         return view('productCategories.index', compact('productCategory'));
     }
 
@@ -57,25 +69,31 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::where('id', $id)->first();
         $commerces = Commerce::get();
-        
+
         if (!empty($productCategory)) {
             return response()->json(['code' => 200, 'data' => $productCategory, 'CommerceSelected' => $productCategory->getCommerce, 'commerces' => $commerces, 'userId' => Auth::user()->id], 200);
         } else {
             return response()->json(['code' => 404, 'data' => null, 'message' => 'Categoria de producto no encontrada'], 404);
         }
-
-        //return view('productCategories.edit', compact('productCategory'));
     }
 
-    public function update($id)
-    {   
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'commerce_id' => 'nullable|exist:commerce,id',
+            'description' => 'required',
+            'state' => 'required',
+        ]);
 
         $productCategory = ProductCategory::where('id', $id)->first();
 
         $productCategory->name = request('name');
-        if(Auth::user()->id == 1){
-            $productCategory->commerce_id = request('commerce_id');    
+
+        if (Auth::user()->id == 1) {
+            $productCategory->commerce_id = request('commerce_id');
         }
+
         $productCategory->description = request('description');
         $productCategory->state = request('state');
         $productCategory->update();
@@ -86,6 +104,7 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         $productCategory->delete();
+
         return back()->with('status', __('Category deleted successfully'));
     }
 }
