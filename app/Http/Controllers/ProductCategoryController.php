@@ -2,93 +2,109 @@
 
 namespace App\Http\Controllers;
 
+use App\Commerce;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
+    {
+        $productCategory = ProductCategory::filterByCommerce()
+            ->name(request('name'))
+            ->CommerceId(request('commerce_id'))
+            ->state(request('state'))
+            ->get();
+
+        $commerces = Commerce::get();
+
+        return view('productCategories.index', compact('productCategory', 'commerces'));
+    }
+
+    public function create()
+    {
+        return view('ProductCategories.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'commerce_id' => 'nullable|exist:commerce,id',
+            'description' => 'required',
+        ]);
+
+        if (Auth::user()->id == 1) {
+            $commerce_id = request('commerce_id');
+        } else {
+            $commerce_id = Auth::user()->getCommerce->id;
+        }
+
+        ProductCategory::create([
+            'name' => request('name'),
+            'commerce_id' => $commerce_id,
+            'description' => request('description')
+        ]);
+
+        return back()->with('status', __('Category created successfully'));
+    }
+
+    public function show(ProductCategory $productCategory)
     {
         $productCategory = ProductCategory::get();
 
         return view('productCategories.index', compact('productCategory'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('ProductCategories.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store()
-    {
-        ProductCategory::create([
-            'name' => request('name'),
-            'commerce_id' => Auth::user()->id,
-            'state' => request('state')
-        ]);
-
-        return back()->with('status', __('Category created successfully'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $productCategory = ProductCategory::where('id', $id)->first();
+        $commerces = Commerce::get();
+
+        if (!empty($productCategory)) {
+            return response()->json(['code' => 200, 'data' => $productCategory, 'CommerceSelected' => $productCategory->getCommerce, 'commerces' => $commerces, 'userId' => Auth::user()->id], 200);
+        } else {
+            return response()->json(['code' => 404, 'data' => null, 'message' => 'Categoria de producto no encontrada'], 404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'commerce_id' => 'nullable|exist:commerce,id',
+            'description' => 'required',
+            'state' => 'required',
+        ]);
+
+        $productCategory = ProductCategory::where('id', $id)->first();
+
+        $productCategory->name = request('name');
+
+        if (Auth::user()->id == 1) {
+            $productCategory->commerce_id = request('commerce_id');
+        }
+
+        $productCategory->description = request('description');
+        $productCategory->state = request('state');
+        $productCategory->update();
+
+        return back()->with('status', __('Product category updated successfully'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(ProductCategory $productCategory)
     {
-        //
+        $productCategory->delete();
+
+        return back()->with('status', __('Category deleted successfully'));
     }
 }

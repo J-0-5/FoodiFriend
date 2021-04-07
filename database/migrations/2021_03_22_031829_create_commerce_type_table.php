@@ -16,6 +16,7 @@ class CreateCommerceTypeTable extends Migration
         Schema::create('commerce_type', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('state')->default(1);
         });
     }
 

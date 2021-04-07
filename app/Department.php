@@ -14,7 +14,7 @@ class Department extends Model
 
     public $timestamps = false;
 
-    public function getCies()
+    public function getCities()
     {
         return $this->hasMany(City::class, 'department_id', 'id');
     }

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastName', 'docType', 'numDoc', 'city_id', 'address', 'email', 'password',
+        'name', 'lastName', 'docType', 'docNum', 'city_id', 'address', 'email', 'password',
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getCommerce()
+    {
+        return $this->hasOne(Commerce::class, 'user_id');
+    }
+
+    public function getCity()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 }

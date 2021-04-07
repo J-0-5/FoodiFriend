@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
             'docType' => ['required', 'exists:parameter_value,id'],
-            'numDoc' => ['required', 'unique:users,numDoc'],
+            'docNum' => ['required', 'unique:users,docNum'],
             'city' => ['required', 'exists:city,id'],
             'address' => ['required', 'string', 'max:255'],
             /////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'lastName' => $data['lastName'],
             'docType' => $data['docType'],
-            'numDoc' => $data['numDoc'],
+            'docNum' => $data['docNum'],
             'city_id' => $data['city'],
             'address' => $data['address'],
             'email' => $data['email'],

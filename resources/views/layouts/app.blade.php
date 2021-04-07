@@ -21,21 +21,27 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
+{{-- <style>
+    body {
+            background-image: url('{{asset('img/backgroundImg/welcomeBg.jpg')}}');
+            background-position: inherit;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #fff;
+            color: #636b6f;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 90vh;
+            margin: 0;
+        }
+</style> --}}
 
 <body>
-    {{-- <div class="wrapper">
-        @include('layouts.navBar')
-        @include('layouts.sideBar')
-        <main class="py-4">
-                    @yield('content')
-                </main>
-    </div> --}}
-
     <div id="app">
         @include('layouts.navBar')
         <div class="row">
             @include('layouts.leftBar')
-            <main class="col-md-10 py-4">
+            <main class="col py-3">
                 @yield('content')
             </main>
         </div>
