@@ -26,6 +26,12 @@
                         {{ __('Product Category') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('product.index') }}">
+                        {{-- <i class="color-session fas fa-store text-primary"></i> --}}
+                        {{ __('Product').'s' }}
+                    </a>
+                </li>
             @endif
             {{-- exclusive modules for the customers --}}
             @if (Auth::user()->id != 1 && empty(Auth::user()->getCommerce))

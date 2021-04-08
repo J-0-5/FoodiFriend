@@ -3,11 +3,11 @@ export default class Global {
         this.onChangeDepartment();
     }
     onChangeDepartment() {
-        let departmet = document.getElementById('department');
-        if (departmet == null) {
+        let department = document.getElementById('department');
+        if (department == null) {
             return;
         }
-        departmet.onchange = function () {
+        department.onchange = function () {
             let department = document.getElementById("department").value;
 
             fetch(`/cities?department_id=${department}`)

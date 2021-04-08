@@ -1,23 +1,22 @@
 @extends('layouts.app')
 @section('content')
-<div class="flex-column ">
+<div class="flex-column">
     <div class="container-fluid px-3 mb-3 mr-5">
         <div class="row">
 
             <div class="col h2">{{__('Product Category')}}</div>
 
-            <div class="col">
-                <button type="button" class="btn btn-primary mb-3 mr-5" data-toggle="modal"
-                    data-target="#createCategories">
-                    {{__('Create Categories')}}
-                </button>
-            </div>
-
-            <div class="col">
-                <button class="btn" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i></button>
-            </div>
+            <button type="button" class="btn btn-primary mb-3 mr-5" data-toggle="modal"
+                data-target="#createCategories">
+                {{__('Create Categories')}}
+            </button>
 
         </div>
+
+        <div class="row justify-content-end mr-3 pr-3">
+            <button class="btn" data-toggle="collapse" data-target="#productCategoryFilter"><i class="fas fa-filter"></i></button>
+        </div>
+
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -36,7 +35,7 @@
         </div>
         @endif
 
-        @include('ProductCategories.filter')
+        @include('ProductCategory.filter')
 
         <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -52,8 +51,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($productCategory->count())
-                        @foreach ($productCategory as $productCategory)
+                    @if($productCategories->count())
+                        @foreach ($productCategories as $productCategory)
                             <tr id="{{$productCategory->id}}">
 
                                 <td>{{$productCategory->name}}</td>
@@ -95,6 +94,6 @@
 
     </div>
 </div>
-@include('ProductCategories.create')
-@include('ProductCategories.edit')
+@include('ProductCategory.create')
+@include('ProductCategory.edit')
 @endsection

@@ -1,4 +1,4 @@
-<div class="card-header border-0 collapse" id="demo">
+<div class="card-header border-0 collapse" id="productCategoryFilter">
     <form action="{{route('productCategory.index')}}" method="get">
 
         <div class="row align-items-center">

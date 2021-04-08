@@ -41294,13 +41294,13 @@ var Global = /*#__PURE__*/function () {
   }, {
     key: "onChangeDepartment",
     value: function onChangeDepartment() {
-      var departmet = document.getElementById('department');
+      var department = document.getElementById('department');
 
-      if (departmet == null) {
+      if (department == null) {
         return;
       }
 
-      departmet.onchange = function () {
+      department.onchange = function () {
         var department = document.getElementById("department").value;
         fetch("/cities?department_id=".concat(department)).then(function (response) {
           return response.json();
@@ -41319,6 +41319,71 @@ var Global = /*#__PURE__*/function () {
   }]);
 
   return Global;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/_product.js":
+/*!**********************************!*\
+  !*** ./resources/js/_product.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Product; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Product = /*#__PURE__*/function () {
+  function Product() {
+    _classCallCheck(this, Product);
+  }
+
+  _createClass(Product, [{
+    key: "initialize",
+    value: function initialize() {
+      this.onChangeCommerce();
+    }
+  }, {
+    key: "onChangeCommerce",
+    value: function onChangeCommerce() {
+      var commerce = document.getElementById('commerce_id');
+
+      if (commerce == null) {
+        return;
+      }
+
+      commerce.onchange = function () {
+        var commerce = document.getElementById("commerce_id").value;
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        fetch("/productCategory/categories/".concat(commerce), {
+          headers: {
+            'X-CSRF-TOKEN': token
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          var select = document.getElementById('productCategory');
+          select.innerHTML = "<option selected disabled value=\"0\">Categoria de producto</option>";
+          data.categories.map(function (c) {
+            var option = document.createElement("option");
+            option.text = c.name;
+            option.value = c.id;
+            select.appendChild(option);
+          });
+        });
+      };
+    }
+  }]);
+
+  return Product;
 }();
 
 
@@ -41368,7 +41433,6 @@ var ProductCategory = /*#__PURE__*/function () {
 
       [].forEach.call(btnEdit, function (btn) {
         btn.addEventListener('click', function () {
-          console.log("INSIDE");
           var productCategory = btn.parentNode.parentNode;
           var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
           console.log(productCategory);
@@ -41379,7 +41443,6 @@ var ProductCategory = /*#__PURE__*/function () {
           }).then(function (response) {
             return response.json();
           }).then(function (data) {
-            console.log(data);
             form.setAttribute("action", 'productCategory/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
             document.getElementById('edit_description').value = data.data.description;
@@ -41484,7 +41547,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _commerceType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_commerceType */ "./resources/js/_commerceType.js");
 /* harmony import */ var _commerce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_commerce */ "./resources/js/_commerce.js");
 /* harmony import */ var _productCategory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_productCategory */ "./resources/js/_productCategory.js");
+/* harmony import */ var _product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_product */ "./resources/js/_product.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -41494,11 +41559,13 @@ var global = new _global__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var commerceType = new _commerceType__WEBPACK_IMPORTED_MODULE_1__["default"]();
 var commerce = new _commerce__WEBPACK_IMPORTED_MODULE_2__["default"]();
 var productCategory = new _productCategory__WEBPACK_IMPORTED_MODULE_3__["default"]();
+var product = new _product__WEBPACK_IMPORTED_MODULE_4__["default"]();
 document.addEventListener("DOMContentLoaded", function (event) {
   global.initialize();
   commerceType.initialize();
   commerce.initialize();
   productCategory.initialize();
+  product.initialize();
 });
 
 /***/ }),

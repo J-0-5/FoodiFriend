@@ -17,7 +17,7 @@ export default class ProductCategory {
 
         [].forEach.call(btnEdit, function (btn) {
             btn.addEventListener('click', () => {
-                console.log("INSIDE")
+
                 let productCategory = btn.parentNode.parentNode;
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 console.log(productCategory);
@@ -31,13 +31,12 @@ export default class ProductCategory {
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
-                        
+
                         form.setAttribute("action", 'productCategory/' + data.data.id);
                         document.getElementById('edit_name').value = data.data.name;
                         document.getElementById('edit_description').value = data.data.description;
-                        
-                        
+
+
                         if(data.userId == 1){
                             let selectedCommerceId = data.CommerceSelected.id;
                             let selectCommerceId = document.getElementById('edit_commerce_id');
@@ -50,11 +49,11 @@ export default class ProductCategory {
                                 }else{
                                     options += `<option value="${commerce.id}">${commerce.name}</option>`;
                                 }
-                                
+
                             });
                             selectCommerceId.innerHTML = options;
                         }
-                        
+
 
                         //Insertar datos del estado
                         let selectState = document.getElementById('edit_state');

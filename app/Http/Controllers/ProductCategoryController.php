@@ -19,7 +19,7 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $productCategory = ProductCategory::filterByCommerce()
+        $productCategories = ProductCategory::filterByCommerce()
             ->name(request('name'))
             ->CommerceId(request('commerce_id'))
             ->state(request('state'))
@@ -27,7 +27,7 @@ class ProductCategoryController extends Controller
 
         $commerces = Commerce::get();
 
-        return view('productCategories.index', compact('productCategory', 'commerces'));
+        return view('productCategory.index', compact('productCategories', 'commerces'));
     }
 
     public function create()
@@ -106,5 +106,17 @@ class ProductCategoryController extends Controller
         $productCategory->delete();
 
         return back()->with('status', __('Category deleted successfully'));
+    }
+
+    public function categories($commerce_id)
+    {
+        try {
+
+            $categories = ProductCategory::where('commerce_id', $commerce_id)->get();
+
+            return response()->json(['res' => true, 'categories' => $categories]);
+        } catch (\Exception $e) {
+            return response()->json(['res' => false, 'error' => $e]);
+        }
     }
 }
