@@ -101,11 +101,13 @@ class ProductCategoryController extends Controller
         return back()->with('status', __('Product category updated successfully'));
     }
 
-    public function destroy(ProductCategory $productCategory)
+    public function destroy($id)
     {
-        $productCategory->delete();
-
-        return back()->with('status', __('Category deleted successfully'));
+        if (ProductCategory::where('id', $id)->delete()) {
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+        } 
     }
 
     public function categories($commerce_id)
