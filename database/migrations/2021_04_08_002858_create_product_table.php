@@ -17,7 +17,9 @@ class CreateProductTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('product_img');
+            $table->string('product_img')->nullable();
+            $table->double('price');
+            $table->integer('quantity');
             $table->unsignedBigInteger('commerce_id');
             $table->foreign('commerce_id')->references('id')->on('commerce');
             $table->unsignedBigInteger('category_id');

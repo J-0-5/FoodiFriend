@@ -13,7 +13,7 @@ class CommerceSeeder extends Seeder
     public function run()
     {
         $Commerces = [ //id => data
-            1 => [2, "1111111", "Helados Buggy", 2, "Se venden todo tipo de helados"],
+            1 => [2, "800.244.387-4", "McDONALD'S", 3, "McDonald's es una franquicia de restaurantes de comida rápida estadounidense con sede en Chicago, Illinois.​ Sus principales productos son las hamburguesas, las patatas fritas, los menús para el desayuno y los refrescos."],
             2 => [3, "2222222", "Jennos Pizza", 3, "Se venden todo dipo de pizzas"],
         ];
 

@@ -8,6 +8,7 @@ export default class ProductCategory {
     }
 
     editProductCategory() {
+
         let btnEdit = document.getElementsByClassName('btnEditProductCategory');
         let form = document.getElementById('editForm');
 
@@ -20,7 +21,6 @@ export default class ProductCategory {
 
                 let productCategory = btn.parentNode.parentNode;
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                console.log(productCategory);
 
                 fetch(`/productCategory/${productCategory.id}/edit`,
                     {
@@ -36,17 +36,15 @@ export default class ProductCategory {
                         document.getElementById('edit_name').value = data.data.name;
                         document.getElementById('edit_description').value = data.data.description;
 
-
-                        if(data.userId == 1){
+                        if (data.userId == 1) {
                             let selectedCommerceId = data.CommerceSelected.id;
                             let selectCommerceId = document.getElementById('edit_commerce_id');
 
-                            //Insertar datos de los comercios
                             let options = ``;
                             data.commerces.map(commerce => {
-                                if(commerce.id == selectedCommerceId){
+                                if (commerce.id == selectedCommerceId) {
                                     options += `<option selected value="${commerce.id}">${commerce.name}</option>`;
-                                }else{
+                                } else {
                                     options += `<option value="${commerce.id}">${commerce.name}</option>`;
                                 }
 
@@ -54,8 +52,6 @@ export default class ProductCategory {
                             selectCommerceId.innerHTML = options;
                         }
 
-
-                        //Insertar datos del estado
                         let selectState = document.getElementById('edit_state');
                         if (data.data.state == 1) {
                             selectState.innerHTML = `<option selected value="1">Activo</option> <option value="2">Inactivo</option>`;
@@ -81,7 +77,6 @@ export default class ProductCategory {
         [].forEach.call(btnDeleteProductCategory, function (btn) {
             btn.addEventListener('click', () => {
 
-                console.log(btn.parentNode.parentNode.id);
                 let productCategory = btn.parentNode.parentNode;
 
                 Swal.fire({
@@ -92,34 +87,36 @@ export default class ProductCategory {
                     confirmButtonText: 'Confirmar',
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
+
                     if (result.value) {
-
-                        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                        let url = '/productCategory/' + productCategory.id;
-
-                        fetch(url, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': token
-                            }
-                        })
-                            .then(() => {
-                                Swal.fire({
-                                    title: 'Categoria de Producto eliminada',
-                                    icon: 'success',
-                                    confirmButtonText: 'Ok'
-                                })
-                                productCategory.remove();
-                            })
-                            .catch(function () {
-                                Swal.fire({
-                                    title: 'Ups!',
-                                    text: 'Ha ocurrido un error. Intentalo mas tarde',
-                                    icon: 'error',
-                                    confirmButtonText: 'Ok'
-                                })
-                            });
+                        return;
                     }
+
+                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    let url = '/productCategory/' + productCategory.id;
+
+                    fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                        .then(() => {
+                            Swal.fire({
+                                title: 'Categoria de Producto eliminada',
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                            })
+                            productCategory.remove();
+                        })
+                        .catch(function () {
+                            Swal.fire({
+                                title: 'Ups!',
+                                text: 'Ha ocurrido un error. Intentalo mas tarde',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        });
                 })
             });
         });

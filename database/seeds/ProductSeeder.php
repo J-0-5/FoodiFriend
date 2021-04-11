@@ -1,9 +1,9 @@
 <?php
 
-use App\ProductCategory;
+use App\Product;
 use Illuminate\Database\Seeder;
 
-class ProductCategorySeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        $ProductCategories = [
+        $Products = [
             1 => ['Hamburguesa',1,'Una hamburguesa es un sándwich hecho a base de carne molida o de origen vegetal, aglutinada en forma de filete cocinado a la parrilla o a la plancha, aunque también puede freírse u hornearse.'],
             2 => ['Pollo',1,'Disfruta el pollo en variedad de presentaciones'],
             3 => ['Postres',1,'Pueba nuestros mas deliciosos postres'],
@@ -22,11 +22,11 @@ class ProductCategorySeeder extends Seeder
             7 => ['ChoriPizza',2,'Pizza con chorizo']
         ];
 
-        foreach ($ProductCategories as $id => $productCategories) {
-            ProductCategory::create([
-                'name' => $productCategories[0],
-                'commerce_id' => $productCategories[1],
-                'description' => $productCategories[2],
+        foreach ($Products as $id => $Product) {
+            Product::create([
+                'name' => $Product[0],
+                'commerce_id' => $Product[1],
+                'description' => $Product[2],
             ]);
         }
     }

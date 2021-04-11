@@ -40,12 +40,12 @@
         <div class="table-responsive">
             <table class="table align-items-center table-flush">
                 <thead class="thead-light ">
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">{{__('Name')}}</th>
                         @if(Auth::user()->id == 1)
-                            <th scope="col">@lang('Commerce')</th>
+                            <th scope="col">{{__('Commerce')}}</th>
                         @endif
-                        <th scope="col">@lang('Description')</th>
+                        {{-- <th scope="col">@lang('Description')</th> --}}
                         <th scope="col">{{__('State')}}</th>
                         <th scope="col"></th>
                     </tr>
@@ -53,7 +53,7 @@
                 <tbody>
                     @if($productCategories->count())
                         @foreach ($productCategories as $productCategory)
-                            <tr id="{{$productCategory->id}}">
+                            <tr class="text-center" id="{{$productCategory->id}}">
 
                                 <td>{{$productCategory->name}}</td>
 
@@ -61,7 +61,7 @@
                                     <td>{{$productCategory->getCommerce->name}}</td>
                                 @endif
 
-                                <td>{{$productCategory->description}}</td>
+                                {{-- <td>{{$productCategory->description}}</td> --}}
 
                                 <td>
                                     <span

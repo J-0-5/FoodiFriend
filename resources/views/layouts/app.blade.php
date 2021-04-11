@@ -21,9 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-{{-- <style>
+<style>
     body {
-            background-image: url('{{asset('img/backgroundImg/welcomeBg.jpg')}}');
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* background-image: url('{{asset('img/backgroundImg/welcomeBg.jpg')}}');
             background-position: inherit;
             background-repeat: no-repeat;
             background-size: cover;
@@ -32,9 +34,9 @@
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 90vh;
-            margin: 0;
+            margin: 0; */
         }
-</style> --}}
+</style>
 
 <body>
     <div id="app">
