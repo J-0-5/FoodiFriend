@@ -41,7 +41,7 @@
                     <tr class="text-center">
                         <th scope="col">{{__('Image')}}</th>
                         <th scope="col">{{__('Name')}}</th>
-                        <th scope="col">{{__('Description')}}</th>
+                        {{-- <th scope="col">{{__('Description')}}</th> --}}
                         @if(Auth::user()->id == 1)
                             <th scope="col">{{__('Commerce')}}</th>
                         @endif
@@ -67,7 +67,7 @@
 
                                 <td>{{$product->name}}</td>
 
-                                <td>{{$product->description}}</td>
+                                {{-- <td>{{$product->description}}</td> --}}
 
                                 @if(Auth::user()->id == 1)
                                     <td>{{$product->getCommerce->name}}</td>
