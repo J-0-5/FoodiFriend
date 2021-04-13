@@ -41652,6 +41652,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
   productCategory.initialize();
   product.initialize();
 });
+$(document).ready(function () {
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("menuDisplayed");
+  });
+});
 
 /***/ }),
 

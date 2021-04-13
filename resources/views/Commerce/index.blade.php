@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="flex-column">
-    <div class="container">
+    <div class="container-fluid px-3 mb-3">
         @if(Auth::user()->id == 1)
         <div class="row px-3">
             <div class="col-11 h2">{{__('Commerce')}}s</div>
@@ -75,7 +75,7 @@
                         <th scope="col">@lang('Commerce')</th>
                         <th scope="col">@lang('NIT')</th>
                         <th scope="col">@lang('Type')</th>
-                        <th scope="col">@lang('Description')</th>
+                        {{-- <th scope="col">@lang('Description')</th> --}}
                         <th scope="col">Estado</th>
                         <th></th>
                     </tr>
@@ -93,9 +93,9 @@
                         <td>
                             {{$commerce->getType->name}}
                         </td>
-                        <td>
+                        {{-- <td>
                             {{$commerce->description}}
-                        </td>
+                        </td> --}}
                         <td>
                             <span
                                 class="badge badge-{{Config::get('const.states')[$commerce->state]['color']}}">{{Config::get('const.states')[$commerce->state]['name']}}
