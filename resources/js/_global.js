@@ -1,7 +1,9 @@
 export default class Global {
     initialize() {
         this.onChangeDepartment();
+        this.changeImgHandler();
     }
+
     onChangeDepartment() {
         let department = document.getElementById('department');
         if (department == null) {
@@ -24,5 +26,26 @@ export default class Global {
                     });
                 });
         };
+    }
+
+    changeImgHandler() {
+
+        let inputImg = document.getElementById('inputImg');
+        let imgUpdate = document.getElementById('imgUpdate');
+
+        if (inputImg == null) {
+            return;
+        }
+
+        inputImg.onchange = function () {
+            if (inputImg.files && inputImg.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    imgUpdate.setAttribute('src', e.target.result);
+                };
+                reader.readAsDataURL(inputImg.files[0]);
+            }
+        }
+
     }
 }

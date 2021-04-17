@@ -7,13 +7,17 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="post" action="{{route('commerceType.store')}}">
+            <form method="post" enctype="multipart/form-data" action="{{route('commerceType.store')}}">
                 @csrf
 
                 <div class="modal-body">
                     <div class="form-group">
                         <label>{{__('Name')}}</label>
-                        <input type="text" name="name" id="edit_name" class="form-control" />
+                        <input type="text" name="name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>{{__('Image')}} <span class="small text-muted">(tamaño recomendado de 600px*600px)</span></label>
+                        <input type="file" name="typeImg" class="form-control-file" />
                     </div>
                 </div>
                 <!-- Modal footer -->

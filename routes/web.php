@@ -28,10 +28,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productCategory/categories/{commerce}', 'ProductCategoryController@categories');
 
     Route::resource('/product', 'ProductController');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/commerces/{type}', 'HomeController@commerces')->name('home.commerces');
+
+    Route::get('/products/{commerce_id}', 'HomeController@products')->name('home.products');
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/cities', 'CityController');

@@ -1,13 +1,8 @@
-<nav class="customNavbar navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    @auth
-    @if (Auth::user()->id != 1 && isset(Auth::user()->getCommerce))
-    <button class="btn" id="menu-toggle"><i class="fas fa-bars text-warning"></i></button>
-    @endif
-    @endauth
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 
     <div class="container">
 
-        <a class="navbar-brand text-warning font-weight-bold" href="{{ url('/') }}">
+        <a class="navbar-brand text-dark font-weight-bold" href="{{ url('/') }}">
             {{ config('app.name', 'FoodieFriend') }}
         </a>
 
@@ -27,17 +22,17 @@
                 <!-- Authentication Links -->
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link text-white font-weight-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link text-dark font-weight-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link text-white font-weight-bold"
+                    <a class="nav-link text-dark font-weight-bold"
                         href="{{ route('register') }}">{{ __('Register') }}</a>
                 </li>
                 @endif
                 @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white font-weight-bold" href="#"
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark font-weight-bold" href="#"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>

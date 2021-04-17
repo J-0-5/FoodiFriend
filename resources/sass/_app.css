@@ -14,7 +14,7 @@ body {
 }
 
 /* Navbar */
-.navbar {
+.customNavbar {
     background-image: url('../../public/img/backgroundImg/welcomeBg.jpg');
     background-position: inherit;
     background-repeat: no-repeat;

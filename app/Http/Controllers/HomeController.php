@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Commerce;
+use App\CommerceType;
+use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +32,26 @@ class HomeController extends Controller
             return view('home');
         }
 
-        return view('Home.index');
+        $commerceTypes = CommerceType::where('state', 1)->get();
+
+        return view('Home.type', compact('commerceTypes'));
+    }
+
+    public function commerces($type)
+    {
+        $commerces = Commerce::where('type', $type)->get();
+
+        return view('Home.commerces', compact('commerces'));
+    }
+
+    public function products($commerce_id)
+    {
+        $commerce = Commerce::where('id', $commerce_id)->first();
+
+        $categories = ProductCategory::where('commerce_id', $commerce_id)->where('state', 1)->get();
+
+        $products = Product::where('commerce_id', $commerce_id)->where('state', 1)->get();
+
+        return view('Home.products', compact('commerce', 'categories', 'products'));
     }
 }

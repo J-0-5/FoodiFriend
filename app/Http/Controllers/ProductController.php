@@ -113,6 +113,7 @@ class ProductController extends Controller
         $product->quantity = request('quantity');
         $product->commerce_id = request('commerce_id');
         $product->category_id = request('category');
+        $product->state = request('state');
 
         if (request('productImg') != null) {
             $product->product_img = request('productImg');

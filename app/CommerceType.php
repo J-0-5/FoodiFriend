@@ -8,7 +8,7 @@ class CommerceType extends Model
 {
     protected $table = 'commerce_type';
 
-    protected $fillable = ['name', 'state'];
+    protected $fillable = ['name', 'type_img', 'state'];
 
     public $timestamps = false;
 

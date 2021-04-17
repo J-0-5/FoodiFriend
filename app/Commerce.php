@@ -8,7 +8,7 @@ class Commerce extends Model
 {
     protected $table = 'commerce';
 
-    protected $fillable = ['nit', 'user_id', 'name', 'type', 'description', 'state'];
+    protected $fillable = ['nit', 'user_id', 'name', 'type', 'description', 'img', 'state'];
 
     public function getUser()
     {

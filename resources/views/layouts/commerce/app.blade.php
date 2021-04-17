@@ -24,14 +24,14 @@
 
 <body>
 
-    @include('layouts.navBar')
+    @include('layouts.commerce.navBar')
 
-    <div id="wrapper">
+    <div class="row">
 
-        @include('layouts.leftBar')
+        @include('layouts.commerce.sideBar')
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div class="col mt-2">
             <div class="container-fluid">
 
                 @yield('content')

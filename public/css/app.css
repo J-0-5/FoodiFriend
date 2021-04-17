@@ -15567,7 +15567,7 @@ body {
 
 /* Navbar */
 
-.navbar {
+.customNavbar {
   background-image: url(/images/welcomeBg.jpg?215256b780223f22b9fea00c75693c43);
   background-position: inherit;
   background-repeat: no-repeat;

@@ -16,7 +16,8 @@ class UserSeeder extends Seeder
         $Users = [ //id => data
             1 => ["Admin", "", 1, "123456789", 1, "cra 7 #16-39", "admin@foodie.com", "secret"],
             2 => ["John", "Bogle", 1, "8965386", 1, "calle 94 #52b 46", "mcdonald@foodie.com", "secret"],
-            3 => ["comercio2", "", 1, "987654321", 1, "dir3", "comercio2@foodie.com", "secret"]
+            3 => ["comercio2", "", 1, "987654321", 1, "dir3", "comercio2@foodie.com", "secret"],
+            4 => ["Customer", "", 1, "987654321", 1, "dir4", "customer@foodie.com", "secret"]
         ];
 
         foreach ($Users as $id => $user) {

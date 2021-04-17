@@ -33,6 +33,13 @@ export default class CommerceType {
 
                         document.getElementById('edit_name').value = data.data.name;
 
+                        let route = document.getElementById('imgUpdate').getAttribute('data-route');
+                        document.getElementById('imgUpdate').setAttribute('src', 'img/product-placeholder.jpg');
+
+                        if (data.data.type_img != null) {
+                            document.getElementById('imgUpdate').setAttribute('src', route + '/' + data.data.type_img);
+                        }
+
                         let select = document.getElementById('edit_state');
                         let selected = '';
 

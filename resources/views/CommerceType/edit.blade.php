@@ -7,20 +7,30 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form method="post" id="editForm" action="commerceType">
+            <form method="post" enctype="multipart/form-data" id="editForm" action="commerceType">
                 @csrf
                 @method('put')
-                <div class="modal-body">
+                <div class="modal-body d-flex justify-content-center align-items-center">
 
-                    <div class="form-group">
-                        <label>{{__('Name')}}</label>
-                        <input type="text" name="name" id="edit_name" class="form-control"/>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>{{__('Name')}}</label>
+                            <input type="text" name="name" id="edit_name" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{__('State')}}</label>
+                            <select class="form-control" id="edit_state" name="state">
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>{{__('State')}}</label>
-                        <select class="form-control" id="edit_state" name="state">
-                        </select>
+                    <div class="card text-center" style="width: 13rem;">
+                        <img class="card-img-top" data-route="{{asset('storage/')}}" src="" id="imgUpdate">
+                        <div class="form-group">
+                            <label>{{__('Image')}} <span class="small text-muted">(tamaño recomendado de 600px*600px)</span></label>
+                            <input type="file" name="typeImg" id="inputImg" class="form-control-file"/>
+                        </div>
                     </div>
 
                 </div>

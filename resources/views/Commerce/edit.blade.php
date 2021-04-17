@@ -10,7 +10,7 @@
         </div>
     @endif
     <div class="card shadow">
-        <form method="post" action="{{route('commerce.update',[$commerce->id])}}">
+        <form method="post" action="{{route('commerce.update',[$commerce->id])}}" enctype="multipart/form-data">
 
             @csrf
             @method('put')
@@ -173,67 +173,91 @@
 
                 <h5 class="heading-small text-muted my-4">{{__('Commerce details')}}</h5>
 
-                <div class="row">
+                <div class="row mb-3">
 
-                    <div class="form-group col">
-                        <label class="form-control-label" for="commerceName">{{__('Commerce name')}}*</label>
-                        <input type="text" name="commerceName" value="{{$commerce->name}}"
-                            class="form-control @error('commerceName') is-invalid @enderror"
-                            placeholder="{{__('Commerce name')}}">
-                        @error('commerceName')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                    <div class="col-lg-6 col-sm-12">
+
+                        <div class="form-group col">
+                            <label class="form-control-label" for="commerceName">{{__('Commerce name')}}*</label>
+                            <input type="text" name="commerceName" value="{{$commerce->name}}"
+                                class="form-control @error('commerceName') is-invalid @enderror"
+                                placeholder="{{__('Commerce name')}}">
+                            @error('commerceName')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col">
+                            <label class="form-control-label" for="nit">NIT *</label>
+                            <input type="text" name="nit" value="{{$commerce->nit}}"
+                                class="form-control @error('nit') is-invalid @enderror" placeholder="NIT" required>
+                            @error('nit')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col">
+                            <label class="form-control-label" for="commerceType">Tipo de comercio *</label>
+                            <select name="commerceType" class="form-control @error('commerceType') is-invalid @enderror"
+                                required disabled>
+                                <option value="" selected disabled>Seleccione un tipo de comercio</option>
+                                @foreach($commerceType as $type)
+                                <option value="{{$type->id}}" {{$commerce->type == $type->id ? 'selected' : ''}}>
+                                    {{$type->name}}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('commerceType')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col">
+                            <label class="form-control-label">{{__('State')}}</label>
+                            <select name="state" class="form-control">
+                                @foreach(Config::get('const.states') as $state => $value)
+                                <option value="{{$state}}" {{$commerce->state == $state ? 'selected' : ''}}>
+                                    {{$value['name']}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                     </div>
 
-                    <div class="form-group col">
-                        <label class="form-control-label" for="nit">NIT *</label>
-                        <input type="number" name="nit" value="{{$commerce->nit}}"
-                            class="form-control @error('nit') is-invalid @enderror" placeholder="NIT" required>
-                        @error('nit')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="d-flex justify-content-center">
+                            <div class="card" style="width: 25rem;">
+
+                                @if (Storage::disk('public')->exists($commerce->img))
+                                    <img class="card-img-top" id="imgUpdate" src="{{ asset('storage/' . $commerce->img) }}"
+                                        alt="User profile picture">
+                                @else
+                                    <img class="card-img-top" id="imgUpdate" src="{{asset('img/product-placeholder.jpg')}}"
+                                        alt="User profile picture">
+                                @endif
+
+                                <div class="card-bottom text-center">
+                                    <label class="text-muted">{{__('Product image')}} </label>
+
+                                    <div class="flex-column">
+                                        <input type="file" name="img" id="inputImg" class="form-control-file">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
-                <div class="row">
-
-                    <div class="form-group col">
-                        <label class="form-control-label" for="commerceType">Tipo de comercio *</label>
-                        <select name="commerceType" class="form-control @error('commerceType') is-invalid @enderror"
-                            required disabled>
-                            <option value="" selected disabled>Seleccione un tipo de comercio</option>
-                            @foreach($commerceType as $type)
-                            <option value="{{$type->id}}" {{$commerce->type == $type->id ? 'selected' : ''}}>
-                                {{$type->name}}
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('commerceType')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col">
-                        <label class="form-control-label">{{__('State')}}</label>
-                        <select name="state" class="form-control">
-                            @foreach(Config::get('const.states') as $state => $value)
-                            <option value="{{$state}}" {{$commerce->state == $state ? 'selected' : ''}}>
-                                {{$value['name']}}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="row align-items-center">
+                <div class="row align-items-center mt-3">
                     <div class="form-group col">
                         <label class="form-control-label" for="description">{{__('Description')}}</label>
                         <textarea name="description" class="form-control @error('description') is-invalid @enderror"

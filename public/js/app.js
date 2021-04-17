@@ -41185,6 +41185,13 @@ var CommerceType = /*#__PURE__*/function () {
           }).then(function (data) {
             form.setAttribute("action", 'commerceType/' + data.data.id);
             document.getElementById('edit_name').value = data.data.name;
+            var route = document.getElementById('imgUpdate').getAttribute('data-route');
+            document.getElementById('imgUpdate').setAttribute('src', 'img/product-placeholder.jpg');
+
+            if (data.data.type_img != null) {
+              document.getElementById('imgUpdate').setAttribute('src', route + '/' + data.data.type_img);
+            }
+
             var select = document.getElementById('edit_state');
             var selected = '';
 
@@ -41291,6 +41298,7 @@ var Global = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.onChangeDepartment();
+      this.changeImgHandler();
     }
   }, {
     key: "onChangeDepartment",
@@ -41315,6 +41323,28 @@ var Global = /*#__PURE__*/function () {
             select.appendChild(option);
           });
         });
+      };
+    }
+  }, {
+    key: "changeImgHandler",
+    value: function changeImgHandler() {
+      var inputImg = document.getElementById('inputImg');
+      var imgUpdate = document.getElementById('imgUpdate');
+
+      if (inputImg == null) {
+        return;
+      }
+
+      inputImg.onchange = function () {
+        if (inputImg.files && inputImg.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            imgUpdate.setAttribute('src', e.target.result);
+          };
+
+          reader.readAsDataURL(inputImg.files[0]);
+        }
       };
     }
   }]);
@@ -41351,7 +41381,6 @@ var Product = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.onChangeCommerce();
-      this.changeImgHandler();
       this.deleteProduct();
     }
   }, {
@@ -41382,28 +41411,6 @@ var Product = /*#__PURE__*/function () {
             select.appendChild(option);
           });
         });
-      };
-    }
-  }, {
-    key: "changeImgHandler",
-    value: function changeImgHandler() {
-      var inputImg = document.getElementById('inputImg');
-      var imgUpdate = document.getElementById('imgUpdate');
-
-      if (inputImg == null) {
-        return;
-      }
-
-      inputImg.onchange = function () {
-        if (inputImg.files && inputImg.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-            imgUpdate.setAttribute('src', e.target.result);
-          };
-
-          reader.readAsDataURL(inputImg.files[0]);
-        }
       };
     }
   }, {

@@ -35,9 +35,6 @@
             </li>
             @endif
 
-            {{-- exclusive modules for the customers --}}
-            @if (Auth::user()->id != 1 && empty(Auth::user()->getCommerce))
-            @endif
         </ul>
     @endauth
 </nav>

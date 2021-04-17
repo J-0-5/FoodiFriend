@@ -19,10 +19,18 @@ class CommerceTypeController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'typeImg' => 'nullable|image|mimes:jpg,jpeg,png|max:200000',
         ]);
 
+        $type_img =  null;
+
+        if (request('typeImg')) {
+            $type_img = request('typeImg')->store('typeImg', 'public');
+        }
+
         CommerceType::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'type_img' => $type_img
         ]);
 
         return back()->with('status', __('Commerce Type created successfully'));
@@ -43,10 +51,17 @@ class CommerceTypeController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'typeImg' => 'nullable|image|mimes:jpg,jpeg,png|max:200000',
             'state' => 'required',
         ]);
 
+
+
         $commerceType = CommerceType::where('id', $id)->first();
+
+        if (request('typeImg')) {
+            $commerceType->type_img = request('typeImg')->store('typeImg', 'public');
+        }
 
         $commerceType->name = $request->name;
         $commerceType->state = $request->state;

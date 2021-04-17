@@ -1,7 +1,6 @@
 export default class Product {
     initialize() {
         this.onChangeCommerce();
-        this.changeImgHandler();
         this.deleteProduct();
     }
 
@@ -37,27 +36,6 @@ export default class Product {
                     });
                 });
         };
-    }
-
-    changeImgHandler() {
-
-        let inputImg = document.getElementById('inputImg');
-        let imgUpdate = document.getElementById('imgUpdate');
-
-        if (inputImg == null) {
-            return;
-        }
-
-        inputImg.onchange = function () {
-            if (inputImg.files && inputImg.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    imgUpdate.setAttribute('src', e.target.result);
-                };
-                reader.readAsDataURL(inputImg.files[0]);
-            }
-        }
-
     }
 
     deleteProduct() {

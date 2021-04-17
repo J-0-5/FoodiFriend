@@ -39,8 +39,15 @@ class CommerceController extends Controller
             'commerceName' => 'required|string|max:255',
             // 'commerceType' => 'required|exists:commerce_type,id',
             'description' => 'required|string|max:255',
+            'img' => 'nullable|image|mimes:jpg,jpeg,png|max:200000',
             'state' => 'required',
         ]);
+
+        $img =  null;
+
+        if (request('img')) {
+            $img = request('img')->store('commerceImg', 'public');
+        }
 
         $commerce = Commerce::where('id', $commerce_id)->first();
 
@@ -48,6 +55,7 @@ class CommerceController extends Controller
         $commerce->name = $request->commerceName;
         // $commerce->type = $request->commerceType;
         $commerce->description = $request->description;
+        $commerce->img = $img;
         $commerce->state = $request->state;
         $commerce->update();
 
