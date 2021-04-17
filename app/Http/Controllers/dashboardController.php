@@ -26,11 +26,28 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $activeProducts = Product::where('state', 1)->date(request('startDate'), request('endDate'))->count();
-        $activeUsers = User::where('state', 1)->date(request('startDate'), request('endDate'))->count();
-        $activeCommerce = Commerce::where('state', 1)->count();
+        // active filter
+        $activeProducts = Product::where('state', 1)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
+        $activeUsers = User::where('state', 1)
+                    ->date(request('startDate'), request('endDate'))
+                    ->count();
+        $activeCommerce = Commerce::where('state', 1)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
+        //inactive filter                
+        $inactiveProducts = Product::where('state', 0)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
+        $inactiveUsers = User::where('state', 0)
+                    ->date(request('startDate'), request('endDate'))
+                    ->count();
+        $inactiveCommerce = Commerce::where('state', 0)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
 
-        return view('Dashboard.index', compact('activeProducts', 'activeUsers', 'activeCommerce'));
+        return view('Dashboard.index', compact('activeProducts', 'activeUsers', 'activeCommerce', 'inactiveUsers', 'inactiveProducts','inactiveCommerce' ));
     }
 
 }

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">Tipo de Comercios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Comercios</li>
+  </ol>
+</nav>
+<br>
 <div class="container">
     <div class="col text-center">
         <h3 class="mb-3">{{__('Commerce').'s'}}</h3>

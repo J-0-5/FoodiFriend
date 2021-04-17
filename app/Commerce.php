@@ -40,4 +40,10 @@ class Commerce extends Model
             $query->where('state', $state);
         }
     }
+    public function scopeDate($query, $startDate, $endtDate)
+    {
+        if (trim($startDate) != null && trim($endtDate) != null) {
+            $query->whereBetween('created_at', [$startDate, $endtDate]);
+        }
+    }
 }
