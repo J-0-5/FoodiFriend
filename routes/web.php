@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/products/{commerce_id}', 'HomeController@products')->name('home.products');
 
+    Route::resource('/dashboard', 'dashboardController');
+    Route::post('filter', 'dashboardController@filter')->name('filter');
+
 });
 
 Auth::routes();

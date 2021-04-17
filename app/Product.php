@@ -47,4 +47,6 @@ class Product extends Model
             $query->where('state', $state);
         }
     }
+
+   
 }
