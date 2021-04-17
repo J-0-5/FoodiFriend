@@ -41077,7 +41077,6 @@ var Commerce = /*#__PURE__*/function () {
 
       [].forEach.call(btnDeleteCommerce, function (btn) {
         btn.addEventListener('click', function () {
-          console.log(btn.parentNode.parentNode.id);
           var commerce = btn.parentNode.parentNode;
           Swal.fire({
             title: '¿Seguro que quieres continuar?',
@@ -41087,40 +41086,42 @@ var Commerce = /*#__PURE__*/function () {
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Cancelar'
           }).then(function (result) {
-            if (result.value) {
-              var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-              var url = '/commerce/' + commerce.id;
-              fetch(url, {
-                method: 'DELETE',
-                headers: {
-                  'X-CSRF-TOKEN': token
-                }
-              }).then(function (response) {
-                return response.json();
-              }).then(function (data) {
-                if (data.code == 200) {
-                  Swal.fire({
-                    title: 'Comercio eliminado',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  });
-                  commerce.remove();
-                } else {
-                  Swal.fire({
-                    title: data.message,
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                  });
-                }
-              })["catch"](function () {
+            if (!result.value) {
+              return;
+            }
+
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var url = '/commerce/' + commerce.id;
+            fetch(url, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRF-TOKEN': token
+              }
+            }).then(function (response) {
+              return response.json();
+            }).then(function (data) {
+              if (data.code == 200) {
                 Swal.fire({
-                  title: 'Ups!',
-                  text: 'Ha ocurrido un error. Intentalo mas tarde',
+                  title: 'Comercio eliminado',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                });
+                commerce.remove();
+              } else {
+                Swal.fire({
+                  title: data.message,
                   icon: 'error',
                   confirmButtonText: 'Ok'
                 });
+              }
+            })["catch"](function () {
+              Swal.fire({
+                title: 'Ups!',
+                text: 'Ha ocurrido un error. Intentalo mas tarde',
+                icon: 'error',
+                confirmButtonText: 'Ok'
               });
-            }
+            });
           });
         });
       });
@@ -41350,6 +41351,8 @@ var Product = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.onChangeCommerce();
+      this.changeImgHandler();
+      this.deleteProduct();
     }
   }, {
     key: "onChangeCommerce",
@@ -41380,6 +41383,90 @@ var Product = /*#__PURE__*/function () {
           });
         });
       };
+    }
+  }, {
+    key: "changeImgHandler",
+    value: function changeImgHandler() {
+      var inputImg = document.getElementById('inputImg');
+      var imgUpdate = document.getElementById('imgUpdate');
+
+      if (inputImg == null) {
+        return;
+      }
+
+      inputImg.onchange = function () {
+        if (inputImg.files && inputImg.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            imgUpdate.setAttribute('src', e.target.result);
+          };
+
+          reader.readAsDataURL(inputImg.files[0]);
+        }
+      };
+    }
+  }, {
+    key: "deleteProduct",
+    value: function deleteProduct() {
+      var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+      var btnDeleteProduct = document.getElementsByClassName('btnDeleteProduct');
+
+      if (btnDeleteProduct == null) {
+        return;
+      }
+
+      [].forEach.call(btnDeleteProduct, function (btn) {
+        btn.addEventListener('click', function () {
+          var product = btn.parentNode.parentNode;
+          Swal.fire({
+            title: '¿Seguro que quieres continuar?',
+            text: 'Se eliminaran todos los productos y categorias de este comercio',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+          }).then(function (result) {
+            if (!result.value) {
+              return;
+            }
+
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var url = '/product/' + product.id;
+            fetch(url, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRF-TOKEN': token
+              }
+            }).then(function (response) {
+              return response.json();
+            }).then(function (data) {
+              if (data.code == 200) {
+                Swal.fire({
+                  title: 'Comercio eliminado',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                });
+                product.remove();
+              } else {
+                Swal.fire({
+                  title: data.message,
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                });
+              }
+            })["catch"](function () {
+              Swal.fire({
+                title: 'Ups!',
+                text: 'Ha ocurrido un error. Intentalo mas tarde',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              });
+            });
+          });
+        });
+      });
     }
   }]);
 
@@ -41435,7 +41522,6 @@ var ProductCategory = /*#__PURE__*/function () {
         btn.addEventListener('click', function () {
           var productCategory = btn.parentNode.parentNode;
           var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-          console.log(productCategory);
           fetch("/productCategory/".concat(productCategory.id, "/edit"), {
             headers: {
               'X-CSRF-TOKEN': token
@@ -41449,8 +41535,7 @@ var ProductCategory = /*#__PURE__*/function () {
 
             if (data.userId == 1) {
               var selectedCommerceId = data.CommerceSelected.id;
-              var selectCommerceId = document.getElementById('edit_commerce_id'); //Insertar datos de los comercios
-
+              var selectCommerceId = document.getElementById('edit_commerce_id');
               var options = "";
               data.commerces.map(function (commerce) {
                 if (commerce.id == selectedCommerceId) {
@@ -41460,8 +41545,7 @@ var ProductCategory = /*#__PURE__*/function () {
                 }
               });
               selectCommerceId.innerHTML = options;
-            } //Insertar datos del estado
-
+            }
 
             var selectState = document.getElementById('edit_state');
 
@@ -41487,7 +41571,6 @@ var ProductCategory = /*#__PURE__*/function () {
 
       [].forEach.call(btnDeleteProductCategory, function (btn) {
         btn.addEventListener('click', function () {
-          console.log(btn.parentNode.parentNode.id);
           var productCategory = btn.parentNode.parentNode;
           Swal.fire({
             title: 'Eliminar Categoria de Producto!',
@@ -41498,29 +41581,31 @@ var ProductCategory = /*#__PURE__*/function () {
             cancelButtonText: 'Cancelar'
           }).then(function (result) {
             if (result.value) {
-              var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-              var url = '/productCategory/' + productCategory.id;
-              fetch(url, {
-                method: 'DELETE',
-                headers: {
-                  'X-CSRF-TOKEN': token
-                }
-              }).then(function () {
-                Swal.fire({
-                  title: 'Categoria de Producto eliminada',
-                  icon: 'success',
-                  confirmButtonText: 'Ok'
-                });
-                productCategory.remove();
-              })["catch"](function () {
-                Swal.fire({
-                  title: 'Ups!',
-                  text: 'Ha ocurrido un error. Intentalo mas tarde',
-                  icon: 'error',
-                  confirmButtonText: 'Ok'
-                });
-              });
+              return;
             }
+
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var url = '/productCategory/' + productCategory.id;
+            fetch(url, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRF-TOKEN': token
+              }
+            }).then(function () {
+              Swal.fire({
+                title: 'Categoria de Producto eliminada',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              });
+              productCategory.remove();
+            })["catch"](function () {
+              Swal.fire({
+                title: 'Ups!',
+                text: 'Ha ocurrido un error. Intentalo mas tarde',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              });
+            });
           });
         });
       });
@@ -41566,6 +41651,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
   commerce.initialize();
   productCategory.initialize();
   product.initialize();
+});
+$(document).ready(function () {
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("menuDisplayed");
+  });
 });
 
 /***/ }),

@@ -1,9 +1,12 @@
 export default class Product {
     initialize() {
         this.onChangeCommerce();
+        this.changeImgHandler();
+        this.deleteProduct();
     }
 
     onChangeCommerce() {
+
         let commerce = document.getElementById('commerce_id');
 
         if (commerce == null) {
@@ -34,5 +37,93 @@ export default class Product {
                     });
                 });
         };
+    }
+
+    changeImgHandler() {
+
+        let inputImg = document.getElementById('inputImg');
+        let imgUpdate = document.getElementById('imgUpdate');
+
+        if (inputImg == null) {
+            return;
+        }
+
+        inputImg.onchange = function () {
+            if (inputImg.files && inputImg.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    imgUpdate.setAttribute('src', e.target.result);
+                };
+                reader.readAsDataURL(inputImg.files[0]);
+            }
+        }
+
+    }
+
+    deleteProduct() {
+
+        const Swal = require('sweetalert2')
+        let btnDeleteProduct = document.getElementsByClassName('btnDeleteProduct');
+
+        if (btnDeleteProduct == null) {
+            return;
+        }
+
+        [].forEach.call(btnDeleteProduct, function (btn) {
+            btn.addEventListener('click', () => {
+
+                let product = btn.parentNode.parentNode;
+
+                Swal.fire({
+                    title: '¿Seguro que quieres continuar?',
+                    text: 'Se eliminaran todos los productos y categorias de este comercio',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirmar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+
+                    if (!result.value) {
+                        return;
+                    }
+
+                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    let url = '/product/' + product.id;
+
+                    fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.code == 200) {
+                                Swal.fire({
+                                    title: 'Comercio eliminado',
+                                    icon: 'success',
+                                    confirmButtonText: 'Ok'
+                                })
+                                product.remove();
+                            } else {
+                                Swal.fire({
+                                    title: data.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'Ok'
+                                })
+                            }
+                        })
+                        .catch(function () {
+                            Swal.fire({
+                                title: 'Ups!',
+                                text: 'Ha ocurrido un error. Intentalo mas tarde',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        });
+
+                })
+            });
+        });
     }
 }

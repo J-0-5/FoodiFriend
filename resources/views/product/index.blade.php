@@ -6,10 +6,9 @@
 
             <div class="col-10 h2">{{__('Product').'s'}}</div>
 
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
-                data-target="#createProduct">
+            <a type="button" class="btn btn-primary mb-3" href="{{route('product.create')}}">
                 {{__('Create product')}}
-            </button>
+            </a>
 
         </div>
 
@@ -39,10 +38,10 @@
         <div class="table-responsive">
             <table class="table align-items-center table-flush">
                 <thead class="thead-light ">
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">{{__('Image')}}</th>
                         <th scope="col">{{__('Name')}}</th>
-                        <th scope="col">{{__('Description')}}</th>
+                        {{-- <th scope="col">{{__('Description')}}</th> --}}
                         @if(Auth::user()->id == 1)
                             <th scope="col">{{__('Commerce')}}</th>
                         @endif
@@ -54,13 +53,21 @@
                 <tbody>
                     @if($products->count())
                         @foreach ($products as $product)
-                            <tr id="{{$product->id}}">
+                            <tr class="text-center" id="{{$product->id}}">
 
-                                <td></td>
+                                <td>
+                                    @if(Storage::disk('public')->exists($product->product_img))
+                                        <img class="profile-user-img img-fluid mx-auto d-block" width="80"
+                                            src="{{ asset('storage/'.$product->product_img) }}" alt="User profile picture">
+                                    @else
+                                        <img class="profile-user-img img-fluid mx-auto d-block" width="80"
+                                            src="{{asset('img/product-placeholder.jpg')}}" alt="User profile picture">
+                                    @endif
+                                </td>
 
                                 <td>{{$product->name}}</td>
 
-                                <td>{{$product->description}}</td>
+                                {{-- <td>{{$product->description}}</td> --}}
 
                                 @if(Auth::user()->id == 1)
                                     <td>{{$product->getCommerce->name}}</td>
@@ -75,11 +82,11 @@
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-warning">
+                                    <a type="button" class="btn btn-sm btn-warning" href="{{route('product.edit',[$product->id])}}">
                                         <i class="fas fa-edit"></i>{{__('Edit')}}
-                                    </button>
+                                    </a>
 
-                                    <button class="btn btn-sm btn-danger ">
+                                    <button class="btn btn-sm btn-danger btnDeleteProduct">
                                         <i class="fas fa-trash-alt"></i>{{__('Delete')}}
                                     </button>
                                 </td>

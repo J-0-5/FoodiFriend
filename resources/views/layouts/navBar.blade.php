@@ -1,17 +1,6 @@
-<style>
-    .navbar {
-        background-image: url('{{asset('img/backgroundImg/welcomeBg1.jpg')}}');
-        background-position: inherit;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: #fff;
-        color: #636b6f;
-        margin: 0;
-    }
-</style>
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <button class="btn" data-toggle="collapse" data-target="#leftBarCollapse"><i
-            class="fas fa-bars text-warning"></i></button>
+    <button class="btn" id="menu-toggle"><i class="fas fa-bars text-warning"></i></button>
+
     <div class="container">
 
         <a class="navbar-brand text-warning font-weight-bold" href="{{ url('/') }}">
