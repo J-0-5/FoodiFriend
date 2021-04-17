@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Commerce;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
-class dashboardController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,31 +26,11 @@ class dashboardController extends Controller
      */
     public function index()
     {
-        $activeProducts = \App\Product::where('state', '1')->count();
-        $activeUsers = \App\User::where('state', '1')->count();
-        $activeCommerce = \App\Commerce::where('state', '1')->count();
-        return view('Dashboard\dash', compact('activeProducts', 'activeUsers', 'activeCommerce'));
+        $activeProducts = Product::where('state', 1)->date(request('startDate'), request('endDate'))->count();
+        $activeUsers = User::where('state', 1)->date(request('startDate'), request('endDate'))->count();
+        $activeCommerce = Commerce::where('state', 1)->count();
 
+        return view('Dashboard.index', compact('activeProducts', 'activeUsers', 'activeCommerce'));
     }
 
-    // filter by date 
-    public function filter(request $request)
-    {
-        $startDate = $request->input('startDate');
-        $endDate = $request->input('endDate');
-        $activeCommerce = \App\Commerce::where('state', '1')
-                        ->where('created_at', '>=', $startDate)
-                        ->where('created_at', '<=', $endDate)
-                        ->count();
-        $activeUsers = \App\User::where('state', '1')
-                    ->where('created_at', '>=', $startDate)
-                    ->where('created_at', '<=', $endDate)
-                    ->count();
-        $activeProducts = \App\Product::where('state', '1')
-                    ->where('created_at', '>=', $startDate)
-                    ->where('created_at', '<=', $endDate)
-                    ->count();
-        return view('Dashboard\dash', compact('activeProducts', 'activeUsers', 'activeCommerce'));
-    }
 }
-

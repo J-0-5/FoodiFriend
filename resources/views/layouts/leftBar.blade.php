@@ -5,6 +5,12 @@
             {{-- exclusive modules for the administrator --}}
             @if (Auth::user()->id == 1)
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard.index') }}">
+                    {{-- <i class="color-session fas fa-store text-primary"></i> --}}
+                    {{ __('Dashboard')}}
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('commerceType.index') }}">
                     {{-- <i class="color-session fas fa-store text-primary"></i> --}}
                     {{ __('Commerce Type')}}

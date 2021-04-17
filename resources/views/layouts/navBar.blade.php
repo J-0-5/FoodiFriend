@@ -1,6 +1,6 @@
 <nav class="customNavbar navbar navbar-expand-md navbar-light bg-white shadow-sm">
     @auth
-    @if (Auth::user()->id != 1 && isset(Auth::user()->getCommerce))
+    @if (Auth::user()->id == 1 || isset(Auth::user()->getCommerce))
     <button class="btn" id="menu-toggle"><i class="fas fa-bars text-warning"></i></button>
     @endif
     @endauth

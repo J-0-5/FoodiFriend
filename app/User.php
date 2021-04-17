@@ -46,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(City::class, 'city_id');
     }
+
+    public function scopeDate($query, $startDate, $endtDate)
+    {
+        if (trim($startDate) != null && trim($endtDate) != null) {
+            $query->whereBetween('created_at', [$startDate, $endtDate]);
+        }
+    }
 }

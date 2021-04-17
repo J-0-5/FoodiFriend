@@ -48,5 +48,10 @@ class Product extends Model
         }
     }
 
-   
+    public function scopeDate($query, $startDate, $endtDate)
+    {
+        if (trim($startDate) != null && trim($endtDate) != null) {
+            $query->whereBetween('created_at', [$startDate, $endtDate]);
+        }
+    }
 }
