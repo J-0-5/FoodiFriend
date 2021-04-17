@@ -32,4 +32,9 @@ class ProductController extends Controller
 
         return view('product.index', compact('commerces', 'productCategories', 'products'));
     }
+    
+
+  
+
+
 }
