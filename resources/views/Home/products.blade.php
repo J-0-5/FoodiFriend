@@ -6,20 +6,31 @@
     </div>
     <div class="d-flex flex-wrap d-flex justify-content-center">
         @foreach ($products as $product)
-        <a href="{{route('home.products',$product->id)}}" class="col-lg-4 col-md-6 col-12 text-decoration-none">
-            <div class="card p-2 m-2 rounded">
-                @if (Storage::disk('public')->exists($product->product_img))
-                <img class="card-img-top img-fluid rounded" src="{{ asset('storage/' . $product->product_img) }}"
-                    alt="Card image cap">
-                @else
-                <img class="card-img-top img-fluid rounded" src="{{asset('img/product-placeholder.jpg')}}" alt="Card image cap">
-                @endif
 
-                <div class="card-body text-center">
-                    <h4 class="card-title text-dark">{{$product->name}}</h4>
-                </div>
+        <a class="row col-lg-4 col-md-4 col-sm-12 m-2 bg-white shadow rounded" id="btn">
+
+            <div class="mt-1 col-lg-4 col-md-4 col-sm-4">
+                @if (Storage::disk('public')->exists($product->product_img))
+                <img class="img-fluid rounded" src="{{ asset('storage/' . $product->product_img) }}">
+                @else
+                <img class="img-fluid rounded" src="{{asset('img/product-placeholder.jpg')}}">
+                @endif
             </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+
+                <p class="font-weight-bold text-dark">{{$product->name}}</p>
+
+                <p class="text-dark" style="width: 220px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;">{{$product->description}}</p>
+
+                <p class="text-dark">${{number_format($product->price)}}</p>
+
+            </div>
+
         </a>
+
         @endforeach
     </div>
 </div>
