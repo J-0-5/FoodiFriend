@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Comercio</li>
+  </ol>
+</nav>
+<br>
 <div class="flex-column">
     <div class="container-fluid px-3 mb-3">
         @if(Auth::user()->id == 1)

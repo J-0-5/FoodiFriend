@@ -54,4 +54,5 @@ class Product extends Model
             $query->whereBetween('created_at', [$startDate, $endtDate]);
         }
     }
+    
 }
