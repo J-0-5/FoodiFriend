@@ -147,7 +147,7 @@
             </div>
 
             <div class="card-footer text-center">
-                <button type="submit" class="btn btn-primary">{{__('Create product')}}</button>
+                <button type="submit" class="btn btn-primary"> <i class="fas fa-plus"></i> {{__('Create product')}}</button>
             </div>
 
         </form>

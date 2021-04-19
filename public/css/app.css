@@ -15653,3 +15653,21 @@ body {
   z-index: 1 !important;
 }
 
+.contenedor {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.centrado {
+  color: yellow;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.titulo-grande {
+  font-size: 48pt;
+}
+

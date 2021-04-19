@@ -2,7 +2,7 @@
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Productos</li>
+    <li class="breadcrumb-item active" aria-current="page">@lang('Products')</li>
   </ol>
 </nav>
 <br>
@@ -10,17 +10,27 @@
     <div class="container-fluid px-3 mb-3">
         <div class="row">
 
-            <div class="col-10 h2">{{__('Product').'s'}}</div>
-
-            <a type="button" class="btn btn-primary mb-3" href="{{route('product.create')}}">
-                {{__('Create product')}}
-            </a>
-
+            <div class="col-12 h1"> 
+                <div class="contenedor">
+                    <img width="100%" src="{{asset('img/product/banner.jpg')}}" alt="Banner Products"/>
+                    <div class="centrado"><h1 class="titulo-grande">{{__('Product').'s'}}</h1></div>
+                </div>
+                
+            </div>
+            
         </div>
+        <div class="row">
+            <div class="col-2">
+                <a type="button" class="btn btn-primary mb-3" href="{{route('product.create')}}">
+                    <i class="fas fa-plus"></i>
+                    {{__('Create product')}}
+                </a>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#productFilter"><i class="fas fa-filter"></i> @lang('Filter Options')</button>
+            </div>
+        </div>  
 
-        <div class="row justify-content-end mr-3 pr-3">
-            <button class="btn" data-toggle="collapse" data-target="#productFilter"><i class="fas fa-filter"></i></button>
-        </div>
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -53,7 +63,7 @@
                         @endif
                         <th scope="col">{{__('Product Category')}}</th>
                         <th scope="col">{{__('State')}}</th>
-                        <th scope="col"></th>
+                        <th scope="col">{{__('Actions')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,11 +99,11 @@
 
                                 <td>
                                     <a type="button" class="btn btn-sm btn-warning" href="{{route('product.edit',[$product->id])}}">
-                                        <i class="fas fa-edit"></i>{{__('Edit')}}
+                                        <i class="fas fa-edit"></i> {{__('Edit')}}
                                     </a>
 
                                     <button class="btn btn-sm btn-danger btnDeleteProduct">
-                                        <i class="fas fa-trash-alt"></i>{{__('Delete')}}
+                                        <i class="fas fa-trash-alt"></i> {{__('Delete')}}
                                     </button>
                                 </td>
                             </tr>

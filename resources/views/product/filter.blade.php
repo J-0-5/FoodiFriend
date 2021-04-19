@@ -1,4 +1,4 @@
-<div class="card-header border-0 collapse" id="productFilter">
+<div class="card-header border-0 collapse mb-4" id="productFilter">
     <form action="{{route('product.index')}}" method="get">
 
         <div class="row align-items-center">
@@ -60,18 +60,18 @@
             <div class="col">
                 <div class="row justify-content-between">
 
-                    <div class="col-6">
+                    <div class="col-6 mt-4">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block">
-                                <i class="fas fa-filter"></i>Filtrar
+                                <i class="fas fa-filter"></i> @lang('Filter')
                             </button>
                         </div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6 mt-4">
                         <div class="form-group">
                             <a href="{{ route('product.index') }}" class="btn btn-primary btn-block">
-                                <i class="fas fa-backspace"></i>Borrar
+                                <i class="fas fa-backspace"></i> @lang('Clear')
                             </a>
                         </div>
                     </div>

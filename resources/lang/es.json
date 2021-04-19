@@ -88,5 +88,9 @@
     "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente",
     "Cart" : "Carrito de compra",
     "Buy" : "Comprar",
-    "Empty cart" : "Carrito vacío"
+    "Empty cart" : "Carrito vacío",
+    "Filter" : "Filtrar",
+    "Filter Options" : "Opciones de Filtro",
+    "Clear" : "Limpiar",
+    "Actions" : "Acciones"
 }
