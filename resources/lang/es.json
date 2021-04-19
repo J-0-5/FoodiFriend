@@ -87,10 +87,17 @@
     "Commerce Name" : "Nombre De Comercio",
     "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente",
     "Cart" : "Carrito de compra",
+<<<<<<< HEAD
     "Buy" : "Comprar",
     "Empty cart" : "Carrito vacío",
     "Filter" : "Filtrar",
     "Filter Options" : "Opciones de Filtro",
     "Clear" : "Limpiar",
     "Actions" : "Acciones"
+=======
+    "Go pay!" : "Ir a pagar!",
+    "Finalize" : "Finalizar",
+    "Empty cart" : "Carrito vacío",
+    "Clear cart" : "Vaciar carrito"
+>>>>>>> d2bc8b1a5941ccf08cc902dfd1e3129715d1f07e
 }

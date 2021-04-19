@@ -4,6 +4,14 @@
     <div class="col text-center">
         <h3 class="mb-3">{{__('Product').'s'}}</h3>
     </div>
+    @if(session('status'))
+    <div class="alert alert-success" role="alert">
+        {{session('status')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">x</span>
+        </button>
+    </div>
+    @endif
     <div class="d-flex flex-wrap d-flex justify-content-center">
         @foreach ($products as $product)
 

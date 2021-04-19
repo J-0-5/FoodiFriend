@@ -47,7 +47,7 @@ export default class CommerceType {
                             selected = 'selected';
                         }
 
-                        select.innerHTML = `<option value="2">Inactivo</option> <option ${selected} value="1">Activo</option>`;
+                        select.innerHTML = `<option value="0">Inactivo</option> <option ${selected} value="1">Activo</option>`;
                     });
             });
         });
