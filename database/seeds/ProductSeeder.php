@@ -48,6 +48,37 @@ class ProductSeeder extends Seeder
                 "El refresco de máquina Sprite tiene un delicioso sabor a lima-limón y viene en tamaños Extra Pequeño, Pequeño, Mediano y Grande. Sprite es un refresco sin cafeína que combina a la perfección con cualquier Combo Meal de McDonald’s.",
                 2850, 15, 1, 5
             ],
+            8 => [
+                'Hawaiana',
+                "Extraqueso , Jamón y Piña.",
+                5000, 15, 2, 6
+            ],
+            9 => [
+                'Fiesta Pepperoni',
+                "Doble pepperoni y extraqueso",
+                6400, 15, 2, 6
+            ],
+            10 => [
+                'Americana',
+                "Maíz tierno y tocineta con un toque picantico de pepperoni",
+                7500, 15, 2, 6
+            ],
+            11 => [
+                'Hawaiian Chick',
+                "Queso Mozarella, trocitos de pollo, piña, tocineta y salsa B.B.Q",
+                8500, 15, 2, 7
+            ],
+            12 => [
+                'Colombiana',
+                "Cebolla, maíz tierno, tocineta y chorizo",
+                5500, 15, 2, 7
+            ],
+            13 => [
+                'Italiana',
+                "Una pizza al mejor estilo italiano: pepperoni, salami, cebolla y tomate",
+                9000, 15, 2, 7
+            ]
+
         ];
 
         foreach ($Products as $id => $Product) {

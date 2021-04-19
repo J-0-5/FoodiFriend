@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/cart/order', 'CartController@order')->name('cart.order');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 
+    Route::get('/order', 'OrderController@index')->name('order.index');
+
 });
 
 Auth::routes();

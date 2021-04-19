@@ -39,6 +39,11 @@
                     {{ __('Product').'s' }}
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('order.index') }}">
+                    {{__('Orders') }}
+                </a>
+            </li>
             @endif
 
         </ul>

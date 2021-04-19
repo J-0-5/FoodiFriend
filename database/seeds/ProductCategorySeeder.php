@@ -18,8 +18,8 @@ class ProductCategorySeeder extends Seeder
             3 => ['Postres',1,'Pueba nuestros mas deliciosos postres'],
             4 => ['Cajita feliz',1,'La Cajita Feliz de McDonald´s es uno de los productos más famosos de nuestra comida rápida. Su fama se debe a que es la favorita de los niños gracias a lo llamativo de su presentación, pero sobre todo por los juguetes que cada cierto periodo de tiempo se van cambiando según las tendencias'],
             5 => ['Bebidas',1,'Acompaña tus pedidos con una buena bebida'],
-            6 => ['Pizza Italiana',2,'Pizza de italia'],
-            7 => ['ChoriPizza',2,'Pizza con chorizo']
+            6 => ['Pizzas Clasicas',2,'Las Pizzas tradicionales de siempre'],
+            7 => ['Pizzas Famosas',2,'Nuevas variedades de pizzas']
         ];
 
         foreach ($ProductCategories as $id => $productCategories) {
