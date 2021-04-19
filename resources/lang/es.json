@@ -87,6 +87,8 @@
     "Commerce Name" : "Nombre De Comercio",
     "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente",
     "Cart" : "Carrito de compra",
-    "Buy" : "Comprar",
-    "Empty cart" : "Carrito vacío"
+    "Go pay!" : "Ir a pagar!",
+    "Finalize" : "Finalizar",
+    "Empty cart" : "Carrito vacío",
+    "Clear cart" : "Vaciar carrito"
 }

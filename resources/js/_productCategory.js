@@ -54,9 +54,9 @@ export default class ProductCategory {
 
                         let selectState = document.getElementById('edit_state');
                         if (data.data.state == 1) {
-                            selectState.innerHTML = `<option selected value="1">Activo</option> <option value="2">Inactivo</option>`;
+                            selectState.innerHTML = `<option selected value="1">Activo</option> <option value="0">Inactivo</option>`;
                         } else {
-                            selectState.innerHTML = `<option selected value="2">Inactivo</option> <option value="1">Activo</option>`;
+                            selectState.innerHTML = `<option selected value="0">Inactivo</option> <option value="1">Activo</option>`;
                         }
 
                     });
