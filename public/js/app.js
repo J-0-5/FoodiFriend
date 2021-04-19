@@ -41356,6 +41356,70 @@ var Global = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/_order.js":
+/*!********************************!*\
+  !*** ./resources/js/_order.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Order; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Order = /*#__PURE__*/function () {
+  function Order() {
+    _classCallCheck(this, Order);
+  }
+
+  _createClass(Order, [{
+    key: "initialize",
+    value: function initialize() {
+      this.editStatus();
+    }
+  }, {
+    key: "editStatus",
+    value: function editStatus() {
+      //let dropdownStatus = document.getElementsByClassName('dropdown-menu'); 
+      var dropdownItem = document.getElementsByClassName('dropdown-item');
+
+      if (dropdownItem == null) {
+        return;
+      }
+
+      [].forEach.call(dropdownItem, function (btn) {
+        btn.addEventListener('click', function () {
+          var orderId = btn.parentNode.parentNode.parentNode.parentNode;
+          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          var orderStatusSelected = dropdownItem.id;
+          console.log(orderId.id); // fetch(`/order/${orderId.id}/status/${orderStatusSelected}`,
+          //     {
+          //         headers:
+          //         {
+          //             'X-CSRF-TOKEN': token
+          //         }
+          //     })
+          //     .then(response => response.json())
+          //     .then(data => {
+          //         console.log(data);
+          //     });
+        });
+      });
+    }
+  }]);
+
+  return Order;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/_product.js":
 /*!**********************************!*\
   !*** ./resources/js/_product.js ***!
@@ -41640,7 +41704,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _commerce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_commerce */ "./resources/js/_commerce.js");
 /* harmony import */ var _productCategory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_productCategory */ "./resources/js/_productCategory.js");
 /* harmony import */ var _product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_product */ "./resources/js/_product.js");
+/* harmony import */ var _order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_order */ "./resources/js/_order.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -41652,12 +41718,14 @@ var commerceType = new _commerceType__WEBPACK_IMPORTED_MODULE_1__["default"]();
 var commerce = new _commerce__WEBPACK_IMPORTED_MODULE_2__["default"]();
 var productCategory = new _productCategory__WEBPACK_IMPORTED_MODULE_3__["default"]();
 var product = new _product__WEBPACK_IMPORTED_MODULE_4__["default"]();
+var order = new _order__WEBPACK_IMPORTED_MODULE_5__["default"]();
 document.addEventListener("DOMContentLoaded", function (event) {
   global.initialize();
   commerceType.initialize();
   commerce.initialize();
   productCategory.initialize();
   product.initialize();
+  order.initialize();
 });
 $(document).ready(function () {
   $("#menu-toggle").click(function (e) {

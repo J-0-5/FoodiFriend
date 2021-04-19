@@ -21,7 +21,6 @@
                 <th scope="col">{{__('Date')}}</th>
                 <th scope="col">{{__('Total')}}</th>
                 <th scope="col">{{__('State')}}</th>
-                <th scope="col">{{__('Actions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -51,19 +50,18 @@
                         <td> {{ number_format($order->total, 2)}} </td>
 
                         <td>
-                            <span
-                                class="badge badge-{{Config::get('const.status')[$order->status]['color']}}">{{Config::get('const.status')[$order->status]['name']}}
-                            </span>
-                        </td>
-
-                        <td>
-                            {{-- <a type="button" class="btn btn-sm btn-warning" href="{{route('product.edit',[$product->id])}}">
-                                <i class="fas fa-edit"></i> {{__('Edit')}}
-                            </a>
-
-                            <button class="btn btn-sm btn-danger btnDeleteProduct">
-                                <i class="fas fa-trash-alt"></i> {{__('Delete')}}
-                            </button> --}}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-{{Config::get('const.status')[$order->status]['color']}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{Config::get('const.status')[$order->status]['name']}}
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="#">Solicitado</a>
+                                  <a class="dropdown-item" href="#">Aprobado</a>
+                                  <a class="dropdown-item" href="#">Rechazado</a>
+                                  <a class="dropdown-item" href="#">En Camino</a>
+                                  <a class="dropdown-item" href="#">Entregado</a>
+                                </div>
+                              </div>
                         </td>
                     </tr>
                 @endforeach

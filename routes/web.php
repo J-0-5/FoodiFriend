@@ -44,7 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 
     Route::get('/order', 'OrderController@index')->name('order.index');
-
+    Route::get('/order/{order}/status/{status}', 'OrderController@edit')->name('order.status');
+    Route::post('/order/{order}', 'OrderController@update')->name('order.update');
 });
 
 Auth::routes();

@@ -28,4 +28,22 @@ class OrderController extends Controller
 
         return view('Order.index', compact('orders','number','users'));
     }
+
+    function status($id)
+    {
+        $order = Order::where('id', $id)->first();
+        
+        if (!empty($order)) {
+            return response()->json(['code' => 200, 'data' => $order], 200);
+        } else {
+            return response()->json(['code' => 404, 'data' => null, 'message' => 'Categoria de producto no encontrada'], 404);
+        }
+
+        return $order;
+    }
+
+    function update($id)
+    {
+        
+    }
 }
