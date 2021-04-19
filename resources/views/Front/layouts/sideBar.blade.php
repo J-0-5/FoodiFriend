@@ -25,6 +25,7 @@
 </div>
 </div>
 </div> --}}
+@if(isset($categories))
 <aside class="col-12 col-md-2 p-0 bg-light">
     <nav class="navbar navbar-expand navbar-dark bg-light flex-md-column flex-row align-items-start">
         <div class="align-items-center m-3">
@@ -49,3 +50,4 @@
         </div>
     </nav>
 </aside>
+@endif

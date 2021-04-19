@@ -85,5 +85,8 @@
     "Edit" : "Editar",
     "Category Name" : "Nombre De Categoria",
     "Commerce Name" : "Nombre De Comercio",
-    "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente"
+    "Product category updated successfully" : "Categoria de Producto Actualizada Correctamente",
+    "Cart" : "Carrito de compra",
+    "Buy" : "Comprar",
+    "Empty cart" : "Carrito vacío"
 }

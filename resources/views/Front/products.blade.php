@@ -1,4 +1,4 @@
-@extends('layouts.commerce.app')
+@extends('Front.layouts.app')
 @section('content')
 <div class="container">
     <div class="col text-center">
@@ -7,7 +7,7 @@
     <div class="d-flex flex-wrap d-flex justify-content-center">
         @foreach ($products as $product)
 
-        <a class="row col-lg-4 col-md-4 col-sm-12 m-2 bg-white shadow rounded" id="btn">
+        <div class="row col-lg-4 col-md-4 col-sm-12 m-2 bg-white shadow rounded" id="btn">
 
             <div class="mt-1 col-lg-4 col-md-4 col-sm-4">
                 @if (Storage::disk('public')->exists($product->product_img))
@@ -27,9 +27,16 @@
 
                 <p class="text-dark">${{number_format($product->price)}}</p>
 
+                <form action="{{route('cart.add')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$product->id}}">
+
+                    <button class="btn" type="submit"><i class="fas fa-cart-plus"></i></button>
+                </form>
+
             </div>
 
-        </a>
+        </div>
 
         @endforeach
     </div>

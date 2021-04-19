@@ -116,7 +116,7 @@ class ProductController extends Controller
         $product->state = request('state');
 
         if (request('productImg') != null) {
-            $product->product_img = request('productImg');
+            $product->product_img = request('productImg')->store('productImg', 'public');
         }
 
         $product->update();

@@ -31,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
             $commerceType = Helpers::dataCookie('commerceType');
             $view->with('departments', $departments)->with('docType', $docType)->with('commerceType', $commerceType);
         });
+
+        View::composer('Front.*', function ($view) {
+            $view->with('cartCount', \Cart::getContent()->count());
+        });
     }
 }

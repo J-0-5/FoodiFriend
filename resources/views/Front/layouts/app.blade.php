@@ -24,11 +24,11 @@
 
 <body>
 
-    @include('layouts.commerce.navBar')
+    @include('Front.layouts.navBar')
 
     <div class="row">
 
-        @include('layouts.commerce.sideBar')
+        @include('Front.layouts.sideBar')
 
         <!-- Page Content -->
         <div class="col mt-2">

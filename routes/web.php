@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::resource('/dashboard', 'DashboardController');
+
     Route::resource('/commerceType', 'CommerceTypeController');
 
     Route::resource('/commerce', 'CommerceController');
@@ -35,8 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/products/{commerce_id}', 'HomeController@products')->name('home.products');
 
-    Route::resource('/dashboard', 'DashboardController');
-    Route::post('filter', 'DashboardController@filter')->name('filter');
+    Route::post('/cart', 'CartController@add')->name('cart.add');
+    Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
+    Route::post('/cart/clear', 'CartController@clear')->name('cart.clear');
+    Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 
 });
 

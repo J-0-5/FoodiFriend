@@ -86,3 +86,11 @@ body {
 .sidebar-nav li:hover {
     background: #846bab;
 }
+
+/* ////////////// */
+.cest-badge{
+    position: relative !important;
+    top: -15px !important;
+    right: 10px !important;
+    z-index: 1 !important;
+}

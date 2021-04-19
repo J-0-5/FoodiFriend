@@ -13,9 +13,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
+            <ul class="navbar-nav ml-auto">
+                <a data-toggle="modal" data-target="#cart">
+                    <i class="fas fa-shopping-cart fa-2x" style="color: black"></i>
+                    @if ($cartCount>0)
+                    <span class="badge badge-pill badge-success cest-badge">{{$cartCount}}</span>
+                    @endif
+                </a>
             </ul>
+            @include('Front.cart')
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
