@@ -15,7 +15,7 @@
     <div class="d-flex flex-wrap d-flex justify-content-center">
         @foreach ($products as $product)
 
-        <div class="row col-lg-4 col-md-4 col-sm-12 m-2 bg-white shadow rounded" id="btn">
+        <div class="row col-lg-4 col-md-4 col-sm-12 p-2 m-2 bg-white shadow rounded" id="btn">
 
             <div class="mt-1 col-lg-4 col-md-4 col-sm-4">
                 @if (Storage::disk('public')->exists($product->product_img))
@@ -27,21 +27,21 @@
             <div class="col-lg-8 col-md-8 col-sm-8">
 
                 <p class="font-weight-bold text-dark">{{$product->name}}</p>
-
-                <p class="text-dark" style="width: 220px;
+                <div class="row d-flex justify-content-between pr-2">
+                    <p class="text-dark" style="width: 220px;
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     overflow: hidden;">{{$product->description}}</p>
 
-                <p class="text-dark">${{number_format($product->price)}}</p>
+                    <p class="text-dark">${{number_format($product->price)}}</p>
 
-                <form action="{{route('cart.add')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="{{$product->id}}">
+                    <form action="{{route('cart.add')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$product->id}}">
 
-                    <button class="btn" type="submit"><i class="fas fa-cart-plus"></i></button>
-                </form>
-
+                        <button class="btn" type="submit"><i class="fas fa-cart-plus"></i></button>
+                    </form>
+                </div>
             </div>
 
         </div>

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Comercio</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Comercio</li>
+    </ol>
 </nav>
 <br>
 <div class="flex-column">
@@ -81,7 +81,6 @@
                         <th scope="col">@lang('Commerce')</th>
                         <th scope="col">@lang('NIT')</th>
                         <th scope="col">@lang('Type')</th>
-                        {{-- <th scope="col">@lang('Description')</th> --}}
                         <th scope="col">Estado</th>
                         <th></th>
                     </tr>
@@ -99,9 +98,6 @@
                         <td>
                             {{$commerce->getType->name}}
                         </td>
-                        {{-- <td>
-                            {{$commerce->description}}
-                        </td> --}}
                         <td>
                             <span
                                 class="badge badge-{{Config::get('const.states')[$commerce->state]['color']}}">{{Config::get('const.states')[$commerce->state]['name']}}
@@ -111,8 +107,7 @@
                             <a class="btn btn-sm btn-warning" href="{{route('commerce.edit', [$commerce->id])}}">
                                 <i class="fas fa-edit"></i>Editar
                             </a>
-                            <button class="btn btn-sm btn-danger btnDeleteCommerce"><i
-                                    class="fas fa-trash-alt"></i>
+                            <button class="btn btn-sm btn-danger btnDeleteCommerce"><i class="fas fa-trash-alt"></i>
                                 Eliminar
                             </button>
                         </td>
@@ -127,6 +122,11 @@
                     @endif
                 </tbody>
             </table>
+        </div>
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-12 d-flex justify-content-end">
+                {!! $commerces->render() !!}
+            </div>
         </div>
         @endif
     </div>
