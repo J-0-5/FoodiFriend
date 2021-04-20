@@ -1,39 +1,45 @@
 export default class Order {
 
     initialize() {
-        this.editStatus()
+        this.updateStatus()
     }
 
-    editStatus(){
-        //let dropdownStatus = document.getElementsByClassName('dropdown-menu'); 
-        let dropdownItem = document.getElementsByClassName('dropdown-item');
+    updateStatus() {
 
-        if(dropdownItem == null){
+        let item = document.getElementById('status');
+
+        if (item == null) {
             return;
         }
 
-        [].forEach.call(dropdownItem, function (btn) {
-            btn.addEventListener('click', () => {
-                
-                let orderId = btn.parentNode.parentNode.parentNode.parentNode;
-                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        item.addEventListener('change', () => {
 
-                let orderStatusSelected = dropdownItem.id;
-                console.log(orderId.id);
-                
-                // fetch(`/order/${orderId.id}/status/${orderStatusSelected}`,
-                //     {
-                //         headers:
-                //         {
-                //             'X-CSRF-TOKEN': token
-                //         }
-                //     })
-                //     .then(response => response.json())
-                //     .then(data => {
-                //         console.log(data);
-                //     });
-            });
+            let id = item.parentNode.parentNode.id;
+            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            let _data = { status: item.value };
+
+            fetch('order/' + id, {
+                method: 'PUT',
+                headers: { 'X-CSRF-TOKEN': token, "Content-type": "application/json; charset=UTF-8" },
+                body: JSON.stringify(_data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const Swal = require('sweetalert2');
+
+                    if (data.code == 200) {
+                        Swal.fire({
+                            title: data.message,
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+                    console.log(data);
+                })
+
         });
+
     }
 
 }

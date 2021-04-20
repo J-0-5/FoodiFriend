@@ -41380,34 +41380,44 @@ var Order = /*#__PURE__*/function () {
   _createClass(Order, [{
     key: "initialize",
     value: function initialize() {
-      this.editStatus();
+      this.updateStatus();
     }
   }, {
-    key: "editStatus",
-    value: function editStatus() {
-      //let dropdownStatus = document.getElementsByClassName('dropdown-menu'); 
-      var dropdownItem = document.getElementsByClassName('dropdown-item');
+    key: "updateStatus",
+    value: function updateStatus() {
+      var item = document.getElementById('status');
 
-      if (dropdownItem == null) {
+      if (item == null) {
         return;
       }
 
-      [].forEach.call(dropdownItem, function (btn) {
-        btn.addEventListener('click', function () {
-          var orderId = btn.parentNode.parentNode.parentNode.parentNode;
-          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-          var orderStatusSelected = dropdownItem.id;
-          console.log(orderId.id); // fetch(`/order/${orderId.id}/status/${orderStatusSelected}`,
-          //     {
-          //         headers:
-          //         {
-          //             'X-CSRF-TOKEN': token
-          //         }
-          //     })
-          //     .then(response => response.json())
-          //     .then(data => {
-          //         console.log(data);
-          //     });
+      item.addEventListener('change', function () {
+        var id = item.parentNode.parentNode.id;
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        var _data = {
+          status: item.value
+        };
+        fetch('order/' + id, {
+          method: 'PUT',
+          headers: {
+            'X-CSRF-TOKEN': token,
+            "Content-type": "application/json; charset=UTF-8"
+          },
+          body: JSON.stringify(_data)
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+          if (data.code == 200) {
+            Swal.fire({
+              title: data.message,
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            });
+          }
+
+          console.log(data);
         });
       });
     }

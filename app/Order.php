@@ -12,7 +12,7 @@ class Order extends Model
 
     public function getUser()
     {
-        return $this->hasOne(User::class, 'customer_id');
+        return $this->hasOne(User::class, 'id', 'customer_id');
     }
 
     public function getCommerce()
