@@ -11,4 +11,9 @@ class OrderDetails extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

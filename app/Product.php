@@ -20,6 +20,11 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
+    public function getOrderDetails()
+    {
+        return $this->belongsTo(Product::class, 'id', 'product_id');
+    }
+
     public function scopeName($query, $name)
     {
         if (trim($name) != null) {

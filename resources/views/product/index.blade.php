@@ -20,14 +20,14 @@
             
         </div>
         <div class="row">
-            <div class="col-2">
+            <div class="col-10">
                 <a type="button" class="btn btn-primary mb-3" href="{{route('product.create')}}">
                     <i class="fas fa-plus"></i>
                     {{__('Create product')}}
                 </a>
             </div>
             <div class="col-2">
-                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#productFilter"><i class="fas fa-filter"></i> @lang('Filter Options')</button>
+                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#productFilter"><i class="fas fa-filter"></i> @lang('Leak')</button>
             </div>
         </div>  
 
@@ -118,7 +118,11 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="row justify-content mt-3">
+            <div class="col-md-6 d-flex justify-content-end">
+                {!! $products->render() !!}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

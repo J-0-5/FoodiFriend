@@ -10,7 +10,7 @@ class CommerceTypeController extends Controller
 {
     public function index()
     {
-        $commerceTypes = CommerceType::name(request('name'))->state(request('state'))->get();
+        $commerceTypes = CommerceType::name(request('name'))->state(request('state'))->paginate(10);
 
         return view('CommerceType.index', compact('commerceTypes'));
     }

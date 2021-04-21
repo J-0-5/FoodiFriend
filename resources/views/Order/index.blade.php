@@ -19,6 +19,7 @@
                 <th scope="col">{{__('Date')}}</th>
                 <th scope="col">{{__('Total')}}</th>
                 <th scope="col">{{__('State')}}</th>
+                <th scope="col">{{__('Details')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +35,9 @@
 
                         <td> {{$order->getUser->address}} </td>
 
-                        <td> {{$order->created_at}} </td>
+                        <td> {{$order->created_at->diffForHumans()}} </td>
 
-                        <td> {{ number_format($order->total, 2)}} </td>
+                        <td> &#36; {{ number_format($order->total, 2)}} </td>
 
                         <td>
                             <select class="custom-select w-50" name="status" id="status">
@@ -47,6 +48,11 @@
                                 @endforeach
                             </select>
                         </td>
+                        <td>
+                            <a class="btn btn-info" href="{{ route('order.show',[$order->id])}}">
+                                <i class="fas fa-eye"></i> {{__('View')}}
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             @else
@@ -54,10 +60,16 @@
                     <td colspan="5" class="text-center">
                         {{__('There are no categories to display')}}
                     </td>
+
                 </tr>
             @endif
         </tbody>
     </table>
+</div>
+<div class="row justify-content mt-3">
+    <div class="col-md-6 d-flex justify-content-end">
+        {!! $orders->render() !!}
+    </div>
 </div>
 
 @endsection

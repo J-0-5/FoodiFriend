@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderDetails;
+use App\Product;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 class OrderController extends Controller
 {
@@ -15,12 +17,11 @@ class OrderController extends Controller
     public function index()
     {
         if (Auth::user()->id != 1) {
-            $orders = Order::where('commerce_id', Auth::user()->getCommerce->id)->get();
+            $orders = Order::where('commerce_id', Auth::user()->getCommerce->id)->paginate(10);
         } else {
-            $orders = Order::get();
+            $orders = Order::paginate(10);
         }
-
-        $orderDetails = OrderDetails::get();
+        
         return view('order.index', compact('orders'));
     }
 
@@ -33,5 +34,17 @@ class OrderController extends Controller
         } else {
             return response()->json(['code' => 500, 'data' => null, 'message' => 'error'], 500);
         }
+    }
+
+    public function show($id)
+    {   
+        $orderDetails = OrderDetails::where('order_id',$id)->get();
+        $order = Order::where('id', $id)->get();
+        return view('order.details', compact('orderDetails', 'order','id'));
+    }
+
+    public function destroy($id)
+    {
+
     }
 }

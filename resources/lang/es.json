@@ -89,7 +89,7 @@
     "Cart" : "Carrito de compra",
     "Buy" : "Comprar",
     "Filter" : "Filtrar",
-    "Filter Options" : "Opciones de Filtro",
+    "Leak" : "Filtro",
     "Clear" : "Limpiar",
     "Actions" : "Acciones",
     "Go pay!" : "Ir a pagar!",
@@ -97,5 +97,19 @@
     "Empty cart" : "Carrito vacío",
     "Clear cart" : "Vaciar carrito",
     "Orders" : "Pedidos",
-    "Date" : "Fecha"
+    "Date" : "Fecha",
+    "Details" : "Detalles",
+    "View" : "Ver",
+    "Order" : "Pedido",
+    "Email" : "Correo Electronico",
+    "Invoice Detail" : "Detalle Factura",
+    "No Observation Available" : "Ninguna Observacion Disponible",
+    "Upon delivery" : "Contra Entrega",
+    "Payment Type" : "Tipo de pago",
+    "Shipping Cost" : "Costo de Envío",
+    "Observations" : "Observaciones",
+    "Quantity" : "Cantidad",
+    "Status" : "Estado",
+    "Order Delete" : "Eliminar Pedido"
+
 }
