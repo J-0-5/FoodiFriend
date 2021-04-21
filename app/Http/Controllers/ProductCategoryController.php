@@ -23,7 +23,7 @@ class ProductCategoryController extends Controller
             ->name(request('name'))
             ->CommerceId(request('commerce_id'))
             ->state(request('state'))
-            ->get();
+            ->paginate(10);
 
         $commerces = Commerce::get();
 

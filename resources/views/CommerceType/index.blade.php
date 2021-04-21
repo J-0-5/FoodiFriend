@@ -135,6 +135,11 @@
                     </tbody>
                 </table>
             </div>
+            <div class="row justify-content mt-3">
+                <div class="col-md-6 d-flex justify-content-end">
+                    {!! $commerceTypes->render() !!}
+                </div>
+            </div>
         @endif
     </div>
 </div>

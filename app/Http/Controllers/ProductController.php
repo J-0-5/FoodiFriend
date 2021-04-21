@@ -28,7 +28,7 @@ class ProductController extends Controller
             ->commerce(request('commerce_id'))
             ->category(request('productCategory_id'))
             ->state(request('state'))
-            ->get();
+            ->paginate(10);
 
         return view('product.index', compact('commerces', 'productCategories', 'products'));
     }
