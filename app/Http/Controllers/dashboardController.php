@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Commerce;
 use App\Product;
 use App\User;
+use App\Order;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -47,7 +48,16 @@ class DashboardController extends Controller
                         ->date(request('startDate'), request('endDate'))
                         ->count();
 
-        return view('Dashboard.index', compact('activeProducts', 'activeUsers', 'activeCommerce', 'inactiveUsers', 'inactiveProducts','inactiveCommerce' ));
-    }
+        $ordersCTR = Order::where('status', 1)->where('status', 3)->where('status', 4)->where('status', 5)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
 
+        $salesCTR = Order::where('status', 2)
+                        ->date(request('startDate'), request('endDate'))
+                        ->count();
+
+
+        return view('Dashboard.index', compact('activeProducts', 'activeUsers', 'activeCommerce', 'inactiveUsers', 'inactiveProducts','inactiveCommerce' ,'ordersCTR', 'salesCTR' ));
+    }
+                
 }

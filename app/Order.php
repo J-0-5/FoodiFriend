@@ -19,5 +19,13 @@ class Order extends Model
     {
         return $this->belongsTo(Commerce::class, 'commerce_id');
     }
+
+    public function scopeDate($query, $startDate, $endtDate)
+    {
+        if (trim($startDate) != null && trim($endtDate) != null) {
+            $query->whereBetween('created_at', [$startDate, $endtDate]);
+        }
+    }
+    
 }
 
