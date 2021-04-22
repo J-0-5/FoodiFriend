@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Commerce;
 use App\CommerceType;
+use App\Order;
+use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class CommerceTypeController extends Controller
@@ -72,6 +75,9 @@ class CommerceTypeController extends Controller
 
     public function destroy($id)
     {
+        Order::where('commerce_id', $id)->delete();
+        Product::where('commerce_id', $id)->delete();
+        ProductCategory::where('commerce_id', $id)->delete();
         Commerce::where('type', $id)->delete();
 
         if (CommerceType::where('id', $id)->delete()) {
