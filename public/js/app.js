@@ -41667,6 +41667,7 @@ var ProductCategory = /*#__PURE__*/function () {
 
             var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             var url = '/productCategory/' + productCategory.id;
+            console.log(url);
             fetch(url, {
               method: 'DELETE',
               headers: {
