@@ -131,7 +131,7 @@
                         <div class="form-group col">
                             <label class="form-control-label @error('productCategory') is-invalid @enderror">{{__('Product Category')}} <span class="text-danger">*</span></label>
                             <select name="category" id="productCategory" class="form-control" required>
-                                @if(Auth::user()->getCommerce)
+                                @if(Auth::user()->getCommerce or Auth::user()->id == 1)
                                     @foreach($productCategories as $productCategory)
                                         <option value="{{$productCategory->id}}" {{request('category') == $productCategory->id ? 'selected': ''}}>
                                             {{$productCategory->name}}

@@ -41661,12 +41661,13 @@ var ProductCategory = /*#__PURE__*/function () {
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Cancelar'
           }).then(function (result) {
-            if (result.value) {
+            if (!result.value) {
               return;
             }
 
             var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             var url = '/productCategory/' + productCategory.id;
+            console.log(url);
             fetch(url, {
               method: 'DELETE',
               headers: {

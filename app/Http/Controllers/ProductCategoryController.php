@@ -40,7 +40,7 @@ class ProductCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'commerce_id' => 'nullable|exist:commerce,id',
+            'commerce_id' => 'nullable|exists:commerce,id',
             'description' => 'required',
         ]);
 

@@ -94,7 +94,7 @@ export default class ProductCategory {
 
                     let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                     let url = '/productCategory/' + productCategory.id;
-
+                    console.log(url);
                     fetch(url, {
                         method: 'DELETE',
                         headers: {
