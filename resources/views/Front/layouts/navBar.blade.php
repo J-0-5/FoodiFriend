@@ -13,6 +13,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
+            @if(explode('/', request()->path())[0] == 'products' )
             <ul class="navbar-nav ml-auto">
                 <a data-toggle="modal" data-target="#cart">
                     <i class="fas fa-shopping-cart fa-2x" style="color: black"></i>
@@ -22,6 +23,7 @@
                 </a>
             </ul>
             @include('Front.cart')
+            @endif
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

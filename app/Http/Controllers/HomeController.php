@@ -46,6 +46,12 @@ class HomeController extends Controller
 
     public function products($commerce_id)
     {
+        if (isset(\Cart::getContent()['1'])) {
+            if (\Cart::getContent()['1']['attributes'][0]->getCommerce->id != $commerce_id) {
+                \Cart::clear();
+            }
+        }
+
         $commerce = Commerce::where('id', $commerce_id)->first();
 
         $categories = ProductCategory::where('commerce_id', $commerce_id)->where('state', 1)->get();
