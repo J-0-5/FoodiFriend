@@ -88,7 +88,7 @@ export default class ProductCategory {
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
 
-                    if (result.value) {
+                    if (!result.value) {
                         return;
                     }
 
