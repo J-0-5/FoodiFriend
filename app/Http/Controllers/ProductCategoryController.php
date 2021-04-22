@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commerce;
+use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -103,11 +104,13 @@ class ProductCategoryController extends Controller
 
     public function destroy($id)
     {
-        if (ProductCategory::where('id', $id)->delete()) {
-            return response()->json(['code' => 200], 200);
-        } else {
-            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
-        } 
+        if (Product::where('category_id', $id)->delete()) {
+            if (ProductCategory::where('id', $id)->delete()) {
+                return response()->json(['code' => 200], 200);
+            } else {
+                return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+            }
+        }
     }
 
     public function categories($commerce_id)
