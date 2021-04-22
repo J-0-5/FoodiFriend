@@ -41661,7 +41661,7 @@ var ProductCategory = /*#__PURE__*/function () {
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Cancelar'
           }).then(function (result) {
-            if (result.value) {
+            if (!result.value) {
               return;
             }
 
