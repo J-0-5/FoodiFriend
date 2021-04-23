@@ -88,11 +88,7 @@ class ProductController extends Controller
 
         $product = Product::where('id', $id)->first();
 
-        if(Auth::user()->id == 1){
-            $productCategories = ProductCategory::get();
-        }else{
-            $productCategories = ProductCategory::where('commerce_id', $product->commerce_id)->get();
-        }
+        $productCategories = ProductCategory::where('commerce_id', $product->commerce_id)->get();
 
         return view('product.edit', compact('commerces', 'product', 'productCategories'));
     }
