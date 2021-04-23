@@ -46,9 +46,12 @@ class HomeController extends Controller
 
     public function products($commerce_id)
     {
-        if (isset(\Cart::getContent()['1'])) {
-            if (\Cart::getContent()['1']['attributes'][0]->getCommerce->id != $commerce_id) {
-                \Cart::clear();
+
+        if (\Cart::getContent()->count() > 0) {
+            foreach (\Cart::getContent() as $item) {
+                if ($item->attributes[0]->getCommerce->id != $commerce_id) {
+                    \Cart::clear();
+                }
             }
         }
 
