@@ -39,7 +39,7 @@ class HomeController extends Controller
 
     public function commerces($type)
     {
-        $commerces = Commerce::where('type', $type)->get();
+        $commerces = Commerce::where('type', $type)->where('state', 1)->get();
 
         return view('Front.commerces', compact('commerces'));
     }
@@ -56,7 +56,7 @@ class HomeController extends Controller
 
         $categories = ProductCategory::where('commerce_id', $commerce_id)->where('state', 1)->get();
 
-        $products = Product::where('commerce_id', $commerce_id)->where('state', 1)->get();
+        $products = Product::category(request('category_id'))->where('commerce_id', $commerce_id)->where('state', 1)->get();
 
         return view('Front.products', compact('commerce', 'categories', 'products'));
     }

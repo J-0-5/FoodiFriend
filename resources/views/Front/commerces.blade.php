@@ -13,7 +13,6 @@
     </div>
     <div class="d-flex flex-wrap d-flex justify-content-center">
         @foreach ($commerces as $commerce)
-        @if($commerce->state != 0)
         <a href="{{route('home.products',$commerce->id)}}" class="col-lg-4 col-md-6 col-12 text-decoration-none">
             <div class="card p-2 m-2 rounded">
                 @if (Storage::disk('public')->exists($commerce->img))
@@ -28,7 +27,6 @@
                 </div>
             </div>
         </a>
-        @endif
         @endforeach
     </div>
 </div>
