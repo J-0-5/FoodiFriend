@@ -14,7 +14,7 @@ class CommerceSeeder extends Seeder
     {
         $Commerces = [ //id => data
             1 => [2, "800.244.387-4", "McDONALD'S", 3, "McDonald's es una franquicia de restaurantes de comida rápida estadounidense con sede en Chicago, Illinois.​ Sus principales productos son las hamburguesas, las patatas fritas, los menús para el desayuno y los refrescos."],
-            2 => [3, " 900.934.851-4", "DOMINO'S", 3, "Domino's Pizza es una Cadena de pizzerías con reparto a domicilio que sirve una gran variedad de pizzas, pollo y entrantes."],
+            2 => [3, " 900.934.851-4", "DOMINO'S", 1, "Domino's Pizza es una Cadena de pizzerías con reparto a domicilio que sirve una gran variedad de pizzas, pollo y entrantes."],
         ];
 
         foreach ($Commerces as $id => $commerce) {
