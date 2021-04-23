@@ -80,8 +80,8 @@ class CommerceTypeController extends Controller
             Order::where('commerce_id', $commerce->id)->delete();
             Product::where('commerce_id', $commerce->id)->delete();
             ProductCategory::where('commerce_id', $commerce->id)->delete();
+            $commerce->delete();
         }
-        $commerce->delete();
 
         if (CommerceType::where('id', $id)->delete()) {
             return response()->json(['code' => 200], 200);
