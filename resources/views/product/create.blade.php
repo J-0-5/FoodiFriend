@@ -90,7 +90,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-12">
+                        {{-- <div class="form-group col-12">
                             <label class="form-control-label">{{__('Quantity available')}} <span class="text-danger">*</span></label>
                             <input type="number" min="0" name="quantity" class="form-control @error('quantity') is-invalid @enderror"
                                 value="{{old('quantity')}}" placeholder="{{__('Quantity available')}}" required>
@@ -99,7 +99,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         @if(Auth::user()->id == 1)
                             <div class="form-group col">

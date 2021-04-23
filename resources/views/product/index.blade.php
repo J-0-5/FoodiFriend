@@ -10,26 +10,21 @@
     <div class="container-fluid px-3 mb-3">
         <div class="row">
 
-            <div class="col-12 h1"> 
-                <div class="contenedor">
-                    <img width="100%" src="{{asset('img/product/banner.jpg')}}" alt="Banner Products"/>
-                    <div class="centrado"><h1 class="titulo-grande">{{__('Product').'s'}}</h1></div>
-                </div>
-                
+            <div class="col-12">
+                <div class="justify-content-center"><h1 class=" text-center">{{__('Product').'s'}}</h1></div>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="col-10">
                 <a type="button" class="btn btn-primary mb-3" href="{{route('product.create')}}">
-                    <i class="fas fa-plus"></i>
-                    {{__('Create product')}}
+                    {{__('Create product')}} <i class="fas fa-plus"></i>
                 </a>
             </div>
             <div class="col-2">
                 <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#productFilter"><i class="fas fa-filter"></i> @lang('Leak')</button>
             </div>
-        </div>  
+        </div>
 
 
         @if($errors->any())

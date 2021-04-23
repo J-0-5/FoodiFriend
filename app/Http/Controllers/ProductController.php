@@ -73,7 +73,7 @@ class ProductController extends Controller
             'name' => request('name'),
             'description' => request('description'),
             'price' => request('price'),
-            'quantity' => request('quantity'),
+            'quantity' => 1,
             'commerce_id' => request('commerce_id'),
             'category_id' => request('category'),
         ]);
@@ -110,7 +110,7 @@ class ProductController extends Controller
         $product->name = request('name');
         $product->description = request('description');
         $product->price = request('price');
-        $product->quantity = request('quantity');
+        $product->quantity = 1;
         $product->commerce_id = request('commerce_id');
         $product->category_id = request('category');
         $product->state = request('state');
