@@ -75,7 +75,7 @@ class CommerceTypeController extends Controller
 
     public function destroy($id)
     {
-        $commerces = Commerce::where('type', $id);
+        $commerces = Commerce::where('type', $id)->get();
         foreach ($commerces as $commerce) {
             Order::where('commerce_id', $commerce->id)->delete();
             Product::where('commerce_id', $commerce->id)->delete();
