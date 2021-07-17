@@ -96,6 +96,7 @@ class RegisterController extends Controller
                 'description' => $data['description'],
             ]);
         }
+
         return $user;
     }
 }

@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('getDepartments', 'Api\PlaceApiController@getDepartments');
+Route::get('getCities', 'Api\PlaceApiController@getCities');
+
+Route::post('register', 'Api\UserApiController@signUp');
+Route::post('login', 'Api\UserApiController@signIn');
+
+//logged in
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('logout', 'Api\UserApiController@signOut');
+});
