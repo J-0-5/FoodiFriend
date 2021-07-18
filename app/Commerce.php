@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Commerce extends Model
 {
@@ -44,6 +45,14 @@ class Commerce extends Model
     {
         if (trim($startDate) != null && trim($endtDate) != null) {
             $query->whereBetween('created_at', [$startDate, $endtDate]);
+        }
+    }
+
+    public function scopeCity($query, $city)
+    {
+        if (trim($city) != null) {
+            $owners = User::where('city_id', $city)->get(['id']);
+            $query->whereIn('user_id', $owners);
         }
     }
 }

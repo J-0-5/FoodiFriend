@@ -28,3 +28,6 @@ Route::post('login', 'Api\UserApiController@signIn');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', 'Api\UserApiController@signOut');
 });
+
+Route::get('getCommerceTypes', 'Api\CommerceApiController@getCommerceTypes');
+Route::get('getCommerces', 'Api\CommerceApiController@getCommerces');
