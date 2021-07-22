@@ -19,4 +19,9 @@ class CommerceApiController extends Controller
     {
         return $this->commerces($request);
     }
+
+    public function getCommerce(Request $request)
+    {
+        return $this->commerce($request);
+    }
 }

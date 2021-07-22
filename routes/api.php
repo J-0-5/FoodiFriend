@@ -31,3 +31,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('getCommerceTypes', 'Api\CommerceApiController@getCommerceTypes');
 Route::get('getCommerces', 'Api\CommerceApiController@getCommerces');
+Route::get('getCommerce', 'Api\CommerceApiController@getCommerce');
+Route::get('getProducts', 'Api\ProductApiController@getProducts');
