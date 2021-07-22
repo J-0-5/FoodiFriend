@@ -43,8 +43,8 @@ class OrderController extends Controller
         return view('order.details', compact('orderDetails', 'order','id'));
     }
 
-    public function destroy($id)
-    {
+    // public function destroy($id)
+    // {
 
-    }
+    // }
 }
