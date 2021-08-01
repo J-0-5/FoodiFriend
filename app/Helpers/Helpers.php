@@ -5,8 +5,6 @@ namespace App\Helpers;
 use App\CommerceType;
 use App\Department;
 use App\ParameterValue;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Http;
 
 class Helpers
 {

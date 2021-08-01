@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class ProductCategoryController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
     public function index()
     {
         $productCategories = ProductCategory::filterByCommerce()
@@ -29,11 +22,6 @@ class ProductCategoryController extends Controller
         $commerces = Commerce::get();
 
         return view('productCategory.index', compact('productCategories', 'commerces'));
-    }
-
-    public function create()
-    {
-        return view('ProductCategories.create');
     }
 
     public function store(Request $request)
@@ -57,13 +45,6 @@ class ProductCategoryController extends Controller
         ]);
 
         return back()->with('status', __('Category created successfully'));
-    }
-
-    public function show(ProductCategory $productCategory)
-    {
-        $productCategory = ProductCategory::get();
-
-        return view('productCategories.index', compact('productCategory'));
     }
 
     public function edit($id)
