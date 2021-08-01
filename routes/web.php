@@ -52,3 +52,5 @@ Route::resource('/cities', 'CityController');
 
 //Excell
 Route::get('users/export/', 'UserController@export')->name('export.user');
+Route::get('commerces/export/', 'CommerceController@export')->name('export.commerce');
+

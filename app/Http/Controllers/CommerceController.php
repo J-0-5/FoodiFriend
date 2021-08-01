@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Commerce;
-use App\CommerceType;
+use App\Exports\CommercesExport;
 use App\Order;
 use App\Product;
 use App\ProductCategory;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CommerceController extends Controller
 {
@@ -94,5 +94,10 @@ class CommerceController extends Controller
         } else {
             return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
         }
+    }
+
+    public function export(){
+        dd();
+        return Excel::download(new CommercesExport, 'commerces.xlsx');
     }
 }

@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header text-center">
-                            Usuarios
+                           <b>Usuarios</b>
                         </div>
                         <div class="card-body ">
                             <div class="row">
@@ -63,7 +63,7 @@
                         </div>
                         <a href="{{ route('export.user') }}" target="_blank" rel="noopener noreferrer">
                             <div style="font-size: 1.5em;" class="card-footer text-center text-success">
-                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"> Exportar</i>
                             </div>
                         </a>
                     </div>
@@ -72,7 +72,7 @@
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header text-center">
-                            Comercios
+                           <b> Comercios</b>
                         </div>
                         <div class="card-body ">
                             <div class="row">
@@ -104,6 +104,11 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ route('export.commerce') }}" target="_blank" rel="noopener noreferrer">
+                            <div style="font-size: 1.5em;" class="card-footer text-center text-success">
+                                <i class="fas fa-file-excel"> Exportar</i>
+                            </div>
+                        </a>
                     </div>
 
                 </div>
@@ -113,7 +118,7 @@
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header text-center">
-                            Productos
+                           <b> Productos</b>
                         </div>
                         <div class="card-body ">
                             <div class="row">
@@ -150,7 +155,7 @@
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header text-center">
-                            Pedidos
+                           <b> Pedidos</b>
                         </div>
                         <div class="card-body ">
                             <div class="row">
