@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderDetails;
@@ -10,6 +11,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -47,4 +49,8 @@ class OrderController extends Controller
     // {
 
     // }
+
+    public function export(){
+        return Excel::download(new OrdersExport, 'orders.xlsx');
+    }
 }

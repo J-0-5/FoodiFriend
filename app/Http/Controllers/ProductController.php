@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Commerce;
+use App\Exports\ProductsExport;
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -132,5 +134,9 @@ class ProductController extends Controller
         } else {
             return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
         }
+    }
+
+    public function export(){
+        return Excel::download(new ProductsExport, 'products.xlsx');
     }
 }

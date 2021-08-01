@@ -97,7 +97,6 @@ class CommerceController extends Controller
     }
 
     public function export(){
-        dd();
         return Excel::download(new CommercesExport, 'commerces.xlsx');
     }
 }

@@ -63,7 +63,7 @@
                         </div>
                         <a href="{{ route('export.user') }}" target="_blank" rel="noopener noreferrer">
                             <div style="font-size: 1.5em;" class="card-footer text-center text-success">
-                                <i class="fas fa-file-excel"> Exportar</i>
+                                <i class="fas fa-file-excel"></i>
                             </div>
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                         </div>
                         <a href="{{ route('export.commerce') }}" target="_blank" rel="noopener noreferrer">
                             <div style="font-size: 1.5em;" class="card-footer text-center text-success">
-                                <i class="fas fa-file-excel"> Exportar</i>
+                                <i class="fas fa-file-excel"></i>
                             </div>
                         </a>
                     </div>
@@ -150,6 +150,11 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ route('export.product') }}" target="_blank" rel="noopener noreferrer">
+                            <div style="font-size: 1.5em;" class="card-footer text-center text-success">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -187,7 +192,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        <a href="{{ route('export.order') }}" target="_blank" rel="noopener noreferrer">
+                            <div style="font-size: 1.5em;" class="card-footer text-center text-success">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
