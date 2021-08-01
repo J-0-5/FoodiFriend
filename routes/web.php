@@ -48,5 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes();
 
-
 Route::resource('/cities', 'CityController');
+
+//Excell
+Route::get('users/export/', 'UserController@export')->name('export.user');
