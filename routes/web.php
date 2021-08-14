@@ -18,13 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Excel
-Route::get('users/export/', 'UserController@export')->name('export.user');
-Route::get('commerces/export/', 'CommerceController@export')->name('export.commerce');
-Route::get('products/export/', 'ProductController@export')->name('export.product');
-Route::get('orders/export/', 'OrderController@export')->name('export.order');
-
 Route::group(['middleware' => 'auth'], function () {
+
+    //Excel
+    Route::get('users/export/', 'UserController@export')->name('export.user');
+    Route::get('commerces/export/', 'CommerceController@export')->name('export.commerce');
+    Route::get('products/export/', 'ProductController@export')->name('export.product');
+    Route::get('orders/export/', 'OrderController@export')->name('export.order');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -53,4 +53,3 @@ Route::group(['middleware' => 'auth'], function () {
 Auth::routes();
 
 Route::resource('/cities', 'CityController');
-
